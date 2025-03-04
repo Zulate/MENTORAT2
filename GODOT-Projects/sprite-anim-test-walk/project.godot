@@ -15,6 +15,7 @@ run/main_scene="res://grass-map.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.385493, 0.385493, 0.385492, 1)
 boot_splash/image="res://loadingscreen/ohio-solutions-final.png"
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
@@ -32,7 +33,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
@@ -65,3 +66,6 @@ jump={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+global_illumination/voxel_gi/quality=1
+textures/decals/filter=0
+textures/light_projectors/filter=0
