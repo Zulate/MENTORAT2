@@ -1,0 +1,173 @@
+[gd_scene load_steps=28 format=3 uid="uid://xaq2e8tba0om"]
+
+[ext_resource type="ArrayMesh" uid="uid://cxcp8y8kbeouu" path="res://stein.obj" id="1_mry0u"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="2_o238e"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="3_3hkyp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="4_m1qap"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="5_50jl5"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="6_k3mmg"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="7_m14la"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="8_283tc"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="9_lfadh"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="10_4rre1"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="11_yormo"]
+[ext_resource type="PackedScene" uid="uid://caygphdug73c4" path="res://grass-blade.tscn" id="12_wnpct"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gut5a"]
+size = Vector3(20, 0.047, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdb64"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.626667, 1, 0.36, 1)
+metallic = 0.5
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_67bag"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4notn"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.720467, 0.720468, 0.720467, 1)
+metallic = 0.5
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="MultiMesh" id="MultiMesh_omlir"]
+transform_format = 1
+instance_count = 32
+mesh = ExtResource("1_mry0u")
+buffer = PackedFloat32Array(-0.0468115, -0.0564784, 0.0860757, -9.45542, -0.0516034, 0.0946921, 0.034068, 0, -0.0890837, -0.0251741, -0.0649653, 2.08898, -0.0606241, -0.0106799, -0.119224, 8.34981, -0.0644792, 0.11551, 0.0224398, 0, 0.10085, 0.0674318, -0.0573219, 7.61033, 0.0827533, 0.147781, -0.201155, 4.44212, 0.207568, 0.0769562, 0.141929, 0, 0.138629, -0.203443, -0.0924319, -0.0527973, -0.204705, -0.0955655, -0.112271, -4.16512, 0.0518605, 0.133154, -0.207899, 0, 0.138015, -0.191778, -0.088401, 8.55229, 0.00081482, -0.0438032, -0.103237, -7.3362, 0.0861052, 0.0663893, -0.0274892, 0, 0.0718508, -0.0790635, 0.0341135, 3.07516, -0.118391, 0.0716246, 0.0460276, 9.59164, 0.0787078, 0.0620178, 0.105944, 0, 0.0324609, 0.110855, -0.0890089, 0.130819, -0.0337462, -0.0613927, -0.0857438, -3.35469, 0.0295565, 0.0809126, -0.0695661, 0, 0.10123, -0.0440904, -0.00827228, 3.33015, -0.115673, 0.0863873, -0.154578, 4.90638, 0.113174, 0.178071, 0.0148264, 0, 0.136194, -0.0746024, -0.143607, 2.88379, -0.000596851, 0.238535, -0.11914, -2.94618, 0.00105421, 0.119142, 0.238532, 0, 0.266631, 6.28911e-05, -0.00120981, -6.2905, -0.190399, 0.121239, 0.0847844, 7.66163, 0.134434, 0.199472, 0.0166587, 0, -0.0617634, 0.0604251, -0.225107, 9.4387, -0.0610846, -0.180865, -0.141674, 6.05019, -0.148011, 0.1431, -0.118869, 0, 0.175716, 0.0576636, -0.149377, -7.24325, 0.0892471, -0.11103, -0.22891, -5.96541, -0.163399, 0.160926, -0.141761, 0, 0.195009, 0.185655, -0.0140199, 1.67321, 0.0133759, 0.0709369, -0.139151, -4.02106, -0.140217, 0.0669781, 0.0206659, 0, 0.0688058, 0.122703, 0.0691656, -6.78834, -0.0226743, 0.0595544, -0.0821861, -8.90697, 0.0210912, 0.0851385, 0.0558749, 0, 0.0992796, -0.00448552, -0.0306406, 9.81371, 0.0401483, 0.0424995, 0.207805, 2.92997, 0.105224, 0.179644, -0.0570696, 0, -0.184166, 0.111905, 0.0126947, -7.13735, 0.150402, -0.153671, -0.194925, 0.79581, 0.13485, 0.241936, -0.086684, 0, 0.208389, -0.0456475, 0.196778, 9.72854, -0.150159, -0.087912, -0.0426698, -7.54235, -0.0434203, 0.130106, -0.115256, 0, 0.0875438, -0.0862602, -0.130355, 0.386242, -0.104301, 0.0395401, -0.0474943, -7.59202, 0.0301019, 0.113877, 0.0286995, 0, 0.0539723, 0.0128982, -0.107789, -6.4142, -0.0270976, -0.0301043, 0.251261, 4.97811, -0.0426652, 0.249624, 0.0253068, 0, -0.249436, -0.039427, -0.0316246, -7.62952, -0.13668, 0.0239236, 0.119843, -8.89677, 0.111926, 0.0966939, 0.108348, 0, -0.0490656, 0.153929, -0.0866869, -1.33029, 0.0841024, 0.131056, -0.181587, 4.01953, -0.122667, 0.189242, 0.0797673, 0, 0.187356, 0.0650725, 0.133739, -1.48085, -0.237827, 0.0570445, -0.171065, 2.37555, 0.177452, 0.12438, -0.20523, 0, 0.032064, -0.265244, -0.133028, 9.48222, -0.0279453, 0.150844, 0.164068, -7.55285, -0.133782, 0.120896, -0.133939, 0, -0.178254, -0.114382, 0.0748018, -7.00194, 0.112904, -0.106875, -0.0894787, 9.51111, -0.0373035, 0.0877815, -0.151918, 0, 0.134303, 0.114229, 0.0330258, 6.87919, 0.00528309, -0.141502, -0.185752, 7.1359, 0.0483375, 0.182437, -0.137603, 0, 0.228451, -0.0353292, 0.0334107, 9.20701, -0.0848637, -0.0709744, 0.123908, -2.55514, 0.0546698, 0.117008, 0.104465, 0, -0.131916, 0.0941504, -0.0364189, 2.40258, 0.0407732, 0.216708, 0.185474, 3.08783, 0.0935776, 0.166828, -0.215493, 0, -0.269456, 0.0907282, -0.046772, -5.1209, -0.0536086, 0.112809, 0.0629353, -9.11431, 0.129177, 0.0468849, 0.0259944, 0, -0.000130987, 0.0680921, -0.122164, -3.73755, 0.0389049, 0.116419, -0.10678, -4.32934, -0.0423049, 0.113632, 0.108476, 0, 0.152203, 0.00182609, 0.0574452, -9.38787, -0.0592117, -0.132556, 0.0391926, 3.58783, -0.137829, 0.0533785, -0.0276952, 0, 0.0105011, -0.0468274, -0.142513, -6.12015, 0.208366, -0.106061, 0.0917494, 3.55606, 0.125905, 0.0691081, -0.206047, 0, 0.0617639, 0.21693, 0.110499, -0.54751, -0.098283, -0.00702371, 0.0271053, -1.47533, 0.0140326, 0.0732514, 0.0698634, 0, -0.0242304, 0.0709118, -0.0694837, 5.33516)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp50y"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.54, 0.54, 0.54, 1)
+metallic = 0.03
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="Resource" id="Resource_ewxun"]
+script = ExtResource("5_50jl5")
+amount = 200
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_emey2"]
+script = ExtResource("6_k3mmg")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.2, 0.2, 0.2)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_ns6gk"]
+script = ExtResource("7_m14la")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_cty72"]
+script = ExtResource("8_283tc")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_2fxh8"]
+script = ExtResource("3_3hkyp")
+stack = Array[ExtResource("4_m1qap")]([SubResource("Resource_ewxun"), SubResource("Resource_emey2"), SubResource("Resource_ns6gk"), SubResource("Resource_cty72")])
+
+[sub_resource type="GDScript" id="GDScript_5c417"]
+
+[sub_resource type="VisualShader" id="VisualShader_renbc"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+"
+graph_offset = Vector2(-95.0522, -31.8259)
+script = SubResource("GDScript_5c417")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy1on"]
+render_priority = 0
+shader = SubResource("VisualShader_renbc")
+
+[sub_resource type="Resource" id="Resource_b6t33"]
+script = ExtResource("11_yormo")
+size = Vector3(19.4818, 1, 19.3977)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_gut5a")
+
+[node name="floor" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_fdb64")
+mesh = SubResource("PlaneMesh_67bag")
+skeleton = NodePath("../..")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4notn")
+multimesh = SubResource("MultiMesh_omlir")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 7.37596, 10.3161, 7.32399)
+projection = 1
+size = 8.749
+
+[node name="stein" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.193997, 0, 0.0486316, 0, 0.2, 0, -0.0486316, 0, -0.193997, -0.533576, 0.0459782, 4.21299)
+material_override = SubResource("StandardMaterial3D_tp50y")
+mesh = ExtResource("1_mry0u")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.211065, 0.948319, -0.236943, 0.226638, 0.283276, 0.931874, 0.950835, 0.142986, -0.274715, 0, 0, 0)
+shadow_enabled = true
+shadow_normal_bias = 0.432
+shadow_blur = 0.189
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+script = ExtResource("2_o238e")
+modifier_stack = SubResource("Resource_2fxh8")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("9_lfadh")
+source_scale_multiplier = 0.5
+override_material = SubResource("ShaderMaterial_cy1on")
+path = "res://grass-blade.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("10_4rre1")
+shape = SubResource("Resource_b6t33")
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("12_wnpct")]
+visible = false
