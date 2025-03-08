@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=19 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="ArrayMesh" uid="uid://bjr3tm1u5q4k1" path="res://grass-blade.obj" id="1_5cog1"]
-[ext_resource type="ArrayMesh" uid="uid://cxcp8y8kbeouu" path="res://stein.obj" id="1_mry0u"]
 [ext_resource type="Script" path="res://player-movement.gd" id="4_eaydq"]
 [ext_resource type="Texture2D" uid="uid://damoc3wh06nt7" path="res://sprites/cube.png" id="5_enqi3"]
 [ext_resource type="Shader" path="res://shaders/grass_shader.gdshader" id="10_3idv7"]
@@ -19,14 +18,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 "
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp50y"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.899258, 0.899258, 0.899258, 1)
-metallic = 0.5
-metallic_specular = 0.0
-roughness = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i0dju"]
 size = Vector2(20, 20)
@@ -97,12 +88,6 @@ fov = 50.0
 size = 5.5
 far = 60.0
 script = SubResource("GDScript_p703o")
-
-[node name="stein" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.193997, 0, 0.0486316, 0, 0.2, 0, -0.0486316, 0, -0.193997, -0.533576, 0.0459782, 4.21299)
-visible = false
-material_override = SubResource("StandardMaterial3D_tp50y")
-mesh = ExtResource("1_mry0u")
 
 [node name="grass-region" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0.485)
