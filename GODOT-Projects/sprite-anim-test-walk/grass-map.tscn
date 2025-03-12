@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=20 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="ArrayMesh" uid="uid://bjr3tm1u5q4k1" path="res://grass-blade.obj" id="1_5cog1"]
 [ext_resource type="Script" path="res://player-movement.gd" id="4_eaydq"]
 [ext_resource type="Texture2D" uid="uid://damoc3wh06nt7" path="res://sprites/cube.png" id="5_enqi3"]
+[ext_resource type="ArrayMesh" uid="uid://cuwbcimnwvvmm" path="res://assets/test-rock.obj" id="5_ohuy8"]
 [ext_resource type="Shader" path="res://shaders/grass_shader.gdshader" id="10_3idv7"]
 
 [sub_resource type="GDScript" id="GDScript_p703o"]
@@ -177,6 +178,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63776, 0, 0.718205)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="area-grass-left"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.461945)
 shape = SubResource("BoxShape3D_gocbo")
+
+[node name="Test-rock" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.308468, 0, -0.254652, 0, 0.4, 0, 0.254652, 0, 0.308468, -3.45068, 0.00376999, 5.03409)
+mesh = ExtResource("5_ohuy8")
 
 [connection signal="body_entered" from="enter-red-level" to="CharacterBody3D" method="_on_enterredlevel_body_entered"]
 [connection signal="body_entered" from="area-grass-right" to="CharacterBody3D" method="_on_areagrassright_body_entered"]
