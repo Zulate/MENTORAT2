@@ -1,10 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcccqgyxpnxsu"]
+[gd_scene load_steps=22 format=3 uid="uid://bcccqgyxpnxsu"]
 
+[ext_resource type="Shader" path="res://shaders/viewport-stilisation.gdshader" id="1_t6ajb"]
 [ext_resource type="Material" uid="uid://dnolo372243b5" path="res://toon-red.tres" id="1_xypyu"]
+[ext_resource type="Texture2D" uid="uid://jkt5cyydd7d0" path="res://sprites/red-level-palette-1x.png" id="2_p3oja"]
 [ext_resource type="ArrayMesh" uid="uid://buv5cudpbjl5v" path="res://loube.obj" id="2_yirmq"]
 [ext_resource type="Shader" path="res://shaders/grass_shader.gdshader" id="3_72wme"]
 [ext_resource type="ArrayMesh" uid="uid://bjr3tm1u5q4k1" path="res://grass-blade.obj" id="4_n0jco"]
 [ext_resource type="Script" path="res://player-movement.gd" id="5_yqcv6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijpgo"]
+shader = ExtResource("1_t6ajb")
+shader_parameter/num_colors = 8
+shader_parameter/PALETTE_TEXTURE = ExtResource("2_p3oja")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0iio7"]
 size = Vector3(20, 0.047, 20)
@@ -76,97 +83,119 @@ size = Vector3(0.0874023, 1, 9.92389)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_ijpgo")
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -600.0
+offset_bottom = -320.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 shape = SubResource("BoxShape3D_0iio7")
 
-[node name="floor" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
+[node name="floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/CollisionShape3D"]
 material_override = ExtResource("1_xypyu")
 mesh = SubResource("PlaneMesh_rl77r")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.891006, -0.140291, 0.431771, 0, 0.951057, 0.309017, -0.453991, -0.275336, 0.847398, 5, 4, 9.5)
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, -0.5, 4, 9.5)
 projection = 1
-size = 3.7
+size = 5.5
 far = 60.0
 
-[node name="Loube" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.402246, 0, 0)
+[node name="Loube" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.95138, 0, -0.308021, 0, 1, 0, 0.308021, 0, 0.95138, -0.791575, 0, -0.591184)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Loube"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Loube"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.001, 0)
 shape = SubResource("ConcavePolygonShape3D_jvfla")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Loube/CollisionShape3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Loube/CollisionShape3D2"]
 material_override = ExtResource("1_xypyu")
 mesh = ExtResource("2_yirmq")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Loube"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Loube"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236197, 0.590006, -5.22166)
 shape = SubResource("BoxShape3D_wpgvy")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Loube"]
-transform = Transform3D(0.891006, 0, 0.45399, 0, 1, 0, -0.45399, 0, 0.891006, 2.708, 0, 5.05)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Loube"]
+transform = Transform3D(0.951056, 0, 0.309017, 0, 1, 0, -0.309017, 0, 0.951056, 2.44186, 0, 4.22799)
 shape = SubResource("BoxShape3D_wpgvy")
 
-[node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="."]
-transform = Transform3D(-0.602875, 0, -0.797838, 0, 1, 0, 0.797838, 0, -0.602874, 1.71219, -1.51992e-06, 4.04099)
+[node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.820323, 0, -0.571904, 0, 1, 0, 0.571904, 0, -0.820322, -1.59358, -1.51992e-06, 3.66215)
 material_override = SubResource("ShaderMaterial_n51ib")
 multimesh = SubResource("MultiMesh_ae3j0")
 script = SubResource("GDScript_rnvl7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.997504, -0.00557455, 0.0703894, 0.00687307, 0.984479, 0.175367, -0.0702744, 0.175413, -0.981984, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.941202, -0.0528685, 0.333682, 0.00687307, 0.984479, 0.175367, -0.337775, 0.167349, -0.92623, 0, 0, 0)
 light_color = Color(0.37, 0.916, 1, 1)
-light_energy = 5.065
+light_energy = 5.5
 shadow_enabled = true
 shadow_opacity = 0.92
 shadow_blur = 4.175
 
-[node name="gras-blätter" type="MeshInstance3D" parent="."]
+[node name="gras-blätter" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
 visible = false
 mesh = ExtResource("4_n0jco")
+skeleton = NodePath("../../..")
 
-[node name="grass-region" type="MeshInstance3D" parent="."]
+[node name="grass-region" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277878, -4.76837e-07, -0.783837)
 visible = false
 mesh = SubResource("PlaneMesh_unjk1")
+skeleton = NodePath("../../..")
 
-[node name="PlayerBody" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42259, 0.036, 0.724067)
+[node name="PlayerBody" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41608, 0.036, 0.258977)
 script = ExtResource("5_yqcv6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.127, 0)
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_indirect_energy = 16.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_blur = 2.51
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/PlayerBody"]
+transform = Transform3D(0.452435, 0, 0.891798, 0, 1, 0, -0.891798, 0, 0.452435, 0, 0.127, 0)
 shape = SubResource("BoxShape3D_xve0b")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/PlayerBody/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0138851, 0)
 mesh = SubResource("BoxMesh_x224c")
 
-[node name="area-right" type="Area3D" parent="." groups=["camera-switch-group"]]
-transform = Transform3D(0.891007, 0, 0.453991, 0, 1, 0, -0.453991, 0, 0.891007, 4.76178, 0, 0.718205)
+[node name="area-right" type="Area3D" parent="SubViewportContainer/SubViewport" groups=["camera-switch-group"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89548, 0, 0.718205)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="area-right"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-right"]
 shape = SubResource("BoxShape3D_8ovar")
 
-[node name="area-left" type="Area3D" parent="." groups=["camera-switch-group"]]
-transform = Transform3D(0.891007, 0, 0.453991, 0, 1, 0, -0.453991, 0, 0.891007, 4.05548, 0, 0.718205)
+[node name="area-left" type="Area3D" parent="SubViewportContainer/SubViewport" groups=["camera-switch-group"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.02293, 0, 0.718205)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="area-left"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-left"]
 shape = SubResource("BoxShape3D_8ovar")
 
-[node name="enter-grass-level" type="Area3D" parent="." groups=["camera-switch-group"]]
-transform = Transform3D(0.891007, 0, 0.453991, 0, 1, 0, -0.453991, 0, 0.891007, -3.36129, 0, 1.38862)
+[node name="enter-grass-level" type="Area3D" parent="SubViewportContainer/SubViewport" groups=["camera-switch-group"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63693, 0, 0.148134)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enter-grass-level"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/enter-grass-level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.347138)
 shape = SubResource("BoxShape3D_8ovar")
 
-[connection signal="body_entered" from="area-right" to="PlayerBody" method="_on_arearight_body_entered"]
-[connection signal="body_entered" from="area-left" to="PlayerBody" method="_on_arealeft_body_entered"]
-[connection signal="body_entered" from="enter-grass-level" to="PlayerBody" method="_on_entergrasslevel_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-right" to="SubViewportContainer/SubViewport/PlayerBody" method="_on_arearight_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-left" to="SubViewportContainer/SubViewport/PlayerBody" method="_on_arealeft_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/enter-grass-level" to="SubViewportContainer/SubViewport/PlayerBody" method="_on_entergrasslevel_body_entered"]

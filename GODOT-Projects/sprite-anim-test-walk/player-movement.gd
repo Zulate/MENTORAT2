@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_arearight_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(12.5, 4, 9.5);
+	$"../Camera3D".position = Vector3(9.5, 4, 9.5);
 
 func _on_arealeft_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(5, 4, 9.5);
+	$"../Camera3D".position = Vector3(-0.5, 4, 9.5);
 
 func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://grass-map.tscn");

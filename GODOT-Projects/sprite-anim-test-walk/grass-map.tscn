@@ -113,8 +113,8 @@ data = PackedVector3Array(-0.7599, 0.4816, -1.2194, -0.8519, 0.0041, -0.6741, 0.
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_a05qt")
-offset_right = 512.0
-offset_bottom = 512.0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
