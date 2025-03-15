@@ -76,12 +76,12 @@ size = Vector3(0.0874023, 1, 9.92389)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_0iio7")
 
-[node name="floor" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+[node name="floor" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
 material_override = ExtResource("1_xypyu")
 mesh = SubResource("PlaneMesh_rl77r")
 skeleton = NodePath("../..")

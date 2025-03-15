@@ -43,9 +43,12 @@ func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 func _on_enterredlevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://red.tscn");
 
-func _on_areagrassright_body_entered(body: CharacterBody3D) -> void:
+func _on_areagrassright_body_entered(_body: CharacterBody3D) -> void:
 	$"../Camera3D".position = Vector3(10, 4, 12);
 
-
-func _on_areagrassleft_body_entered(body: CharacterBody3D) -> void:
+func _on_areagrassleft_body_entered(_body: CharacterBody3D) -> void:
 	$"../Camera3D".position = Vector3(0, 4, 12);
+
+
+func _on_areagrassright_area_entered(area: Area3D) -> void:
+	pass # Replace with function body.
