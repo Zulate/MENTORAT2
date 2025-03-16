@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.z = direction.z * SPEED * 2
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -35,7 +35,7 @@ func _on_arearight_body_entered(_body: CharacterBody3D) -> void:
 	$"../Camera3D".position = Vector3(9.5, 4, 9.5);
 
 func _on_arealeft_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(-0.5, 4, 9.5);
+	$"../Camera3D".position = Vector3(0, 4, 9.5);
 
 func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://grass-map.tscn");

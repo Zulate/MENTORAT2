@@ -12,11 +12,11 @@ config_version=5
 
 config/name="sprite-anim-test-walk"
 run/main_scene="res://grass-map.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.385493, 0.385493, 0.385492, 1)
-boot_splash/image="res://loadingscreen/ohio-solutions-final.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
+boot_splash/image="res://loadingscreen/ohio-solutions-final.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
 
