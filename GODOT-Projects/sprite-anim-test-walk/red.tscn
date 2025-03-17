@@ -134,7 +134,6 @@ transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -0.166
 shape = SubResource("ConcavePolygonShape3D_i7aae")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Loube/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_i7aae")
 mesh = ExtResource("2_yirmq")
 skeleton = NodePath("../../../../..")
