@@ -50,5 +50,5 @@ func _on_areagrassleft_body_entered(_body: CharacterBody3D) -> void:
 	$"../Camera3D".position = Vector3(0, 4, 12);
 
 
-func _on_areagrassright_area_entered(area: Area3D) -> void:
+func _on_areagrassright_area_entered(_area: Area3D) -> void:
 	pass # Replace with function body.
