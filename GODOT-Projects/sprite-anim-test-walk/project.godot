@@ -15,11 +15,10 @@ run/main_scene="uid://d3ttqbke4r1cj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
 boot_splash/bg_color=Color(0.385493, 0.385493, 0.385492, 1)
-boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="res://loadingscreen/ohio-solutions-final.png"
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=1000
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
