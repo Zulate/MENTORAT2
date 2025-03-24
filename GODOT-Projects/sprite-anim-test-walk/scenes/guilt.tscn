@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3ttqbke4r1cj"]
+[gd_scene load_steps=27 format=3 uid="uid://d3ttqbke4r1cj"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_t0x4q"]
 [ext_resource type="Texture2D" uid="uid://dsba2spudrfek" path="res://sprites/guilt-level-palette-1x.png" id="2_ls783"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_k8nly"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_fx7m7"]
 [ext_resource type="ArrayMesh" uid="uid://lkovpw0vjhhe" path="res://assets/tiles-floor.obj" id="7_jc0de"]
+[ext_resource type="ArrayMesh" uid="uid://ckoqrr07haph0" path="res://assets/arbor.obj" id="10_e8aww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ti0k"]
 shader = ExtResource("1_t0x4q")
@@ -107,6 +108,13 @@ item/1/mesh_cast_shadow = 1
 item/1/shapes = []
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
+item/2/name = "Arch"
+item/2/mesh = ExtResource("10_e8aww")
+item/2/mesh_transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0, 0.65, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = []
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hivoa"]
 size = Vector3(25.724, 1, 0.376)
@@ -254,12 +262,21 @@ visible = false
 mesh = ExtResource("7_jc0de")
 skeleton = NodePath("../../../../..")
 
-[node name="GridMap" type="GridMap" parent="SubViewportContainer/SubViewport/StaticBody3D/floor-collider"]
+[node name="floor" type="GridMap" parent="SubViewportContainer/SubViewport/StaticBody3D/floor-collider"]
 transform = Transform3D(0.894934, 0, -0.446198, 0, 1, 0, 0.446198, 0, 0.894934, 7, 0.3, 2)
 mesh_library = SubResource("MeshLibrary_ls783")
 cell_size = Vector3(2, 2, 2.027)
 data = {
-"cells": PackedInt32Array(-6, 0, 655360, -5, 0, 1048576, -4, 0, 1441792, -4, 65535, 1441792, -5, 65535, 655360, -6, 65535, 0, -7, 65535, 0, -7, 0, 1048576, -7, 1, 1441792, -6, 1, 0, -5, 1, 0, -4, 1, 1441792, -6, 2, 1441792, -5, 65534, 1441792, -7, 65534, 1048576, -4, 65533, 1441792, -4, 65532, 1048576, -5, 65532, 1048576, -6, 65532, 1441792, -7, 65532, 1441792, -7, 65533, 1441792, -8, 65532, 1441792, -3, 65533, 1048576, -3, 65532, 1048576, -6, 65534, 655360, -8, 65535, 655360, -8, 65534, 655360, -4, 65534, 655360, -3, 0, 655360, -3, 65535, 1048576, -3, 65534, 1048576, -5, 65533, 1048576, -6, 65533, 0, -8, 65533, 0, -3, 1, 655360, -4, 3, 1048576, -5, 2, 1441792, -4, 2, 1441792, -3, 2, 655360, -3, 3, 1048576, -5, 4, 655360, -6, 3, 655360, -5, 3, 655360, -4, 4, 1441792, -3, 4, 1441792, -2, 3, 655360, -2, 2, 655360, -2, 1, 655360, -2, 65535, 1048576, -1, 0, 1048576, -2, 0, 655360, -1, 1, 1048576, -1, 2, 1048576, -1, 3, 1048576, -2, 4, 655360, -1, 4, 655360, -65536, 3, 1048576, -65536, 2, 1048576, -65536, 4, 1048576, -2, 65534, 1048576, -5, 65531, 1048576, -4, 65531, 1048576, -4, 5, 0, -3, 5, 0, -2, 5, 0)
+"cells": PackedInt32Array(-6, 0, 655360, -5, 0, 1048576, -4, 0, 1441792, -4, 65535, 1441792, -5, 65535, 655360, -6, 65535, 0, -7, 65535, 0, -7, 0, 1048576, -7, 1, 1441792, -6, 1, 0, -5, 1, 0, -4, 1, 1441792, -6, 2, 1441792, -5, 65534, 1441792, -7, 65534, 1048576, -4, 65533, 1441792, -4, 65532, 1048576, -5, 65532, 1048576, -6, 65532, 1441792, -7, 65532, 1441792, -7, 65533, 1441792, -8, 65532, 1441792, -3, 65533, 1048576, -3, 65532, 1048576, -6, 65534, 655360, -8, 65535, 655360, -8, 65534, 655360, -4, 65534, 655360, -3, 0, 655360, -3, 65535, 1048576, -3, 65534, 1048576, -5, 65533, 1048576, -6, 65533, 0, -8, 65533, 0, -3, 1, 655360, -4, 3, 1048576, -5, 2, 1441792, -4, 2, 1441792, -3, 2, 655360, -3, 3, 1048576, -5, 4, 655360, -6, 3, 655360, -5, 3, 655360, -4, 4, 1441792, -3, 4, 1441792, -2, 3, 655360, -2, 2, 655360, -2, 1, 655360, -2, 65535, 1048576, -1, 0, 1048576, -2, 0, 655360, -1, 1, 1048576, -1, 3, 1048576, -2, 4, 655360, -1, 4, 655360, -65536, 3, 1048576, -65536, 2, 1048576, -65536, 4, 1048576, -2, 65534, 1048576, -5, 65531, 1048576, -4, 65531, 1048576, -4, 5, 0, -3, 5, 0, -2, 5, 0, -1, 2, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="arches" type="GridMap" parent="SubViewportContainer/SubViewport/StaticBody3D/floor-collider"]
+transform = Transform3D(0.894934, 0, -0.446198, 0, 1, 0, 0.446198, 0, 0.894934, 7, 0.3, 2)
+mesh_library = SubResource("MeshLibrary_ls783")
+cell_size = Vector3(2, 2, 2.027)
+data = {
+"cells": PackedInt32Array(-8, 65534, 2, -7, 65534, 2, -6, 65534, 2, -5, 65534, 2, -4, 65534, 2, -3, 65534, 2, -2, 65534, 2)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
