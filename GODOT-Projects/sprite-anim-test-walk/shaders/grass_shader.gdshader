@@ -16,7 +16,7 @@ uniform float wind_noise_size: hint_range(0.0, 1.0, 0.001) = 0.05; // high value
 uniform float wind_noise_speed: hint_range(0.0, 1.0, 0.001) = 0.1;
 
 // Instance the Player Position through a GDScript in the _physics_process
-instance uniform vec3 player_position;
+uniform vec3 player_position;
 
 void vertex() {
 	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;

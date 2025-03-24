@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcccqgyxpnxsu"]
+[gd_scene load_steps=24 format=3 uid="uid://bcccqgyxpnxsu"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_2sph2"]
 [ext_resource type="Texture2D" uid="uid://jkt5cyydd7d0" path="res://sprites/red-level-palette-1x.png" id="2_g4rxb"]
+[ext_resource type="Script" uid="uid://cmicwqtwwwdbc" path="res://scripts/subviewport-script.gd" id="3_g4rxb"]
 [ext_resource type="Material" uid="uid://dnolo372243b5" path="res://toon-red.tres" id="3_mous1"]
 [ext_resource type="ArrayMesh" uid="uid://buv5cudpbjl5v" path="res://loube.obj" id="4_acu7c"]
 [ext_resource type="Shader" uid="uid://b1eylopnvb44b" path="res://shaders/grass_shader.gdshader" id="5_5ktt4"]
@@ -53,6 +54,7 @@ shader_parameter/wind_strength = 0.39
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_n8g73")
 shader_parameter/wind_noise_size = 0.064
 shader_parameter/wind_noise_speed = 0.139
+shader_parameter/player_position = Vector3(0, 0, 0)
 
 [sub_resource type="MultiMesh" id="MultiMesh_ae3j0"]
 transform_format = 1
@@ -93,13 +95,15 @@ material = SubResource("ShaderMaterial_ijpgo")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -600.0
-offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(640, 360)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
+script = ExtResource("3_g4rxb")
 
 [node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 

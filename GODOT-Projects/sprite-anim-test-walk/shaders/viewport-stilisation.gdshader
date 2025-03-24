@@ -25,4 +25,5 @@ vec3 palette_limiter (in vec3 albedo){
 
 void fragment() {
 	COLOR.rgb = palette_limiter(texture(TEXTURE,UV).rgb);
+
 }

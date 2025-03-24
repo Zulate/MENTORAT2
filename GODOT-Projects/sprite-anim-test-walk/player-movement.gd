@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	$"../mesh-instancer-gras".set("instance_shader_parameters/player_position", position + Vector3(0, -0.1, 0))
+	GlobalVariables.player_position = position + Vector3(0, -0.1, 0)
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
 
@@ -44,11 +44,7 @@ func _on_enterredlevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://red.tscn");
 
 func _on_areagrassright_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(10, 4, 12);
+	$"../grass-camera".position = Vector3(10, 4, 12);
 
 func _on_areagrassleft_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(0, 4, 12);
-
-
-func _on_areagrassright_area_entered(_area: Area3D) -> void:
-	pass # Replace with function body.
+	$"../grass-camera".position = Vector3(0, 4, 12);

@@ -1,13 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=31 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
+[ext_resource type="Script" uid="uid://cmicwqtwwwdbc" path="res://scripts/subviewport-script.gd" id="3_c8cfc"]
 [ext_resource type="ArrayMesh" uid="uid://bjr3tm1u5q4k1" path="res://grass-blade.obj" id="3_oohsi"]
 [ext_resource type="Shader" uid="uid://b1eylopnvb44b" path="res://shaders/grass_shader.gdshader" id="4_nq7u0"]
 [ext_resource type="Texture2D" uid="uid://bewbtem1jjnej" path="res://assets/Sphere.001_Bake1_PBR_Diffuse.png" id="5_5yn8b"]
+[ext_resource type="Script" uid="uid://c5goo04o1u6tx" path="res://scripts/multimesh-script.gd" id="5_c8cfc"]
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_uinww"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_6kh0v"]
-[ext_resource type="Script" uid="uid://bxqnrrkrleepk" path="res://collision_shape_3d.gd" id="8_3wm38"]
 [ext_resource type="ArrayMesh" uid="uid://dqraf7usa8bnr" path="res://assets/tree.obj" id="9_0ls30"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a05qt"]
@@ -54,6 +55,7 @@ shader_parameter/wind_strength = 0.93
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_ltw1l")
 shader_parameter/wind_noise_size = 0.05
 shader_parameter/wind_noise_speed = 0.1
+shader_parameter/player_position = Vector3(0, 0, 0)
 
 [sub_resource type="MultiMesh" id="MultiMesh_36pms"]
 transform_format = 1
@@ -118,15 +120,20 @@ albedo_color = Color(0.674815, 0.674815, 0.674815, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_a05qt")
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(640, 360)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
+script = ExtResource("3_c8cfc")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+[node name="grass-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
 projection = 1
 fov = 50.0
@@ -150,6 +157,7 @@ skeleton = NodePath("../../..")
 transform = Transform3D(0.694245, 0, -0.719739, 0, 1, 0, 0.719739, 0, 0.694245, 2, -2.12889, 0)
 material_override = SubResource("ShaderMaterial_03o4t")
 multimesh = SubResource("MultiMesh_36pms")
+script = ExtResource("5_c8cfc")
 
 [node name="mesh-instancer-rocks" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
 visible = false
@@ -244,7 +252,6 @@ script = ExtResource("7_6kh0v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
 transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
 shape = SubResource("BoxShape3D_yk70x")
-script = ExtResource("8_3wm38")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody3D/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0138851, 0)
