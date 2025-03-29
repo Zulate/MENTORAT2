@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=2000
 
 [autoload]
 
+StaticData="*res://scripts/staticdata.gd"
 GlobalVariables="*res://global-script.gd"
 
 [display]

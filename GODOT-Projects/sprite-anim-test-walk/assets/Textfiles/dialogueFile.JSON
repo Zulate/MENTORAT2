@@ -1,0 +1,6 @@
+{
+	"denialDialogue" : {
+		"spirit_dialogue_1" : "Hello, this is the First text that should be displayed",
+		"cube_dialogue_1" : "Hello, this is the second text that should be displayed"
+	}
+}
