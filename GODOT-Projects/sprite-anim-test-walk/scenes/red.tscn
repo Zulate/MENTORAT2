@@ -192,7 +192,7 @@ shape = SubResource("BoxShape3D_8ovar")
 debug_color = Color(0, 0.85, 1, 1)
 
 [node name="enter-grass-level" type="Area3D" parent="SubViewportContainer/SubViewport" groups=["camera-switch-group"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63693, 0, 0.148134)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51637, 0, 0.148134)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/enter-grass-level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.654953, 0, -1.50993)
