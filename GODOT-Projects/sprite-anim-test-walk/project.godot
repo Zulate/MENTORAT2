@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cuby"
-run/main_scene="uid://d3ttqbke4r1cj"
+run/main_scene="uid://xaq2e8tba0om"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
 boot_splash/bg_color=Color(0.385493, 0.385493, 0.385492, 1)

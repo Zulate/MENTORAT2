@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=36 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -10,6 +10,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_uinww"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_6kh0v"]
 [ext_resource type="ArrayMesh" uid="uid://dqraf7usa8bnr" path="res://assets/tree.obj" id="9_0ls30"]
+[ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
+[ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a05qt"]
 shader = ExtResource("1_tuo42")
@@ -115,6 +117,21 @@ size = Vector3(0.0874023, 1, 22)
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yn8b"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uinww"]
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6kh0v"]
+font = ExtResource("12_nq7u0")
+font_size = 28
 
 [node name="Node3D" type="Node3D"]
 
@@ -318,10 +335,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.461945)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
 
-[node name="Tree" type="MeshInstance3D" parent="."]
+[node name="Tree" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, 12.1858, 0.00543511, 0.313609)
 mesh = ExtResource("9_0ls30")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_edkih")
+
+[node name="DialogueBox" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -163.0
+offset_right = -27.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("11_oohsi")
+
+[node name="Panel" type="Panel" parent="DialogueBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5yn8b")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="DialogueBox/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uinww")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+label_settings = SubResource("LabelSettings_6kh0v")
+
+[node name="Label2" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah ahahahahah"
+label_settings = SubResource("LabelSettings_6kh0v")
+autowrap_mode = 2
+clip_text = true
+
+[node name="End" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "v"
+label_settings = SubResource("LabelSettings_6kh0v")
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/enter-red-level" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_enterredlevel_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/areagrassright" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_areagrassright_body_entered"]
