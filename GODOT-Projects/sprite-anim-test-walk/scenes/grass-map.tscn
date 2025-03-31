@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=37 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_uinww"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_6kh0v"]
 [ext_resource type="ArrayMesh" uid="uid://dqraf7usa8bnr" path="res://assets/tree.obj" id="9_0ls30"]
+[ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="11_5yn8b"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
 
@@ -341,7 +342,11 @@ mesh = ExtResource("9_0ls30")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_edkih")
 
-[node name="DialogueBox" type="MarginContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("11_5yn8b")
+
+[node name="DialogueBox" type="MarginContainer" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -354,26 +359,30 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("11_oohsi")
 
-[node name="Panel" type="Panel" parent="DialogueBox"]
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5yn8b")
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Panel" type="Panel" parent="DialogueBox/MarginContainer"]
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uinww")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 
-[node name="Start" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+[node name="Start" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
@@ -381,7 +390,7 @@ size_flags_vertical = 0
 text = "*"
 label_settings = SubResource("LabelSettings_6kh0v")
 
-[node name="Label2" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -391,8 +400,9 @@ text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text
 label_settings = SubResource("LabelSettings_6kh0v")
 autowrap_mode = 2
 clip_text = true
+visible_ratio = -0.00819672
 
-[node name="End" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+[node name="End" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
