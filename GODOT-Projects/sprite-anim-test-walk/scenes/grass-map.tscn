@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=35 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://c5goo04o1u6tx" path="res://scripts/multimesh-script.gd" id="5_c8cfc"]
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_uinww"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_6kh0v"]
-[ext_resource type="ArrayMesh" uid="uid://dqraf7usa8bnr" path="res://assets/tree.obj" id="9_0ls30"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="11_5yn8b"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
@@ -22,15 +21,14 @@ shader_parameter/PALETTE_TEXTURE = ExtResource("2_c8cfc")
 [sub_resource type="GDScript" id="GDScript_p703o"]
 script/source = "extends Camera3D
 
+func _on_enterredlevel_body_entered(_body: CharacterBody3D) -> void:
+	get_tree().change_scene_to_file(\"res://red.tscn\");
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _on_areagrassright_body_entered(_body: Node3D):
+	$\"../grass-camera\".position = Vector3(10, 4, 12);
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _on_areagrassleft_body_entered(_body: CharacterBody3D):
+	$\"../grass-camera\".position = Vector3(0, 4, 12);
 "
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i0dju"]
@@ -114,11 +112,6 @@ size = Vector3(0.0874023, 1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gocbo"]
 size = Vector3(0.0874023, 1, 22)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edkih"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.674815, 0.674815, 0.674815, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yn8b"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
@@ -147,6 +140,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("3_c8cfc")
@@ -320,11 +314,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302997, 0, 2.61481)
 shape = SubResource("BoxShape3D_xd22w")
 debug_color = Color(0, 0.85, 1, 1)
 
-[node name="areagrassright" type="Area3D" parent="SubViewportContainer/SubViewport"]
+[node name="area-grass-right" type="Area3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4603, 0, 0.718205)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/areagrassright"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-grass-right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.5)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
 
@@ -332,15 +326,9 @@ debug_color = Color(0, 0.85, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63776, 0, 0.718205)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-grass-left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.461945)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.461945)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
-
-[node name="Tree" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, 12.1858, 0.00543511, 0.313609)
-mesh = ExtResource("9_0ls30")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_edkih")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("11_5yn8b")
@@ -400,7 +388,8 @@ text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text
 label_settings = SubResource("LabelSettings_6kh0v")
 autowrap_mode = 2
 clip_text = true
-visible_ratio = -0.00819672
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="End" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
 texture_filter = 1
@@ -410,6 +399,6 @@ size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_6kh0v")
 
-[connection signal="body_entered" from="SubViewportContainer/SubViewport/enter-red-level" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_enterredlevel_body_entered"]
-[connection signal="body_entered" from="SubViewportContainer/SubViewport/areagrassright" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_areagrassright_body_entered"]
-[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-grass-left" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_areagrassleft_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/enter-red-level" to="SubViewportContainer/SubViewport/grass-camera" method="_on_enterredlevel_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-grass-right" to="SubViewportContainer/SubViewport/grass-camera" method="_on_areagrassright_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-grass-left" to="SubViewportContainer/SubViewport/grass-camera" method="_on_areagrassleft_body_entered"]
