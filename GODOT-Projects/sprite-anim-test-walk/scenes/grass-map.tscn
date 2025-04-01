@@ -24,7 +24,7 @@ script/source = "extends Camera3D
 func _on_enterredlevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file(\"res://red.tscn\");
 
-func _on_areagrassright_body_entered(_body: Node3D):
+func _on_areagrassright_body_entered(_body: CharacterBody3D):
 	$\"../grass-camera\".position = Vector3(10, 4, 12);
 
 func _on_areagrassleft_body_entered(_body: CharacterBody3D):
