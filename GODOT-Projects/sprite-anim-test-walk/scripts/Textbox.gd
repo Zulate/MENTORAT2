@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CHAR_READ_RATE = 0.1
+var CHAR_READ_RATE = 0.1
 
 @onready var DialogueBox = $DialogueBox
 @onready var start_symbol = $DialogueBox/MarginContainer/HBoxContainer/Start
