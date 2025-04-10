@@ -1,6 +1,6 @@
 {
-	"denialDialogue" : {
-		"spirit_dialogue_1" : "Hello, this is the First text that should be displayed",
+	"denialDialogue_1" : {
+		"spirit_dialogue_1" : "Hello, this is the First text that should be displayed, so basically I wanted to see what happens if the text is wayyy too big for the textbox.",
 		"cube_dialogue_1" : "Hello, this is the second text that should be displayed"
 	}
 }

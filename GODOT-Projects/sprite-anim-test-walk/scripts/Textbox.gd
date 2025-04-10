@@ -20,7 +20,9 @@ enum State{
 func _ready() -> void:
 	print("Starting state: State.READY")
 	hide_textbox()
-	add_text(StaticData.textData["denialDialogue"]["spirit_dialogue_1"])
+	add_text(StaticData.textData["denialDialogue_1"]["spirit_dialogue_1"])
+	var keysCount = 	StaticData.textData["denialDialogue_1"].keys()
+	print(len(keysCount)) #this is a method to read out the lenght of a dictionary element -> will use it for checking if there is more to display
 
 func _process(_delta):
 	match current_state:
@@ -77,4 +79,4 @@ func change_state(next_state) -> void:
 
 
 func _on_textactivator_body_entered(_body: CharacterBody3D) -> void:
-	add_text(StaticData.textData["denialDialogue"]["cube_dialogue_1"])
+	add_text(StaticData.textData["denialDialogue_1"]["cube_dialogue_1"])
