@@ -28,11 +28,19 @@ func _process(_delta):
 			pass
 		State.READING:
 			GlobalVariables.Speed = 0;
-			pass
+			if Input.is_action_pressed("enter"):
+				label.visible_ratio = 1
+				tween.stop()
+				end_symbol.text = "v"
+				change_state(State.FINISHED)
+				
 		State.FINISHED:
 			if Input.is_action_just_pressed("enter"):
+				tween.stop()
 				hide_textbox()
 				GlobalVariables.Speed = 2.5;
+				change_state(State.READY)
+				label.visible_ratio = 0
 
 func hide_textbox() -> void:
 	start_symbol.text = ""
@@ -66,3 +74,7 @@ func change_state(next_state) -> void:
 			print("Changing State to: State_READING")
 		State.FINISHED:
 			print("Changing State to: State_FINISHED")
+
+
+func _on_textactivator_body_entered(_body: CharacterBody3D) -> void:
+	add_text(StaticData.textData["denialDialogue"]["cube_dialogue_1"])
