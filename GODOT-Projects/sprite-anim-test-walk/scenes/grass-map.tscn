@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=37 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ciqn3x0d52hhe" path="res://assets/rocky_terrain_02_diff_4k.jpg" id="10_5yn8b"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="11_5yn8b"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
+[ext_resource type="Script" uid="uid://bsegs2wrxucpf" path="res://scripts/grass-map-encounter.gd" id="11_uinww"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a05qt"]
@@ -324,6 +325,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.5)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
 
+[node name="text-activator" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27552, 0, 1.43641)
+script = ExtResource("11_uinww")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/text-activator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.461945)
+shape = SubResource("BoxShape3D_gocbo")
+debug_color = Color(0, 0.85, 1, 1)
+
 [node name="area-grass-left" type="Area3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63776, 0, 0.718205)
 
@@ -403,4 +413,5 @@ label_settings = SubResource("LabelSettings_6kh0v")
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/enter-red-level" to="SubViewportContainer/SubViewport/grass-camera" method="_on_enterredlevel_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-grass-right" to="SubViewportContainer/SubViewport/grass-camera" method="_on_areagrassright_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/text-activator" to="SubViewportContainer/SubViewport/text-activator" method="_on_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-grass-left" to="SubViewportContainer/SubViewport/grass-camera" method="_on_areagrassleft_body_entered"]

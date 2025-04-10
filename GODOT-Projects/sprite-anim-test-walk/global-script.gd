@@ -1,7 +1,7 @@
 extends Node
 
-var player_position
+@onready var player_position
+@onready var Speed = 2.5
 
 func _ready() -> void:
-	print("First Text: " + StaticData.textData["denialDialogue"]["spirit_dialogue_1"]);
-	print("Second Text: " + StaticData.textData["denialDialogue"]["cube_dialogue_1"]);
+	pass

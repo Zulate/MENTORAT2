@@ -1,11 +1,6 @@
 extends CanvasLayer
 
-var CHAR_READ_RATE = 0.1
-
-@onready var DialogueBox = $DialogueBox
-@onready var start_symbol = $DialogueBox/MarginContainer/HBoxContainer/Start
-@onready var end_symbol = $DialogueBox/MarginContainer/HBoxContainer/End
-@onready var label = $DialogueBox/MarginContainer/HBoxContainer/Label
+@onready var CHAR_READ_RATE = 0.1
 
 enum State{
 	READY,
@@ -13,9 +8,14 @@ enum State{
 	FINISHED
 }
 
-var tween = create_tween()
+@onready var tween = create_tween()
 
-var current_state = State.READY
+@onready var current_state = State.READY
+
+@onready var DialogueBox = $DialogueBox
+@onready var start_symbol = $DialogueBox/MarginContainer/HBoxContainer/Start
+@onready var end_symbol = $DialogueBox/MarginContainer/HBoxContainer/End
+@onready var label = $DialogueBox/MarginContainer/HBoxContainer/Label
 
 func _ready() -> void:
 	print("Starting state: State.READY")
@@ -27,22 +27,24 @@ func _process(_delta):
 		State.READY:
 			pass
 		State.READING:
+			GlobalVariables.Speed = 0;
 			pass
 		State.FINISHED:
 			if Input.is_action_just_pressed("enter"):
 				hide_textbox()
+				GlobalVariables.Speed = 2.5;
 
-func hide_textbox():
+func hide_textbox() -> void:
 	start_symbol.text = ""
 	end_symbol.text = ""
 	label.text = ""
 	DialogueBox.hide()
 
-func show_textbox():
+func show_textbox() -> void:
 	start_symbol.text = "*"
 	DialogueBox.show()
 
-func add_text(next_text):
+func add_text(next_text) -> void:
 	label.text = next_text
 	change_state(State.READING)
 	show_textbox()
@@ -51,11 +53,11 @@ func add_text(next_text):
 	tween.tween_callback(_on_tween_finished)
 	
 
-func _on_tween_finished():
+func _on_tween_finished() -> void:
 	end_symbol.text = "v"
 	change_state(State.FINISHED)
 
-func change_state(next_state):
+func change_state(next_state) -> void:
 	current_state = next_state
 	match current_state:
 		State.READY:
