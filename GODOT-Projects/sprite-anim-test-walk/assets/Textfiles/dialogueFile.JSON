@@ -1,4 +1,12 @@
 {
+	"start_dialogue" : {
+		"start_dialogue_1" : "...",
+		"start_dialogue_2" : "... ...",
+		"start_dialogue_3" : "What... What the...",
+		"start_dialogue_4" : "How did I land here? I think... I think I died somehow... O.O",
+		"start_dialogue_5" : "Maybe I should look around to find out more :/",
+		"start_dialogue_6" : "/A voice in your head tells you to move with ASDW/",
+	},
 	"denialDialogue_1" : {
 		"spirit_dialogue_1" : "Hello, this is the First text that should be displayed, so basically I wanted to see what happens if the text is wayyy too big for the textbox.",
 		"cube_dialogue_1" : "Hello, this is the second text that should be displayed"
