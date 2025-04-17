@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=38 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://c5goo04o1u6tx" path="res://scripts/multimesh-script.gd" id="5_c8cfc"]
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_uinww"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="7_6kh0v"]
-[ext_resource type="Texture2D" uid="uid://ciqn3x0d52hhe" path="res://assets/rocky_terrain_02_diff_4k.jpg" id="10_5yn8b"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="11_5yn8b"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
@@ -94,11 +93,32 @@ albedo_color = Color(0.81, 0.81, 0.81, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gut5a"]
 size = Vector3(40, 0.01, 20)
 
+[sub_resource type="Gradient" id="Gradient_nq7u0"]
+colors = PackedColorArray(0.341, 0.66, 0, 1, 0.36, 0.23352, 0.1368, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5yn8b"]
+noise_type = 2
+seed = 7
+frequency = 0.026
+fractal_lacunarity = 2.65
+fractal_gain = -0.12
+cellular_jitter = 0.5
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 29.07
+domain_warp_frequency = 0.1
+domain_warp_fractal_type = 2
+domain_warp_fractal_gain = 0.51
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uinww"]
+color_ramp = SubResource("Gradient_nq7u0")
+noise = SubResource("FastNoiseLite_5yn8b")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdb64"]
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.94, 0.94, 0.94, 1)
-albedo_texture = ExtResource("10_5yn8b")
+albedo_texture = SubResource("NoiseTexture2D_uinww")
 metallic_specular = 0.0
 uv1_scale = Vector3(2, 2, 2)
 
