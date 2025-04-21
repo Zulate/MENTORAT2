@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://xaq2e8tba0om"]
+[gd_scene load_steps=39 format=3 uid="uid://xaq2e8tba0om"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_tuo42"]
 [ext_resource type="Texture2D" uid="uid://cko1w6dv3ytyw" path="res://sprites/grass-level-palette-1x.png" id="2_c8cfc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="11_5yn8b"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_oohsi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_nq7u0"]
+[ext_resource type="PackedScene" uid="uid://bt8yplhemifca" path="res://scenes/spirit-character.tscn" id="13_5yn8b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a05qt"]
 shader = ExtResource("1_tuo42")
@@ -94,12 +95,13 @@ albedo_color = Color(0.81, 0.81, 0.81, 1)
 size = Vector3(40, 0.01, 20)
 
 [sub_resource type="Gradient" id="Gradient_nq7u0"]
-colors = PackedColorArray(0.341, 0.66, 0, 1, 0.36, 0.23352, 0.1368, 1)
+colors = PackedColorArray(0.434, 0.84, 0, 1, 0.0775, 0.15, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5yn8b"]
 noise_type = 2
-seed = 7
+seed = 27
 frequency = 0.026
+offset = Vector3(-82.1, 0, 0)
 fractal_lacunarity = 2.65
 fractal_gain = -0.12
 cellular_jitter = 0.5
@@ -167,6 +169,15 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("3_c8cfc")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.925469, 0.165082, 0.340962, -0.295422, 0.877922, 0.376801, -0.237135, -0.449446, 0.861258, 0, 1.20129, 0)
+light_energy = 1.2
+shadow_enabled = true
+shadow_bias = 0.02
+shadow_normal_bias = 2.89
+shadow_opacity = 0.57
+shadow_blur = 1.557
+
 [node name="grass-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
 projection = 1
@@ -188,7 +199,7 @@ mesh = ExtResource("3_oohsi")
 skeleton = NodePath("../../..")
 
 [node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.694245, 0, -0.719739, 0, 1, 0, 0.719739, 0, 0.694245, 2, -2.12889, 0)
+transform = Transform3D(0.694245, 0, -0.719739, 0, 1, 0, 0.719739, 0, 0.694245, 2, -2.12889, -0.696158)
 material_override = SubResource("ShaderMaterial_03o4t")
 multimesh = SubResource("MultiMesh_36pms")
 script = ExtResource("5_c8cfc")
@@ -270,15 +281,6 @@ mesh = ExtResource("6_uinww")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_u0ct6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.925469, 0.165082, 0.340962, -0.295422, 0.877922, 0.376801, -0.237135, -0.449446, 0.861258, 0, 1.20129, 0)
-light_energy = 1.2
-shadow_enabled = true
-shadow_bias = 0.02
-shadow_normal_bias = 2.89
-shadow_opacity = 0.57
-shadow_blur = 1.557
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.036, 0)
 script = ExtResource("7_6kh0v")
@@ -292,37 +294,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0138851, 0)
 mesh = SubResource("BoxMesh_w2wjv")
 surface_material_override/0 = SubResource("StandardMaterial3D_v081w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+[node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 shape = SubResource("BoxShape3D_gut5a")
 debug_color = Color(0, 0.85, 1, 1)
 
-[node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/StaticBody3D/floor-collider"]
+[node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 material_override = SubResource("StandardMaterial3D_fdb64")
 mesh = SubResource("PlaneMesh_67bag")
 skeleton = NodePath("../..")
 
-[node name="floor-right" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/StaticBody3D/floor-collider"]
+[node name="floor-right" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
 material_override = SubResource("StandardMaterial3D_fdb64")
 mesh = SubResource("PlaneMesh_67bag")
 skeleton = NodePath("../..")
 
-[node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+[node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 2.64343, 0, 9.17616)
 shape = SubResource("BoxShape3D_6smkq")
 debug_color = Color(0, 0.85, 1, 1)
 debug_fill = false
 
-[node name="restriction-top" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+[node name="restriction-top" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 4.71571, 0, -8.50867)
 shape = SubResource("BoxShape3D_6smkq")
 debug_color = Color(0, 0.85, 1, 1)
 debug_fill = false
 
-[node name="restriction-left" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+[node name="restriction-left" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.15933, 0, 0.137418)
 shape = SubResource("BoxShape3D_6smkq")
 debug_color = Color(0, 0.85, 1, 1)
@@ -359,6 +361,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63776, 0, 0.718205)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.461945)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
+
+[node name="Spirit-Character" parent="SubViewportContainer" instance=ExtResource("13_5yn8b")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 13.1966, -0.0139089, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("11_5yn8b")

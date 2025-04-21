@@ -8,7 +8,7 @@
 		"start_dialogue_6" : "/A voice in your head tells you to move with ASDW/",
 	},
 	"denialDialogue_1" : {
-		"spirit_dialogue_1" : "Hello, this is the First text that should be displayed, so basically I wanted to see what happens if the text is wayyy too big for the textbox.",
-		"cube_dialogue_1" : "Hello, this is the second text that should be displayed"
+		"cube_dialogue_1" : "What... What the hell is this sphere?",
+		"cube_dialogue_2" : "Some kind of... Ghost? ... The D E V I L?!?!"
 	}
 }

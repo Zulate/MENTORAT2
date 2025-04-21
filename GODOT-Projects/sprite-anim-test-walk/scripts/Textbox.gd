@@ -108,7 +108,7 @@ func start_dialogue(text_list: Array) -> void:
 
 func _on_textactivator_body_entered(_body: CharacterBody3D) -> void:
 	var lines = [
-		StaticData.textData["denialDialogue_1"]["spirit_dialogue_1"],
-		StaticData.textData["denialDialogue_1"]["cube_dialogue_1"]
+		StaticData.textData["denialDialogue_1"]["cube_dialogue_1"],
+		StaticData.textData["denialDialogue_1"]["cube_dialogue_2"]
 	]
 	start_dialogue(lines)
