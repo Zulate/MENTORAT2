@@ -199,7 +199,6 @@ skeleton = NodePath("../../..")
 
 [node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.694245, 0, -0.719739, 0, 1, 0, 0.719739, 0, 0.694245, 2, -2.12889, -0.696158)
-visible = false
 material_override = SubResource("ShaderMaterial_03o4t")
 multimesh = SubResource("MultiMesh_36pms")
 script = ExtResource("5_c8cfc")
@@ -351,7 +350,7 @@ debug_color = Color(0, 0.85, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27552, 0, 1.43641)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/text-activator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -0.461945)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0591879, 0, -1.23999)
 shape = SubResource("BoxShape3D_gocbo")
 debug_color = Color(0, 0.85, 1, 1)
 

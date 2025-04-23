@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://bt8yplhemifca"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tnakd"]
-radius = 0.25
-height = 0.5
+radius = 0.4
+height = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jvl4"]
 albedo_color = Color(0, 0, 0, 1)
@@ -19,8 +19,8 @@ emission_energy_multiplier = 683.9
 
 [sub_resource type="SphereMesh" id="SphereMesh_8jvl4"]
 material = SubResource("StandardMaterial3D_no0ue")
-radius = 0.231
-height = 0.234
+radius = 0.4
+height = 0.409
 
 [sub_resource type="Curve" id="Curve_tnakd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -108,7 +108,7 @@ mesh = SubResource("SphereMesh_tnakd")
 surface_material_override/0 = SubResource("StandardMaterial3D_8jvl4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992507, 0.0149858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_8jvl4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -118,7 +118,7 @@ process_material = SubResource("ParticleProcessMaterial_tnakd")
 draw_pass_1 = SubResource("SphereMesh_no0ue")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000422922, 0.993908, 0.0126066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 strength = 20.0
 attenuation = 3.13834
 radius = 1.38
