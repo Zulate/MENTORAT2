@@ -194,12 +194,12 @@ skeleton = NodePath("../../..")
 
 [node name="grass-blades" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
-visible = false
 mesh = ExtResource("3_oohsi")
 skeleton = NodePath("../../..")
 
 [node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.694245, 0, -0.719739, 0, 1, 0, 0.719739, 0, 0.694245, 2, -2.12889, -0.696158)
+visible = false
 material_override = SubResource("ShaderMaterial_03o4t")
 multimesh = SubResource("MultiMesh_36pms")
 script = ExtResource("5_c8cfc")
@@ -211,6 +211,7 @@ multimesh = SubResource("MultiMesh_qeept")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.248716, 0, 0.128609, 0, 0.28, 0, -0.128609, 0, 0.248716, 0.524185, 0, 4.47033)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D3"]
 shape = SubResource("ConcavePolygonShape3D_2l65e")

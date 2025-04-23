@@ -30,10 +30,6 @@ GlobalVariables="*res://global-script.gd"
 
 window/stretch/mode="viewport"
 
-[editor_plugins]
-
-enabled=PackedStringArray()
-
 [input]
 
 forward={

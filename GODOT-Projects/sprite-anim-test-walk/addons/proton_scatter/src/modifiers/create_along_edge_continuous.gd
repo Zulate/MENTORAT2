@@ -81,8 +81,7 @@ func _process_transforms(transforms, domain, seed) -> void:
 				if dist >= length_squared:
 					var t = Transform3D()
 					t.origin = start + ((end - start) / 2.0)
-					if not domain.is_point_excluded(t.origin):
-						new_transforms.push_back(t.looking_at(end, Vector3.UP))
+					new_transforms.push_back(t.looking_at(end, Vector3.UP))
 					break
 
 	transforms.append(new_transforms)

@@ -1,6 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://bt8yplhemifca"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tnakd"]
+radius = 0.25
+height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jvl4"]
 albedo_color = Color(0, 0, 0, 1)
@@ -17,8 +19,8 @@ emission_energy_multiplier = 683.9
 
 [sub_resource type="SphereMesh" id="SphereMesh_8jvl4"]
 material = SubResource("StandardMaterial3D_no0ue")
-radius = 0.491
-height = 0.624
+radius = 0.231
+height = 0.234
 
 [sub_resource type="Curve" id="Curve_tnakd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -53,8 +55,18 @@ emission_energy_multiplier = 878.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_no0ue"]
 material = SubResource("StandardMaterial3D_tnakd")
-radius = 0.02
-height = 0.001
+radius = 0.011
+height = 0.151
+
+[sub_resource type="Animation" id="Animation_8jvl4"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.902147, 0)
 
 [sub_resource type="Animation" id="Animation_tnakd"]
 resource_name = "sphere-wiggle"
@@ -82,16 +94,6 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 1, 0, 1, 1, 0.1, 0.9, 0.1, 2, 1, -0.1, 1, 0.1, 2.73333, 1, 0, 0.95, 0.1)
 
-[sub_resource type="Animation" id="Animation_8jvl4"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.902147, 0)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_no0ue"]
 _data = {
 &"RESET": SubResource("Animation_8jvl4"),
@@ -106,20 +108,20 @@ mesh = SubResource("SphereMesh_tnakd")
 surface_material_override/0 = SubResource("StandardMaterial3D_8jvl4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0355566, 0.967778, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992507, 0.0149858)
 mesh = SubResource("SphereMesh_8jvl4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 64
-trail_lifetime = 0.13
+amount = 32
+lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_tnakd")
 draw_pass_1 = SubResource("SphereMesh_no0ue")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0537259, 0.975104, 0.103519)
-strength = 32.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000422922, 0.993908, 0.0126066)
+strength = 20.0
 attenuation = 3.13834
-radius = 1.57993
+radius = 1.38
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

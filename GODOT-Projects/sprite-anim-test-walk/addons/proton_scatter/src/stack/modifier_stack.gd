@@ -14,7 +14,6 @@ const TransformList := preload("../common/transform_list.gd")
 @export var stack: Array[ScatterBaseModifier] = []
 
 var just_created := false
-var parent: ProtonScatter
 
 
 func start_update(scatter_node: ProtonScatter, domain):
