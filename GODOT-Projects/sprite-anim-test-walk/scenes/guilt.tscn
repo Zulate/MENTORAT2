@@ -243,6 +243,7 @@ shadow_blur = 1.557
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.357974, 0, -0.178479, 0, 0.4, 0, 0.178479, 0, 0.357974, 0, 0, 0)
+visible = false
 mesh = ExtResource("10_e8aww")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/MeshInstance3D"]

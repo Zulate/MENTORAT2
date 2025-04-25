@@ -140,7 +140,7 @@ shape = SubResource("BoxShape3D_wpgvy")
 debug_color = Color(0, 0.85, 1, 1)
 
 [node name="mesh-instancer-gras" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.947781, 0, -0.318927, 0, 1, 0, 0.318927, 0, -0.94778, -1.9265, -1.04308e-06, 2.89569)
+transform = Transform3D(-0.947781, 0, -0.318927, 0, 1, 0, 0.318927, 0, -0.94778, -1.75724, -1.04308e-06, 3.53671)
 material_override = SubResource("ShaderMaterial_n51ib")
 multimesh = SubResource("MultiMesh_ae3j0")
 script = ExtResource("8_mous1")
