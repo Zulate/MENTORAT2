@@ -1,14 +1,19 @@
 {
 	"start_dialogue" : {
 		"start_dialogue_1" : "...",
-		"start_dialogue_2" : "... ...",
-		"start_dialogue_3" : "What... What the...",
-		"start_dialogue_4" : "How did I land here? I think... I think I died somehow... O.O",
-		"start_dialogue_5" : "Maybe I should look around to find out more :/",
+		"start_dialogue_2" : "What... What the...",
+		"start_dialogue_3" : "This looks like... that field behind my apartment...",
+		"start_dialogue_4" : "How did I land here? It seems quite comfortable here.",
+		"start_dialogue_5" : "Maybe I should look around to find out more...",
 		"start_dialogue_6" : "/A voice in your head tells you to move with ASDW/",
 	},
 	"denialDialogue_1" : {
-		"cube_dialogue_1" : "What... What the hell is this sphere?",
-		"cube_dialogue_2" : "Some kind of... Ghost? ... The D E V I L?!?!"
+		"cube_dialogue_1" : "Me: ...",
+		"death_dialogue_1" : "???: ...    ?",
+		"cube_dialogue_2" : "Me: What are you?      What am I?",
+		"death_dialogue_2" : "???: You ask a lot of Questions for someone who is already dead... and a Cube :-)",
+		"cube_dialogue_3" : "Me: Dead? How am I dead? I can still feel and walk... as a Cube that is",
+		"death_dialogue_3" : "???: Stop the questions already, fetch me 3 fragments of your memories and we keep talking.",
+		"death_dialogue_4" : "???: They should be laying around here somewhere, I would suggest you continue in the field behind me."
 	}
 }

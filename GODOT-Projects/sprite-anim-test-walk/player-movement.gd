@@ -31,10 +31,6 @@ func _physics_process(delta: float) -> void:
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
 
-
-func _on_arearight_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(9.5, 4, 9.5);
-
 func _on_arealeft_body_entered(_body: CharacterBody3D) -> void:
 	$"../Camera3D".position = Vector3(0, 4, 9.5);
 

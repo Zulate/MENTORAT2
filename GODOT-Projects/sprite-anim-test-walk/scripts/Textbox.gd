@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-@onready var CHAR_READ_RATE = 0.1
+@onready var CHAR_READ_RATE = 0.05
+@onready var talking_indicator = $"../SubViewportContainer/SubViewport/talking_indicator"
 
 enum State{
 	READY,
@@ -56,6 +57,7 @@ func hide_textbox() -> void:
 	end_symbol.text = ""
 	label.text = ""
 	DialogueBox.hide()
+	talking_indicator.hide()
 
 func show_textbox() -> void:
 	start_symbol.text = "*"
@@ -78,11 +80,14 @@ func change_state(next_state) -> void:
 	current_state = next_state
 	match current_state:
 		State.READY:
-			print("Changing State to: State_READY")
+			#print("Changing State to: State_READY")
+			pass
 		State.READING:
-			print("Changing State to: State_READING")
+			#print("Changing State to: State_READING")
+			pass
 		State.FINISHED:
-			print("Changing State to: State_FINISHED")
+			#print("Changing State to: State_FINISHED")
+			pass
 
 func show_next_line():
 	if dialogue_index < dialogue_queue.size():
@@ -95,6 +100,16 @@ func show_next_line():
 		tween = create_tween()
 		tween.tween_property(label, "visible_ratio", 1.0, next_text.length() * CHAR_READ_RATE)
 		tween.tween_callback(_on_tween_finished)
+		if dialogue_queue[dialogue_index].contains("Me:"):
+			talking_indicator.show()
+			print("Me is talking")
+			tween_transition(talking_indicator, "position",  $"../SubViewportContainer/SubViewport/CharacterBody3D".position + Vector3(0, 0.75, 0), 0.25)
+		elif dialogue_queue[dialogue_index].contains("???:") || dialogue_queue[dialogue_index].contains("Death:"):
+			talking_indicator.show()
+			print("Death is talking")
+			tween_transition(talking_indicator, "position", $"../SubViewportContainer/SubViewport/Spirit-Character".position + Vector3(0, 1.5, 0), 0.25)
+		else:
+			talking_indicator.hide()
 	else:
 		# All lines done
 		hide_textbox()
@@ -106,9 +121,18 @@ func start_dialogue(text_list: Array) -> void:
 	dialogue_index = 0
 	show_next_line()
 
-func _on_textactivator_body_entered(_body: CharacterBody3D) -> void:
+func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
 	var lines = [
 		StaticData.textData["denialDialogue_1"]["cube_dialogue_1"],
-		StaticData.textData["denialDialogue_1"]["cube_dialogue_2"]
+		StaticData.textData["denialDialogue_1"]["death_dialogue_1"],
+		StaticData.textData["denialDialogue_1"]["cube_dialogue_2"],
+		StaticData.textData["denialDialogue_1"]["death_dialogue_2"],
+		StaticData.textData["denialDialogue_1"]["cube_dialogue_3"],
+		StaticData.textData["denialDialogue_1"]["death_dialogue_3"],
+		StaticData.textData["denialDialogue_1"]["death_dialogue_4"]
 	]
 	start_dialogue(lines)
+
+func tween_transition(node, property, fin_val, duration):
+	var tween_indicator = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween_indicator.tween_property(node, property, fin_val, duration)
