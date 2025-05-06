@@ -104,7 +104,7 @@ func show_next_line():
 		if dialogue_queue[dialogue_index].contains("Me:"):
 			talking_indicator.show()
 			#print("Me is talking")
-			tween_transition(talking_indicator, "position",  $"../SubViewportContainer/SubViewport/CharacterBody3D".position + Vector3(0, 0.75, 0), 0.25)
+			tween_transition(talking_indicator, "position",  $"../SubViewportContainer/SubViewport/CharacterBody3D".position + Vector3(-0.05, 0.75, 0), 0.25)
 		elif dialogue_queue[dialogue_index].contains("???:") || dialogue_queue[dialogue_index].contains("Death:"):
 			talking_indicator.show()
 			#print("Death is talking")
