@@ -26,8 +26,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()
-	GlobalVariables.player_position = position + Vector3(0, -0.1, 0)
+	if(GlobalVariables.Trigger == false):
+		move_and_slide()
+		GlobalVariables.player_position = position + Vector3(0, -0.1, 0)
+	else:
+		pass
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
 
@@ -36,3 +39,7 @@ func _on_arealeft_body_entered(_body: CharacterBody3D) -> void:
 
 func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://grass-map.tscn");
+
+
+func _on_canvas_layer_stop_movement() -> void:
+	GlobalVariables.Trigger = true

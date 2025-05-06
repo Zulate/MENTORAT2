@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal stop_movement
+
 @onready var CHAR_READ_RATE = 0.05
 @onready var talking_indicator = $"../SubViewportContainer/SubViewport/talking_indicator"
 
@@ -38,7 +40,6 @@ func _process(_delta):
 		State.READY:
 			pass
 		State.READING:
-			GlobalVariables.Speed = 0
 			if Input.is_action_just_pressed("enter"):
 				label.visible_ratio = 1
 				tween.stop()
@@ -102,21 +103,22 @@ func show_next_line():
 		tween.tween_callback(_on_tween_finished)
 		if dialogue_queue[dialogue_index].contains("Me:"):
 			talking_indicator.show()
-			print("Me is talking")
+			#print("Me is talking")
 			tween_transition(talking_indicator, "position",  $"../SubViewportContainer/SubViewport/CharacterBody3D".position + Vector3(0, 0.75, 0), 0.25)
 		elif dialogue_queue[dialogue_index].contains("???:") || dialogue_queue[dialogue_index].contains("Death:"):
 			talking_indicator.show()
-			print("Death is talking")
+			#print("Death is talking")
 			tween_transition(talking_indicator, "position", $"../SubViewportContainer/SubViewport/Spirit-Character".position + Vector3(0, 1.5, 0), 0.25)
 		else:
 			talking_indicator.hide()
 	else:
 		# All lines done
 		hide_textbox()
-		GlobalVariables.Speed = 2.5
+		GlobalVariables.Trigger = false
 		change_state(State.READY)
 
 func start_dialogue(text_list: Array) -> void:
+	stop_movement.emit()
 	dialogue_queue = text_list
 	dialogue_index = 0
 	show_next_line()
