@@ -146,16 +146,44 @@ func start_dialogue(text_list: Array) -> void:
 	show_next_line()
 
 func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
-	lines = [
-		StaticData.textData["denialDialogue_1"]["cube_dialogue_1"],
-		StaticData.textData["denialDialogue_1"]["death_dialogue_1"],
-		StaticData.textData["denialDialogue_1"]["cube_dialogue_2"],
-		StaticData.textData["denialDialogue_1"]["death_dialogue_2"],
-		StaticData.textData["denialDialogue_1"]["cube_dialogue_3"],
-		StaticData.textData["denialDialogue_1"]["death_dialogue_3"],
-		StaticData.textData["denialDialogue_1"]["death_dialogue_4"]
-	]
-	start_dialogue(lines)
+	if GlobalVariables.fragmentsCollected == 0 && GlobalVariables.denialDialogue1Status == false:
+		lines = [
+			StaticData.textData["denialDialogue_1"]["cube_dialogue_1"],
+			StaticData.textData["denialDialogue_1"]["death_dialogue_1"],
+			StaticData.textData["denialDialogue_1"]["cube_dialogue_2"],
+			StaticData.textData["denialDialogue_1"]["death_dialogue_2"],
+			StaticData.textData["denialDialogue_1"]["cube_dialogue_3"],
+			StaticData.textData["denialDialogue_1"]["death_dialogue_3"],
+			StaticData.textData["denialDialogue_1"]["death_dialogue_4"]
+		]
+		start_dialogue(lines)
+		GlobalVariables.denialDialogue1Status = true
+	elif GlobalVariables.fragmentsCollected == 1 || GlobalVariables.fragmentsCollected == 2:
+		lines = [
+			StaticData.textData["denialBetweenDialogue"]["between_1"]
+		]
+		start_dialogue(lines)
+	elif GlobalVariables.fragmentsCollected == 3 && GlobalVariables.denialDialogue2Status == false:
+		lines = [
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_1"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_1"],
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_2"],
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_3"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_2"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_3"],
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_4"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_4"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_5"],
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_5"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_6"],
+			StaticData.textData["denialDialogue_2"]["cube_dialogue_6"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_7"],
+			StaticData.textData["denialDialogue_2"]["death_dialogue_8"]
+		]
+		start_dialogue(lines)
+		GlobalVariables.denialDialogue2Status = true
+	else:
+		print("error")
 
 func tween_transition(node, property, fin_val, duration):
 	var tween_indicator = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)

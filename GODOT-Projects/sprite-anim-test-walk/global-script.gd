@@ -8,6 +8,9 @@ extends Node
 @onready var insideFragment2 = false
 @onready var insideFragment3 = false
 
+@onready var denialDialogue1Status = false
+@onready var denialDialogue2Status = false
+
 @onready var fragmentsCollected = 0
 
 func _ready() -> void:

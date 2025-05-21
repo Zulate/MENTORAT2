@@ -14,10 +14,29 @@
 		"death_dialogue_2" : "???: You ask a lot of Questions for someone who is already dead... and a Cube :-)",
 		"cube_dialogue_3" : "Me: Dead? How am I dead? I can still feel and walk... as a Cube that is",
 		"death_dialogue_3" : "???: We will get to that soon enough, for now fetch me 3 fragments of your memories and we keep talking.",
-		"death_dialogue_4" : "???: They should be laying around here somewhere, I would suggest you continue in the field behind me."
+		"death_dialogue_4" : "???: They should be laying around here somewhere, I would suggest you continue in the field behind me.",
+	},
+	"denialBetweenDialogue": {
+		"between_1" : "???: Go ahed, collect those fragments for me.",
 	},
 	"fragmentDialogue" : {
-		"fragment1" : "This seems to be one of the fragments that thing was talking about...",
-		"fragment2" : "They feel kinda... warm.. It almost feels like a warm cup of tea in Winter. Weird."
+		"fragment1" : "Me: This seems to be one of the fragments that thing was talking about...",
+		"fragment2" : "Me: They feel kinda... warm.. It almost feels like a warm cup of tea in Winter. Weird.",
+	},
+	"denialDialogue_2" : {
+		"cube_dialogue_1" : "Me: Here you go, the Dream Fragments or what you called them.",
+		"death_dialogue_1" : "???: Nice, they're actually called Memory Fragments.",
+		"cube_dialogue_2" : "Me: Uhh... Okay.",
+		"cube_dialogue_3" : "Me: So, can you finally explain what is going on here? I don't even know your name or what you are.",
+		"death_dialogue_2" : "???: Since you got me these sweet fragments, I will make an exception.",
+		"death_dialogue_3" : "???: You actually may have heard from me, I'm quite literally Death.",
+		"cube_dialogue_4" : "Me: What do you mean you are death? Death is just a Concept not a being or something.",
+		"death_dialogue_4" : "Death: Of course you would think that, but that doesnt matter at the moment.",
+		"death_dialogue_5" : "Death: What matters is that you are dead. Like fully, no coming back from here. And you are a Cube, I don't know why though.",
+		"cube_dialogue_5" : "Me: Did this happend before? You seem oddly calm even though I'm here.",
+		"death_dialogue_6" : "Death: Ehhh, not really but who cares.",
+		"cube_dialogue_6" : "Me: Well, I do.",
+		"death_dialogue_7" : "Death: You humans are funny, like your way of thinking.",
+		"death_dialogue_8" : "Death: For now just proceed through the field and you will find the Gateway to the next Realm.",
 	}
 }
