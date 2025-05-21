@@ -13,7 +13,11 @@
 		"cube_dialogue_2" : "Me: What are you?      What am I?",
 		"death_dialogue_2" : "???: You ask a lot of Questions for someone who is already dead... and a Cube :-)",
 		"cube_dialogue_3" : "Me: Dead? How am I dead? I can still feel and walk... as a Cube that is",
-		"death_dialogue_3" : "???: Stop the questions already, fetch me 3 fragments of your memories and we keep talking.",
+		"death_dialogue_3" : "???: We will get to that soon enough, for now fetch me 3 fragments of your memories and we keep talking.",
 		"death_dialogue_4" : "???: They should be laying around here somewhere, I would suggest you continue in the field behind me."
+	},
+	"fragmentDialogue" : {
+		"fragment1" : "This seems to be one of the fragments that thing was talking about...",
+		"fragment2" : "They feel kinda... warm.. It almost feels like a warm cup of tea in Winter. Weird."
 	}
 }

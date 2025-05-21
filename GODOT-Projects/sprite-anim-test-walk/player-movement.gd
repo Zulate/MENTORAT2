@@ -34,12 +34,28 @@ func _physics_process(delta: float) -> void:
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
 
-func _on_arealeft_body_entered(_body: CharacterBody3D) -> void:
-	$"../Camera3D".position = Vector3(0, 4, 9.5);
-
 func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 	get_tree().change_scene_to_file("res://grass-map.tscn");
 
 
 func _on_canvas_layer_stop_movement() -> void:
 	GlobalVariables.Trigger = true
+
+
+func _on_memoryfragment_1_area_body_entered(_body: Node3D) -> void:
+	GlobalVariables.insideFragment1 = true;
+
+func _on_memoryfragment_1_area_body_exited(_body: Node3D) -> void:
+	GlobalVariables.insideFragment1 = false;
+
+func _on_memoryfragment_2_area_body_entered(_body: Node3D) -> void:
+	GlobalVariables.insideFragment2 = true;
+
+func _on_memoryfragment_2_area_body_exited(_body: Node3D) -> void:
+	GlobalVariables.insideFragment2 = false;
+
+func _on_memoryfragment_3_area_body_entered(_body: Node3D) -> void:
+	GlobalVariables.insideFragment3 = true;
+
+func _on_memoryfragment_3_area_body_exited(_body: Node3D) -> void:
+	GlobalVariables.insideFragment3 = false;

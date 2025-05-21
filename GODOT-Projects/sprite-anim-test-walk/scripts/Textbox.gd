@@ -21,11 +21,7 @@ var dialogue_index: int = 0
 @onready var start_symbol = $DialogueBox/MarginContainer/HBoxContainer/Start
 @onready var end_symbol = $DialogueBox/MarginContainer/HBoxContainer/End
 @onready var label = $DialogueBox/MarginContainer/HBoxContainer/Label
-
-func _ready() -> void:
-	print("Starting state: State.READY")
-	hide_textbox()
-	var lines = [
+@onready var lines = [
 		StaticData.textData["start_dialogue"]["start_dialogue_1"],
 		StaticData.textData["start_dialogue"]["start_dialogue_2"],
 		StaticData.textData["start_dialogue"]["start_dialogue_3"],
@@ -33,6 +29,10 @@ func _ready() -> void:
 		StaticData.textData["start_dialogue"]["start_dialogue_5"],
 		StaticData.textData["start_dialogue"]["start_dialogue_6"]
 	]
+
+func _ready() -> void:
+	print("Starting state: State.READY")
+	hide_textbox()
 	start_dialogue(lines)
 
 func _process(_delta):
@@ -52,6 +52,28 @@ func _process(_delta):
 				dialogue_index += 1
 				change_state(State.READING)
 				show_next_line()
+				
+	if Input.is_action_just_pressed("KeyF"):
+		if GlobalVariables.insideFragment1 == true:
+			print("fragment 1 collected")
+			GlobalVariables.fragmentsCollected += 1
+			print(GlobalVariables.fragmentsCollected)
+			lines = [
+				StaticData.textData["fragmentDialogue"]["fragment1"],
+				StaticData.textData["fragmentDialogue"]["fragment2"]
+			]
+			start_dialogue(lines)
+			$"../SubViewportContainer/SubViewport/Memory-fragment".queue_free()
+		elif  GlobalVariables.insideFragment2 == true:
+			$"../SubViewportContainer/SubViewport/Memory-fragment2".queue_free()
+			print("fragment 2 collected")
+			GlobalVariables.fragmentsCollected += 1
+			print(GlobalVariables.fragmentsCollected)
+		elif GlobalVariables.insideFragment3 == true:
+			$"../SubViewportContainer/SubViewport/Memory-fragment3".queue_free()
+			print("fragment 3 collected")
+			GlobalVariables.fragmentsCollected += 1
+			print(GlobalVariables.fragmentsCollected)
 
 func hide_textbox() -> void:
 	start_symbol.text = ""
@@ -124,7 +146,7 @@ func start_dialogue(text_list: Array) -> void:
 	show_next_line()
 
 func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
-	var lines = [
+	lines = [
 		StaticData.textData["denialDialogue_1"]["cube_dialogue_1"],
 		StaticData.textData["denialDialogue_1"]["death_dialogue_1"],
 		StaticData.textData["denialDialogue_1"]["cube_dialogue_2"],
