@@ -1,5 +1,7 @@
 extends Node
 
+#this script adds logic for parsing the JSON-File
+
 var textData = {}
 
 var data_file_path = "res://assets/Textfiles/dialogueFile.JSON"

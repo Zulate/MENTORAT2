@@ -14,11 +14,10 @@ config/name="Cuby"
 run/main_scene="uid://xaq2e8tba0om"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
-boot_splash/bg_color=Color(0.385493, 0.385493, 0.385492, 1)
-boot_splash/show_image=false
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="res://loadingscreen/ohio-solutions-final.png"
-config/icon="res://icon.svg"
+config/icon="uid://chfjtkp3vn3l3"
 boot_splash/minimum_display_time=2000
 
 [autoload]
@@ -28,6 +27,8 @@ GlobalVariables="*res://global-script.gd"
 
 [display]
 
+window/size/mode=2
+window/size/always_on_top=true
 window/stretch/mode="viewport"
 
 [input]

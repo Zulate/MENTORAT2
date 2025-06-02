@@ -3,7 +3,6 @@
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_t0x4q"]
 [ext_resource type="Texture2D" uid="uid://dsba2spudrfek" path="res://sprites/guilt-level-palette-1x.png" id="2_ls783"]
 [ext_resource type="ArrayMesh" uid="uid://bjr3tm1u5q4k1" path="res://grass-blade.obj" id="3_e8aww"]
-[ext_resource type="Script" uid="uid://cmicwqtwwwdbc" path="res://scripts/subviewport-script.gd" id="3_ls783"]
 [ext_resource type="Shader" uid="uid://b1eylopnvb44b" path="res://shaders/grass_shader.gdshader" id="4_ootn3"]
 [ext_resource type="Texture2D" uid="uid://bewbtem1jjnej" path="res://assets/Sphere.001_Bake1_PBR_Diffuse.png" id="5_7dgdu"]
 [ext_resource type="ArrayMesh" uid="uid://dbssfyyt6468s" path="res://assets/Sphere.001.obj" id="6_k8nly"]
@@ -16,6 +15,34 @@
 shader = ExtResource("1_t0x4q")
 shader_parameter/num_colors = 8
 shader_parameter/PALETTE_TEXTURE = ExtResource("2_ls783")
+
+[sub_resource type="GDScript" id="GDScript_e8aww"]
+script/source = "extends SubViewport
+
+@onready var sub_viewport := $\".\"
+@onready var texture_rect := $\"../../TextureRect\"
+
+# Auflösungsteilung – hier z. B. 3x kleiner
+const SCALE_DIVISOR := 3
+
+func _ready():
+	update_scaled_viewport()
+
+	# Wenn Fenstergröße sich ändert, neu berechnen
+	get_viewport().connect(\"size_changed\", Callable(self, \"update_scaled_viewport\"))
+
+func update_scaled_viewport():
+	var window_size = get_viewport().get_visible_rect().size
+	var scaled_size = window_size / SCALE_DIVISOR
+
+	sub_viewport.size = scaled_size.floor()  # wichtig: ganzzahlig für sauberen Effekt
+
+	texture_rect.texture = sub_viewport.get_texture()
+	texture_rect.expand = true
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP
+	texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture_rect.size = window_size
+"
 
 [sub_resource type="GDScript" id="GDScript_7b5c4"]
 script/source = "extends Camera3D
@@ -131,7 +158,7 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-script = ExtResource("3_ls783")
+script = SubResource("GDScript_e8aww")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)

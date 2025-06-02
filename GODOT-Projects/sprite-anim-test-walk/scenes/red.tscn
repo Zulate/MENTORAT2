@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_2sph2"]
 [ext_resource type="Texture2D" uid="uid://jkt5cyydd7d0" path="res://sprites/red-level-palette-1x.png" id="2_g4rxb"]
-[ext_resource type="Script" uid="uid://cmicwqtwwwdbc" path="res://scripts/subviewport-script.gd" id="3_g4rxb"]
 [ext_resource type="Material" uid="uid://dnolo372243b5" path="res://toon-red.tres" id="3_mous1"]
 [ext_resource type="ArrayMesh" uid="uid://buv5cudpbjl5v" path="res://loube.obj" id="4_acu7c"]
 [ext_resource type="Shader" uid="uid://b1eylopnvb44b" path="res://shaders/grass_shader.gdshader" id="5_5ktt4"]
@@ -14,6 +13,34 @@
 shader = ExtResource("1_2sph2")
 shader_parameter/num_colors = 8
 shader_parameter/PALETTE_TEXTURE = ExtResource("2_g4rxb")
+
+[sub_resource type="GDScript" id="GDScript_e8aww"]
+script/source = "extends SubViewport
+
+@onready var sub_viewport := $\".\"
+@onready var texture_rect := $\"../../TextureRect\"
+
+# Auflösungsteilung – hier z. B. 3x kleiner
+const SCALE_DIVISOR := 3
+
+func _ready():
+	update_scaled_viewport()
+
+	# Wenn Fenstergröße sich ändert, neu berechnen
+	get_viewport().connect(\"size_changed\", Callable(self, \"update_scaled_viewport\"))
+
+func update_scaled_viewport():
+	var window_size = get_viewport().get_visible_rect().size
+	var scaled_size = window_size / SCALE_DIVISOR
+
+	sub_viewport.size = scaled_size.floor()  # wichtig: ganzzahlig für sauberen Effekt
+
+	texture_rect.texture = sub_viewport.get_texture()
+	texture_rect.expand = true
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP
+	texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture_rect.size = window_size
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0iio7"]
 size = Vector3(20, 0.047, 20)
@@ -90,7 +117,7 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-script = ExtResource("3_g4rxb")
+script = SubResource("GDScript_e8aww")
 
 [node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 

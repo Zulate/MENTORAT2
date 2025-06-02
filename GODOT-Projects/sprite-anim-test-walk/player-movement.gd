@@ -1,12 +1,11 @@
 extends CharacterBody3D
 
-
-
 const JUMP_VELOCITY = 2.5
-
+@onready var Findicator = $"../pressFIndicator"
 
 func _physics_process(delta: float) -> void:
 	var SPEED = GlobalVariables.Speed
+	$"../pressFIndicator".position = position + Vector3(-0.05, 0.7, 0)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -31,6 +30,11 @@ func _physics_process(delta: float) -> void:
 		GlobalVariables.player_position = position + Vector3(0, -0.1, 0)
 	else:
 		pass
+		
+	if GlobalVariables.pressFdisplay == true:
+		Findicator.visible = true
+	else:
+		Findicator.visible = false
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
 
@@ -41,21 +45,28 @@ func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 func _on_canvas_layer_stop_movement() -> void:
 	GlobalVariables.Trigger = true
 
+#methods for denial-level interactions
 
 func _on_memoryfragment_1_area_body_entered(_body: Node3D) -> void:
 	GlobalVariables.insideFragment1 = true;
+	GlobalVariables.pressFdisplay = true;
 
 func _on_memoryfragment_1_area_body_exited(_body: Node3D) -> void:
 	GlobalVariables.insideFragment1 = false;
+	GlobalVariables.pressFdisplay = false;
 
 func _on_memoryfragment_2_area_body_entered(_body: Node3D) -> void:
 	GlobalVariables.insideFragment2 = true;
+	GlobalVariables.pressFdisplay = true;
 
 func _on_memoryfragment_2_area_body_exited(_body: Node3D) -> void:
 	GlobalVariables.insideFragment2 = false;
+	GlobalVariables.pressFdisplay = false;
 
 func _on_memoryfragment_3_area_body_entered(_body: Node3D) -> void:
 	GlobalVariables.insideFragment3 = true;
+	GlobalVariables.pressFdisplay = true;
 
 func _on_memoryfragment_3_area_body_exited(_body: Node3D) -> void:
 	GlobalVariables.insideFragment3 = false;
+	GlobalVariables.pressFdisplay = false;

@@ -11,6 +11,8 @@ extends Node
 @onready var denialDialogue1Status = false
 @onready var denialDialogue2Status = false
 
+@onready var pressFdisplay = false
+
 @onready var fragmentsCollected = 0
 
 func _ready() -> void:
