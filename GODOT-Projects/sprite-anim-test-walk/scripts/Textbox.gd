@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal stop_movement
 
-@onready var CHAR_READ_RATE = 0.05
+@onready var CHAR_READ_RATE = 0.025
 @onready var talking_indicator = $"../SubViewportContainer/SubViewport/talking_indicator"
 
 enum State{
@@ -182,6 +182,7 @@ func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
 		]
 		start_dialogue(lines)
 		GlobalVariables.denialDialogue2Status = true
+		$"../SubViewportContainer/SubViewport/Floor/CollisionShape3D2".queue_free()
 	else:
 		print("error")
 

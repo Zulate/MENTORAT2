@@ -44,29 +44,3 @@ func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
 
 func _on_canvas_layer_stop_movement() -> void:
 	GlobalVariables.Trigger = true
-
-#methods for denial-level interactions
-
-func _on_memoryfragment_1_area_body_entered(_body: Node3D) -> void:
-	GlobalVariables.insideFragment1 = true;
-	GlobalVariables.pressFdisplay = true;
-
-func _on_memoryfragment_1_area_body_exited(_body: Node3D) -> void:
-	GlobalVariables.insideFragment1 = false;
-	GlobalVariables.pressFdisplay = false;
-
-func _on_memoryfragment_2_area_body_entered(_body: Node3D) -> void:
-	GlobalVariables.insideFragment2 = true;
-	GlobalVariables.pressFdisplay = true;
-
-func _on_memoryfragment_2_area_body_exited(_body: Node3D) -> void:
-	GlobalVariables.insideFragment2 = false;
-	GlobalVariables.pressFdisplay = false;
-
-func _on_memoryfragment_3_area_body_entered(_body: Node3D) -> void:
-	GlobalVariables.insideFragment3 = true;
-	GlobalVariables.pressFdisplay = true;
-
-func _on_memoryfragment_3_area_body_exited(_body: Node3D) -> void:
-	GlobalVariables.insideFragment3 = false;
-	GlobalVariables.pressFdisplay = false;
