@@ -4,13 +4,23 @@ extends Node3D
 @onready var camera = $"SubViewportContainer/SubViewport/grass-camera"
 @onready var outline_material = load("res://materials/outline_material.tres")
 @onready var SceneTransitionAnimation = $SubViewportContainer/SubViewport/scene_transition_animation/AnimationPlayer
-
+@onready var textBox = $CanvasLayer
 func camera_transition(node, property, fin_val, duration):
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(node, property, fin_val, duration)
 
 func _ready() -> void:
 	SceneTransitionAnimation.play("fade-out")
+	var lines = [
+		StaticData.textData["start_dialogue"]["start_dialogue_1"],
+		StaticData.textData["start_dialogue"]["start_dialogue_2"],
+		StaticData.textData["start_dialogue"]["start_dialogue_3"],
+		StaticData.textData["start_dialogue"]["start_dialogue_4"],
+		StaticData.textData["start_dialogue"]["start_dialogue_5"],
+		StaticData.textData["start_dialogue"]["start_dialogue_6"]
+	]
+	await get_tree().create_timer(2.0).timeout
+	textBox.start_dialogue(lines)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("KeyF"):
@@ -18,7 +28,7 @@ func _process(_delta):
 			print("travelling to next realm")
 			SceneTransitionAnimation.play("fade-in")
 			await get_tree().create_timer(2.0).timeout
-			get_tree().change_scene_to_file("res://scenes/anger.tscn");
+			get_tree().change_scene_to_file("res://scenes/Anger.tscn");
 		else:
 			pass
 	else:

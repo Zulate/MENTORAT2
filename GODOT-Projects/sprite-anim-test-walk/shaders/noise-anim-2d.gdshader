@@ -39,7 +39,7 @@ void fragment() {
     vec3 final_color = mix(color1, color2, n);
 
     // ✅ Opacity basierend auf Noise
-    float opacity = smoothstep(opacity_threshold - 0.1, opacity_threshold + 0.1, n);
+    float opacity = step(opacity_threshold, n);
 
     COLOR = vec4(final_color, opacity);
 }

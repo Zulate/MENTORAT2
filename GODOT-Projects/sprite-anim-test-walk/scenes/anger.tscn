@@ -1,16 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=35 format=3 uid="uid://cmimrj2sfdima"]
 
-[ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_54gy4"]
-[ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_7l0j4"]
-[ext_resource type="Texture2D" uid="uid://k2g7cngelvob" path="res://sprites/anger-level-palette-1x.png" id="3_j5oor"]
-[ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="4_dmj2s"]
-[ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_7l0j4"]
-[ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_j5oor"]
+[ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_ef3mx"]
+[ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_tb51d"]
+[ext_resource type="Texture2D" uid="uid://k2g7cngelvob" path="res://sprites/anger-level-palette-1x.png" id="3_hxxki"]
+[ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="4_etgxf"]
+[ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_db25o"]
+[ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_y2dum"]
+[ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="7_db25o"]
+[ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="7_etgxf"]
+[ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="8_db25o"]
+[ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="9_y2dum"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
-shader = ExtResource("2_7l0j4")
-shader_parameter/num_colors = 8
-shader_parameter/PALETTE_TEXTURE = ExtResource("3_j5oor")
+shader = ExtResource("2_tb51d")
+shader_parameter/num_colors = 9
+shader_parameter/PALETTE_TEXTURE = ExtResource("3_hxxki")
 
 [sub_resource type="GDScript" id="GDScript_j5oor"]
 script/source = "extends Camera3D
@@ -76,8 +80,66 @@ specular_mode = 1
 albedo_color = Color(0.75, 0.75, 0.75, 1)
 metallic_specular = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iijyl"]
+atlas = ExtResource("7_db25o")
+region = Rect2(0, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7fh2"]
+atlas = ExtResource("7_db25o")
+region = Rect2(31, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27idm"]
+atlas = ExtResource("7_db25o")
+region = Rect2(62, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbavh"]
+atlas = ExtResource("7_db25o")
+region = Rect2(93, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74a3a"]
+atlas = ExtResource("7_db25o")
+region = Rect2(124, 0, 31, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2dum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iijyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7fh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27idm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbavh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74a3a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trhcv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gty67"]
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl7ig"]
+font = ExtResource("9_y2dum")
+font_size = 28
+
 [node name="Anger" type="Node3D"]
-script = ExtResource("1_54gy4")
+script = ExtResource("1_ef3mx")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_iuvue")
@@ -94,7 +156,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_dmj2s")]
+[node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_etgxf")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.79185, 0.00484315, 0.610696, -0.295525, 0.878135, 0.376224, -0.534451, -0.478389, 0.696782, 0, 1.20129, 0)
@@ -120,7 +182,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
 [node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 shape = SubResource("BoxShape3D_54gy4")
-debug_color = Color(0, 0.85, 1, 1)
+debug_color = Color(0, 0.85, 1, 0.168627)
 
 [node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
@@ -170,7 +232,7 @@ debug_color = Color(0, 0.595, 0.7, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
-script = ExtResource("5_7l0j4")
+script = ExtResource("5_db25o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
 transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
@@ -185,10 +247,86 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4xdg8")
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -7.86208, 0.744362, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("6_j5oor")
+texture = ExtResource("6_y2dum")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.93529, 5.43664e-09, 0.353883, -0.343895, 0.235905, 0.908892, -0.0834829, -0.971776, 0.22064, 0.44026, 1.40883, 0.489621)
 light_energy = 13.78
 shadow_enabled = true
 shadow_blur = 3.862
+
+[node name="talking_indicator" type="AnimatedSprite3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.5353, 1.28151, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_y2dum")
+autoplay = "default"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_etgxf")
+
+[node name="DialogueBox" type="MarginContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -163.0
+offset_right = -27.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_db25o")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trhcv")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox/MarginContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gty67")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Start" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+label_settings = SubResource("LabelSettings_gl7ig")
+
+[node name="Label" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah ahahahahah"
+label_settings = SubResource("LabelSettings_gl7ig")
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "v"
+label_settings = SubResource("LabelSettings_gl7ig")

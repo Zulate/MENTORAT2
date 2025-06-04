@@ -21,19 +21,11 @@ var dialogue_index: int = 0
 @onready var start_symbol = $DialogueBox/MarginContainer/HBoxContainer/Start
 @onready var end_symbol = $DialogueBox/MarginContainer/HBoxContainer/End
 @onready var label = $DialogueBox/MarginContainer/HBoxContainer/Label
-@onready var lines = [
-		StaticData.textData["start_dialogue"]["start_dialogue_1"],
-		StaticData.textData["start_dialogue"]["start_dialogue_2"],
-		StaticData.textData["start_dialogue"]["start_dialogue_3"],
-		StaticData.textData["start_dialogue"]["start_dialogue_4"],
-		StaticData.textData["start_dialogue"]["start_dialogue_5"],
-		StaticData.textData["start_dialogue"]["start_dialogue_6"]
-	]
+@onready var lines
 
 func _ready() -> void:
 	print("Starting state: State.READY")
 	hide_textbox()
-	start_dialogue(lines)
 
 func _process(_delta):
 	match current_state:
@@ -53,6 +45,7 @@ func _process(_delta):
 				change_state(State.READING)
 				show_next_line()
 				
+	#Denial Level Fragment Logic
 	if Input.is_action_just_pressed("KeyF"):
 		if GlobalVariables.insideFragment1 == true:
 			print("fragment 1 collected")
@@ -76,6 +69,8 @@ func _process(_delta):
 			print(GlobalVariables.fragmentsCollected)
 		else:
 			pass
+	else:
+		pass
 
 func hide_textbox() -> void:
 	start_symbol.text = ""
