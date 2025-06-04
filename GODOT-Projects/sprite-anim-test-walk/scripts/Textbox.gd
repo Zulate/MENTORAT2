@@ -74,6 +74,8 @@ func _process(_delta):
 			print("fragment 3 collected")
 			GlobalVariables.fragmentsCollected += 1
 			print(GlobalVariables.fragmentsCollected)
+		else:
+			pass
 
 func hide_textbox() -> void:
 	start_symbol.text = ""

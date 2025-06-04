@@ -8,6 +8,8 @@ extends Node
 @onready var insideFragment2 = false
 @onready var insideFragment3 = false
 
+@onready var insideGate = false
+
 @onready var denialDialogue1Status = false
 @onready var denialDialogue2Status = false
 

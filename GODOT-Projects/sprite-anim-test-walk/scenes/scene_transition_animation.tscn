@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://fbc2xb6crcix"]
+
+[ext_resource type="Shader" uid="uid://dhrk75r4nbey1" path="res://shaders/noise-anim-2d.gdshader" id="1_4f13n"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4f13n"]
+frequency = 0.0041
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6engn"]
+width = 960
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_4f13n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6engn"]
+shader = ExtResource("1_4f13n")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_6engn")
+shader_parameter/scale = 0.64
+shader_parameter/speed = 0.1
+shader_parameter/octaves = 4
+shader_parameter/distortion_strength = 0.5
+shader_parameter/opacity_threshold = 0.0
+
+[sub_resource type="Animation" id="Animation_4f13n"]
+resource_name = "fade-in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/opacity_threshold")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.65, 0.394, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6engn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/opacity_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_my01g"]
+resource_name = "fade-out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/opacity_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_my01g"]
+_data = {
+&"RESET": SubResource("Animation_6engn"),
+&"fade-in": SubResource("Animation_4f13n"),
+&"fade-out": SubResource("Animation_my01g")
+}
+
+[node name="scene_transition_animation" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6engn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -77.0
+offset_right = 1212.0
+offset_bottom = 702.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_my01g")
+}

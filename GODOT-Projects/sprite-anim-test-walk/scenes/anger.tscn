@@ -1,0 +1,194 @@
+[gd_scene load_steps=22 format=3 uid="uid://cmimrj2sfdima"]
+
+[ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_54gy4"]
+[ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_7l0j4"]
+[ext_resource type="Texture2D" uid="uid://k2g7cngelvob" path="res://sprites/anger-level-palette-1x.png" id="3_j5oor"]
+[ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="4_dmj2s"]
+[ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_7l0j4"]
+[ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_j5oor"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
+shader = ExtResource("2_7l0j4")
+shader_parameter/num_colors = 8
+shader_parameter/PALETTE_TEXTURE = ExtResource("3_j5oor")
+
+[sub_resource type="GDScript" id="GDScript_j5oor"]
+script/source = "extends Camera3D
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54gy4"]
+size = Vector3(50, 0.01, 20)
+
+[sub_resource type="Gradient" id="Gradient_7l0j4"]
+colors = PackedColorArray(0.84, 0, 0, 1, 0.0775, 0.15, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j5oor"]
+noise_type = 3
+seed = 3
+frequency = 0.0007
+fractal_type = 2
+cellular_jitter = 0.5
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 100.0
+domain_warp_frequency = 0.01
+domain_warp_fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmj2s"]
+width = 1280
+height = 1280
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.34
+color_ramp = SubResource("Gradient_7l0j4")
+noise = SubResource("FastNoiseLite_j5oor")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuvue"]
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_texture = SubResource("NoiseTexture2D_dmj2s")
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4xdg8"]
+size = Vector2(10, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gttpk"]
+size = Vector3(41.3777, 1, 0.318848)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk5l6"]
+size = Vector3(43.4979, 1, 0.526367)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b56of"]
+size = Vector3(25.724, 1, 0.376)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mvgt"]
+size = Vector3(0.403198, 1, 22.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5oor"]
+size = Vector3(0.387207, 0.359436, 0.395996)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmj2s"]
+size = Vector3(0.37, 0.37, 0.37)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xdg8"]
+specular_mode = 1
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+metallic_specular = 1.0
+
+[node name="Anger" type="Node3D"]
+script = ExtResource("1_54gy4")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_iuvue")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_dmj2s")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.79185, 0.00484315, 0.610696, -0.295525, 0.878135, 0.376224, -0.534451, -0.478389, 0.696782, 0, 1.20129, 0)
+visible = false
+light_energy = 1.2
+shadow_enabled = true
+shadow_bias = 0.02
+shadow_normal_bias = 2.89
+shadow_opacity = 0.89
+shadow_blur = 2.273
+
+[node name="anger-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
+projection = 1
+fov = 50.0
+size = 5.5
+far = 60.0
+script = SubResource("GDScript_j5oor")
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
+
+[node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+shape = SubResource("BoxShape3D_54gy4")
+debug_color = Color(0, 0.85, 1, 1)
+
+[node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+material_override = SubResource("StandardMaterial3D_iuvue")
+mesh = SubResource("PlaneMesh_4xdg8")
+skeleton = NodePath("../..")
+
+[node name="floor-right" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+material_override = SubResource("StandardMaterial3D_iuvue")
+mesh = SubResource("PlaneMesh_4xdg8")
+skeleton = NodePath("../..")
+
+[node name="floor-right2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+material_override = SubResource("StandardMaterial3D_iuvue")
+mesh = SubResource("PlaneMesh_4xdg8")
+
+[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+material_override = SubResource("StandardMaterial3D_iuvue")
+mesh = SubResource("PlaneMesh_4xdg8")
+skeleton = NodePath("../floor-right2")
+
+[node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 14.8523, 0, 9.51673)
+shape = SubResource("BoxShape3D_gttpk")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="restriction-top" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 15.5858, 0, -8.74549)
+shape = SubResource("BoxShape3D_bk5l6")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="restriction-left" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.15933, 0, 0.137418)
+shape = SubResource("BoxShape3D_b56of")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2823, 0, 0)
+shape = SubResource("BoxShape3D_2mvgt")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
+script = ExtResource("5_7l0j4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
+shape = SubResource("BoxShape3D_j5oor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(0.999996, 0, -0.00300196, 0, 1, 0, 0.00300196, 0, 0.999996, 0, -0.0138851, 0)
+mesh = SubResource("BoxMesh_dmj2s")
+surface_material_override/0 = SubResource("StandardMaterial3D_4xdg8")
+
+[node name="pressFIndicator" type="Sprite3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -7.86208, 0.744362, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("6_j5oor")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.93529, 5.43664e-09, 0.353883, -0.343895, 0.235905, 0.908892, -0.0834829, -0.971776, 0.22064, 0.44026, 1.40883, 0.489621)
+light_energy = 13.78
+shadow_enabled = true
+shadow_blur = 3.862

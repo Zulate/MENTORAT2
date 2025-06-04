@@ -37,10 +37,5 @@ func _physics_process(delta: float) -> void:
 		Findicator.visible = false
 # position 1 -> self.position = Vector3(5, 4, 9.5);
 
-
-func _on_entergrasslevel_body_entered(_body: CharacterBody3D) -> void:
-	get_tree().change_scene_to_file("res://grass-map.tscn");
-
-
 func _on_canvas_layer_stop_movement() -> void:
 	GlobalVariables.Trigger = true
