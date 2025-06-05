@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if(GlobalVariables.Trigger == false):
 		move_and_slide()
 		GlobalVariables.player_position = position + Vector3(0, -0.1, 0)
-	else:
+	elif (GlobalVariables.Trigger == true):
 		pass
 		
 	if GlobalVariables.pressFdisplay == true:

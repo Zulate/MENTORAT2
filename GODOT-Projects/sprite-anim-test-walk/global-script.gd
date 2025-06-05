@@ -19,3 +19,7 @@ extends Node
 
 func _ready() -> void:
 	pass
+
+func camera_transition(node, property, fin_val, duration):
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(node, property, fin_val, duration)
