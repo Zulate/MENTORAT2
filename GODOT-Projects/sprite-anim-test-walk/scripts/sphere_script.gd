@@ -9,31 +9,31 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("KeyF"):
-		if GlobalVariables.insidePillar == true:
-			activate_physics_pillar()
+		if GlobalVariables.insideSphere == true:
+			activate_physics_sphere()
 			GlobalVariables.pressFdisplay = false
 		else:
 			pass
 	else:
 		pass
 
-func activate_physics_pillar():
+func activate_physics_sphere():
 	for child in self.get_children():
 		if child is RigidBody3D:
 			child.freeze = false
 		elif child is Area3D:
 			pass
 	
-	$"pillar-area".queue_free();
+	$"sphere-area".queue_free();
 	await get_tree().create_timer(8).timeout;
 
 	queue_free();
 
-func _on_pillararea_body_entered(_body: Node3D) -> void:
+func _on_spherearea_body_entered(body: Node3D) -> void:
 	GlobalVariables.pressFdisplay = true
-	GlobalVariables.insidePillar = true
+	GlobalVariables.insideSphere = true
 
 
-func _on_pillararea_body_exited(_body: Node3D) -> void:
+func _on_spherearea_body_exited(body: Node3D) -> void:
 	GlobalVariables.pressFdisplay = false
-	GlobalVariables.insidePillar = false
+	GlobalVariables.insideSphere = false
