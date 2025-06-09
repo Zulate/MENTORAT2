@@ -16,7 +16,7 @@ func _ready() -> void:
 	]
 	await get_tree().create_timer(2.0).timeout
 	textBox.start_dialogue(lines)
-
+	
 
 func _on_area_1_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(0, 4, 12)

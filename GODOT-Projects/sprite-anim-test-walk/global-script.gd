@@ -16,6 +16,8 @@ extends Node
 
 @onready var insideGate = false
 
+@onready var insidePillar = false
+
 @onready var denialDialogue1Status = false
 @onready var denialDialogue2Status = false
 

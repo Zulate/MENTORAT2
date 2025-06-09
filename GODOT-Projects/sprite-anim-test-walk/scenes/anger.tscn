@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=38 format=3 uid="uid://cmimrj2sfdima"]
 
 [ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_y2dum"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_trhcv"]
@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_r2yyb"]
 [ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_c41fh"]
 [ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="7_14f3b"]
-[ext_resource type="ArrayMesh" uid="uid://pp6ksoba1sn4" path="res://assets/Pillar.obj" id="8_livvb"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="9_0ojr7"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="10_6g2yb"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="11_3lp2j"]
+[ext_resource type="PackedScene" uid="uid://dyxldpuy33l3l" path="res://scenes/Pillar-simple.tscn" id="11_y2dum"]
+[ext_resource type="PackedScene" uid="uid://ctqo7i43xxbbd" path="res://scenes/Pillar-pieces-edited.tscn" id="12_trhcv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
 shader = ExtResource("2_trhcv")
@@ -126,13 +127,6 @@ animations = [{
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_db25o"]
 size = Vector3(0.090332, 1, 17.2031)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2dum"]
-disable_ambient_light = true
-texture_filter = 0
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y2dum"]
-points = PackedVector3Array(1.09135, 8.04979, 0.331742, -1.06379, -0.0636864, -0.428549, -1.06379, -0.0636864, 0.458528, -1.06379, 8.04979, -0.428549, 0.837784, -0.0636864, -0.809116, 0.330431, -0.0636864, 1.09245, -0.303074, 8.04979, 1.09245, 0.457217, 8.04979, -1.06269, -0.429859, -0.0636864, -1.06269, 1.09135, 0.0633845, 0.331742, -1.06379, 8.04979, 0.458528, -0.68343, 8.04979, -0.935901, 0.584002, 8.04979, 0.965669, 1.09135, 8.04979, -0.301763, -0.810216, -0.0636864, 0.838884, 0.457217, -0.0636864, -1.06269, 1.09135, -0.0636864, -0.301763, -0.303074, -0.0636864, 1.09245, 0.964569, -0.0636864, 0.585313, 0.837784, 8.04979, -0.809116, -0.810216, 8.04979, 0.838884, -0.937001, -0.0636864, -0.682119, -0.429859, 8.04979, -1.06269, 0.330431, 8.04979, 1.09245, 0.964569, 8.04979, 0.585313, 0.584002, -0.0636864, 0.965669, -0.68343, -0.0636864, -0.935901, -0.937001, 8.04979, -0.682119, 1.09135, -0.0636864, 0.204957)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trhcv"]
 bg_color = Color(0, 0, 0, 1)
@@ -310,50 +304,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3572, 0.55, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_db25o")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -3.14051, 0, -1.92796)
-mesh = ExtResource("8_livvb")
-surface_material_override/0 = SubResource("StandardMaterial3D_y2dum")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/MeshInstance3D2/StaticBody3D"]
-transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, 0, 0.209372, 0)
-shape = SubResource("ConvexPolygonShape3D_y2dum")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -1.14051, 0, -1.92796)
-mesh = ExtResource("8_livvb")
-surface_material_override/0 = SubResource("StandardMaterial3D_y2dum")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/MeshInstance3D3/StaticBody3D"]
-transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, 0, 0.209372, 0)
-shape = SubResource("ConvexPolygonShape3D_y2dum")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.85949, 0, -1.92796)
-mesh = ExtResource("8_livvb")
-surface_material_override/0 = SubResource("StandardMaterial3D_y2dum")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/MeshInstance3D4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/MeshInstance3D4/StaticBody3D"]
-transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, 0, 0.209372, 0)
-shape = SubResource("ConvexPolygonShape3D_y2dum")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 2.85949, 0, -1.92796)
-mesh = ExtResource("8_livvb")
-surface_material_override/0 = SubResource("StandardMaterial3D_y2dum")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/MeshInstance3D5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/MeshInstance3D5/StaticBody3D"]
-transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, 0, 0.209372, 0)
-shape = SubResource("ConvexPolygonShape3D_y2dum")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_0ojr7")
 
@@ -422,6 +372,12 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_gl7ig")
+
+[node name="Pillar-simple" parent="." instance=ExtResource("11_y2dum")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.20083, 0.00509253, -2.22274)
+
+[node name="Pillar-pieces" parent="." instance=ExtResource("12_trhcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4436, 0.00500107, 2.46349)
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
