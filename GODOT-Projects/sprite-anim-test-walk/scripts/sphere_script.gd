@@ -29,11 +29,11 @@ func activate_physics_sphere():
 
 	queue_free();
 
-func _on_spherearea_body_entered(body: Node3D) -> void:
+func _on_spherearea_body_entered(_body: Node3D) -> void:
 	GlobalVariables.pressFdisplay = true
 	GlobalVariables.insideSphere = true
 
 
-func _on_spherearea_body_exited(body: Node3D) -> void:
+func _on_spherearea_body_exited(_body: Node3D) -> void:
 	GlobalVariables.pressFdisplay = false
 	GlobalVariables.insideSphere = false

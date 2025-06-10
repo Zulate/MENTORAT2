@@ -41,5 +41,8 @@
 	},
 	"anger_start_dialogue" : {
 		"start_dialogue_1" : "It's dark here...",
-	}
+	},
+	"bargaining_start_dialogue" : {
+		"start_dialogue_1" : "I don't like this place..."
+	},
 }

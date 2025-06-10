@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=47 format=3 uid="uid://cmimrj2sfdima"]
 
 [ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_y2dum"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_trhcv"]
@@ -16,15 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://ctqo7i43xxbbd" path="res://scenes/Pillar-pieces-edited.tscn" id="12_trhcv"]
 [ext_resource type="PackedScene" uid="uid://c7aq2fg36x8tj" path="res://scenes/anger_sphere.tscn" id="13_c41fh"]
 [ext_resource type="PackedScene" uid="uid://bxmgyutfsu5pa" path="res://scenes/sphere-pieces.tscn" id="14_gl7ig"]
+[ext_resource type="Shader" uid="uid://dx4j3ktvusun8" path="res://shaders/noise-anim.gdshader" id="17_14f3b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
 shader = ExtResource("2_trhcv")
 shader_parameter/num_colors = 9
 shader_parameter/PALETTE_TEXTURE = ExtResource("3_gty67")
-
-[sub_resource type="GDScript" id="GDScript_j5oor"]
-script/source = "extends Camera3D
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_54gy4"]
 size = Vector3(50, 0.01, 20)
@@ -44,7 +41,7 @@ domain_warp_amplitude = 100.0
 domain_warp_frequency = 0.01
 domain_warp_fractal_octaves = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmj2s"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_14f3b"]
 width = 1280
 height = 1280
 generate_mipmaps = false
@@ -57,7 +54,7 @@ noise = SubResource("FastNoiseLite_j5oor")
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_dmj2s")
+albedo_texture = SubResource("NoiseTexture2D_14f3b")
 metallic_specular = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4xdg8"]
@@ -132,6 +129,35 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_db25o"]
 size = Vector3(0.090332, 1, 17.2031)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_livvb"]
+noise_type = 3
+seed = 42
+frequency = 0.0037
+fractal_octaves = 8
+fractal_weighted_strength = 0.23
+cellular_distance_function = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_livvb"]
+width = 1028
+seamless = true
+seamless_blend_skirt = 0.516
+noise = SubResource("FastNoiseLite_livvb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ojr7"]
+render_priority = 0
+shader = ExtResource("17_14f3b")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_livvb")
+shader_parameter/scale = 0.66
+shader_parameter/speed = 0.15
+shader_parameter/octaves = 8
+shader_parameter/distortion_strength = 0.51
+
+[sub_resource type="BoxMesh" id="BoxMesh_6g2yb"]
+size = Vector3(2, 0.02, 2.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lp2j"]
+size = Vector3(1.985, 0.201, 2.131)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trhcv"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
@@ -183,7 +209,6 @@ projection = 1
 fov = 50.0
 size = 5.5
 far = 60.0
-script = SubResource("GDScript_j5oor")
 
 [node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
@@ -335,6 +360,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.49847, 0, -0.597047)
 [node name="Anger-sphere" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_c41fh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0359, -0.149975, 0.00795287)
 
+[node name="GateToRealm" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 32.1862, 0.990408, 0.0886725)
+material_override = SubResource("ShaderMaterial_0ojr7")
+mesh = SubResource("BoxMesh_6g2yb")
+skeleton = NodePath("../../..")
+
+[node name="GateArea" type="Area3D" parent="SubViewportContainer/SubViewport/GateToRealm"]
+transform = Transform3D(1, 3.10862e-15, -1.77636e-15, 8.88178e-16, 1, 0, -1.77636e-15, 0, 1, 0, -0.00782585, -0.0240593)
+
+[node name="GateCollision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/GateToRealm/GateArea"]
+transform = Transform3D(1, 2.6037e-12, -1.30207e-12, -4.44089e-16, 1, 0, -3.55271e-15, 0, 1, 0.027832, 0.00775909, 0.015893)
+shape = SubResource("BoxShape3D_3lp2j")
+debug_color = Color(0.7, 0, 0, 1)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_0ojr7")
 
@@ -408,4 +447,6 @@ label_settings = SubResource("LabelSettings_gl7ig")
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]

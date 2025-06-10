@@ -1,4 +1,6 @@
-[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://b05nnpi2ccm85"]
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://b05nnpi2ccm85"]
+
+[sub_resource type="Gradient" id="Gradient_wc5mg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_iijyl"]
 frequency = 0.0112
@@ -6,4 +8,5 @@ fractal_octaves = 4
 fractal_lacunarity = 2.77
 
 [resource]
+color_ramp = SubResource("Gradient_wc5mg")
 noise = SubResource("FastNoiseLite_iijyl")

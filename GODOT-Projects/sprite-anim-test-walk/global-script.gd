@@ -3,9 +3,11 @@ extends Node
 #preloading scenes
 @onready var denial_level = preload("res://scenes/Denial.tscn")
 @onready var anger_level = preload("res://scenes/Anger.tscn")
+@onready var bargaining_level = preload("res://scenes/Bargaining.tscn")
 @onready var spirit_character = preload("res://scenes/spirit-character.tscn")
 @onready var scene_transition = preload("res://scenes/scene_transition_animation.tscn")
 
+#global variables
 @onready var player_position
 @onready var Speed = 2.5
 @onready var Trigger = false
