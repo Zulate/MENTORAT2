@@ -12,6 +12,7 @@ func _physics_process(_delta: float) -> void:
 		if GlobalVariables.insideTriangle == true:
 			activate_physics_triangle()
 			GlobalVariables.pressFdisplay = false
+			GlobalVariables.angerDialogue1Status = true
 		else:
 			pass
 	else:

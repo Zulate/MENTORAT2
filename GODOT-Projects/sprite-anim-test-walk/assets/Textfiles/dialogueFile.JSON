@@ -42,6 +42,31 @@
 	"anger_start_dialogue" : {
 		"start_dialogue_1" : "It's dark here...",
 	},
+	"angerDialogue_1" : {
+		"cube_dialogue_1" : "Me: Hey, there you are!",
+		"death_dialogue_1" : "Death: Ah yes. Hello.",
+		"cube_dialogue_2" : "Me: I'm... confused... Why is it so dark in here? And what is it with the big Sphere?",
+		"death_dialogue_2" : "Death: Well, this right here is all the anger you experienced while being alive.",
+		"death_dialogue_3" : "Death: Whenever something didn't go your way and you got angry, this sphere grew a bit.",
+		"death_dialogue_4" : "Death: It seems you didn't really think much about reflecting or resolving on this anger inside you, didn't you?",
+		"cube_dialogue_3" : "Me: Reflecting? What benefit would that give me... You can't undo things that are long gone, so why reflect on them?",
+		"death_dialogue_5" : "Death: You clearly don't get it. That's exactly why this big sphere is in here.",
+		"death_dialogue_6" : "Death: Because you never gave a single thought about what happend, you will never be able to move on.",
+		"death_dialogue_7" : "Death: The best time to do this is always now. So do it. Now.",
+		"death_dialogue_8" : "Death: Ahead you will find a few Objects you can destroy, come back once you resolved your anger and destroy this sphere."
+	},
+	"angerDialogue_2" : {
+		"cube_dialogue_1" : "Me: ...",
+		"death_dialogue_1" : "Death: So? Are you ready to move on now?",
+		"cube_dialogue_2" : "/You look into the Darkness around you, lost in thought/",
+		"death_dialogue_2" : "Death: You are ready to move on now. Destroy your Anger.",
+		"cube_dialogue_3" : "Me: ...",
+		"cube_dialogue_4" : "Me: Thank you."
+	},
+	"angerDialogue_3" : {
+		"death_dialogue_1" : "Death: Good Job.",
+		"death_dialogue_2" : "Death: Proceed to the right and you will find the Gateway to the next Realm.",
+	},
 	"bargaining_start_dialogue" : {
 		"start_dialogue_1" : "I don't like this place..."
 	},

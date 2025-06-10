@@ -334,7 +334,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_8v7iv")
 
 [node name="Spirit-Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_0cvyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4141, 0, -1.00303)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 10.4141, 0, -1.00303)
 
 [node name="stone-path" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 7.39211, -0.00823581, 0)

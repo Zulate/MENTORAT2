@@ -183,6 +183,42 @@ func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
 	else:
 		print("error")
 
+func _on_area_3d_body_entered(_body: Node3D) -> void:
+	if GlobalVariables.angerDialogue1Status == false:
+		lines = [
+			StaticData.textData["angerDialogue_1"]["cube_dialogue_1"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_1"],
+			StaticData.textData["angerDialogue_1"]["cube_dialogue_2"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_2"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_3"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_4"],
+			StaticData.textData["angerDialogue_1"]["cube_dialogue_3"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_5"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_6"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_7"],
+			StaticData.textData["angerDialogue_1"]["death_dialogue_8"]
+		]
+		start_dialogue(lines)
+	elif GlobalVariables.angerDialogue1Status == true:
+		lines = [
+			StaticData.textData["angerDialogue_2"]["cube_dialogue_1"],
+			StaticData.textData["angerDialogue_2"]["death_dialogue_1"],
+			StaticData.textData["angerDialogue_2"]["cube_dialogue_2"],
+			StaticData.textData["angerDialogue_2"]["death_dialogue_2"],
+			StaticData.textData["angerDialogue_2"]["cube_dialogue_3"],
+			StaticData.textData["angerDialogue_2"]["cube_dialogue_4"]
+		]
+		start_dialogue(lines)
+		GlobalVariables.angerDialogue2Status = true
+	elif GlobalVariables.angerDialogue2Status == true:
+		lines = [
+			StaticData.textData["angerDialogue_3"]["death_dialogue_1"],
+			StaticData.textData["angerDialogue_3"]["death_dialogue_2"]
+		]
+		start_dialogue(lines)
+		$"../SubViewportContainer/SubViewport/Area3D".queue_free()
+
+
 func tween_transition(node, property, fin_val, duration):
 	var tween_indicator = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween_indicator.tween_property(node, property, fin_val, duration)

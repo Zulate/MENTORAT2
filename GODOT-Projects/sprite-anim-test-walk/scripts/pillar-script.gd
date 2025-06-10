@@ -12,6 +12,7 @@ func _physics_process(_delta: float) -> void:
 		if GlobalVariables.insidePillar == true:
 			activate_physics_pillar()
 			GlobalVariables.pressFdisplay = false
+			GlobalVariables.angerDialogue1Status = true
 		else:
 			pass
 	else:

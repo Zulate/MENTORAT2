@@ -12,18 +12,22 @@ extends Node
 @onready var Speed = 2.5
 @onready var Trigger = false
 
+@onready var insideGate = false
+
+#denial scene
 @onready var insideFragment1 = false
 @onready var insideFragment2 = false
 @onready var insideFragment3 = false
 
-@onready var insideGate = false
+@onready var denialDialogue1Status = false
+@onready var denialDialogue2Status = false
 
+#anger scene
 @onready var insidePillar = false
 @onready var insideTriangle = false
 @onready var insideSphere = false
-
-@onready var denialDialogue1Status = false
-@onready var denialDialogue2Status = false
+@onready var angerDialogue1Status = false
+@onready var angerDialogue2Status = false
 
 @onready var pressFdisplay = false
 

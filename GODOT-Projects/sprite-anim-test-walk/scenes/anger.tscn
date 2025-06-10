@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=48 format=3 uid="uid://cmimrj2sfdima"]
 
 [ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_y2dum"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_trhcv"]
@@ -157,6 +157,8 @@ size = Vector3(2, 0.02, 2.02)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lp2j"]
 size = Vector3(1.985, 0.201, 2.131)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14f3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trhcv"]
 bg_color = Color(0, 0, 0, 1)
@@ -355,7 +357,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9006, 0.0466242, 5.46082)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5972, 0.0385974, 0.321328)
 
 [node name="Spirit-Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_r2yyb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.49847, 0, -0.597047)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 7.49847, 0, -0.597047)
 
 [node name="Anger-sphere" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_c41fh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0359, -0.149975, 0.00795287)
@@ -373,6 +375,12 @@ transform = Transform3D(1, 3.10862e-15, -1.77636e-15, 8.88178e-16, 1, 0, -1.7763
 transform = Transform3D(1, 2.6037e-12, -1.30207e-12, -4.44089e-16, 1, 0, -3.55271e-15, 0, 1, 0.027832, 0.00775909, 0.015893)
 shape = SubResource("BoxShape3D_3lp2j")
 debug_color = Color(0.7, 0, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4919, 0.571625, 0.303266)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
+shape = SubResource("BoxShape3D_14f3b")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_0ojr7")
@@ -449,4 +457,5 @@ label_settings = SubResource("LabelSettings_gl7ig")
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/Area3D" to="CanvasLayer" method="_on_area_3d_body_entered"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]
