@@ -67,6 +67,9 @@
 		"death_dialogue_1" : "Death: Good Job.",
 		"death_dialogue_2" : "Death: Proceed to the right and you will find the Gateway to the next Realm.",
 	},
+	"angerBetweenDialogue" : {
+		"death_dialogue_1" : "You heard me, go on now.",
+	},
 	"bargaining_start_dialogue" : {
 		"start_dialogue_1" : "I don't like this place..."
 	},

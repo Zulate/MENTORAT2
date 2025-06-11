@@ -142,6 +142,8 @@ func start_dialogue(text_list: Array) -> void:
 	dialogue_index = 0
 	show_next_line()
 
+#denial dialogues
+
 func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
 	if GlobalVariables.fragmentsCollected == 0 && GlobalVariables.denialDialogue1Status == false:
 		lines = [
@@ -183,8 +185,10 @@ func _on_dialogue_2_activator_body_entered(_body: CharacterBody3D) -> void:
 	else:
 		print("error")
 
+#anger dialogues
+
 func _on_area_3d_body_entered(_body: Node3D) -> void:
-	if GlobalVariables.angerDialogue1Status == false:
+	if GlobalVariables.angerDialogue1Status == false && GlobalVariables.angerBetweenStatus == false:
 		lines = [
 			StaticData.textData["angerDialogue_1"]["cube_dialogue_1"],
 			StaticData.textData["angerDialogue_1"]["death_dialogue_1"],
@@ -199,7 +203,8 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 			StaticData.textData["angerDialogue_1"]["death_dialogue_8"]
 		]
 		start_dialogue(lines)
-	elif GlobalVariables.angerDialogue1Status == true:
+		GlobalVariables.angerBetweenStatus = true
+	elif GlobalVariables.angerDialogue1Status == true && GlobalVariables.angerDialogue2Status == false && GlobalVariables.angerBetweenStatus == false:
 		lines = [
 			StaticData.textData["angerDialogue_2"]["cube_dialogue_1"],
 			StaticData.textData["angerDialogue_2"]["death_dialogue_1"],
@@ -210,13 +215,22 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 		]
 		start_dialogue(lines)
 		GlobalVariables.angerDialogue2Status = true
-	elif GlobalVariables.angerDialogue2Status == true:
+		GlobalVariables.angerBetweenStatus = true
+		$"../SubViewportContainer/SubViewport/Floor/CollisionShape3D2".queue_free()
+	elif GlobalVariables.angerDialogue1Status == true && GlobalVariables.angerDialogue2Status == true && GlobalVariables.angerBetweenStatus == false:
 		lines = [
 			StaticData.textData["angerDialogue_3"]["death_dialogue_1"],
 			StaticData.textData["angerDialogue_3"]["death_dialogue_2"]
 		]
 		start_dialogue(lines)
 		$"../SubViewportContainer/SubViewport/Area3D".queue_free()
+	elif GlobalVariables.angerBetweenStatus == true:
+		lines = [
+			StaticData.textData["angerBetweenDialogue"]["death_dialogue_1"]
+		]
+		start_dialogue(lines)
+	else:
+		pass
 
 
 func tween_transition(node, property, fin_val, duration):

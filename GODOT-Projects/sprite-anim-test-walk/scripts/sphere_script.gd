@@ -13,6 +13,7 @@ func _physics_process(_delta: float) -> void:
 			activate_physics_sphere()
 			GlobalVariables.pressFdisplay = false
 			GlobalVariables.angerDialogue1Status = true
+			GlobalVariables.angerBetweenStatus = false
 		else:
 			pass
 	else:

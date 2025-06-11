@@ -28,6 +28,8 @@ extends Node
 @onready var insideSphere = false
 @onready var angerDialogue1Status = false
 @onready var angerDialogue2Status = false
+@onready var insideAngerSphere = false
+@onready var angerBetweenStatus = false
 
 @onready var pressFdisplay = false
 

@@ -238,7 +238,7 @@ mesh = SubResource("PlaneMesh_yn50f")
 skeleton = NodePath("../..")
 
 [node name="floor-right2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(0.99865, 0, -0.0519525, 0, 1, 0, 0.0519526, 0, 0.99865, 5, -0.001, 0)
+transform = Transform3D(0.99865, 0, -0.0519526, 0, 1, 0, 0.0519526, 0, 0.99865, 5, -0.001, 0)
 mesh = SubResource("PlaneMesh_22ggt")
 surface_material_override/0 = SubResource("StandardMaterial3D_ov50e")
 
