@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://clygksee8mxva"]
+[gd_scene load_steps=49 format=3 uid="uid://clygksee8mxva"]
 
 [ext_resource type="Script" uid="uid://ctpmpokbqupi6" path="res://scripts/bargaining_script.gd" id="1_44wjt"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_jx48u"]
@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="11_0cvyk"]
 [ext_resource type="PackedScene" uid="uid://ds0g6gm8hlami" path="res://scenes/street-lamp.tscn" id="13_0cvyk"]
 [ext_resource type="PackedScene" uid="uid://bv857sn532jag" path="res://assets/entrance-casino.tscn" id="14_ov50e"]
+[ext_resource type="PackedScene" uid="uid://gpwnps134y4i" path="res://assets/slot-machine.tscn" id="18_b4c28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov50e"]
 shader = ExtResource("1_jx48u")
@@ -353,7 +354,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 6.59443, -0.0423235, -1
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.97052, -0.0423235, -1.98428)
 
 [node name="street-lamp9" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_0cvyk")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.148, -0.0423235, -1.98428)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 21.4085, -0.0423233, 3.52227)
 
 [node name="street-lamp3" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_0cvyk")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 11.0321, -0.0423235, -1.98428)
@@ -444,6 +445,39 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_ht3j6")
+
+[node name="slot-machine2" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(1.27342, 0, -1.5422, 0, 2, 0, 1.5422, 0, 1.27342, 18.8579, 0.00499916, 5.21263)
+
+[node name="slot-machine3" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(-0.861715, 0, -1.80484, 0, 2, 0, 1.80484, 0, -0.861715, 18.6292, 0.005, 6.09103)
+
+[node name="slot-machine4" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(0.648297, 0, 1.89201, 0, 2, 0, -1.89201, 0, 0.648297, 17.9479, 0.005, 5.56619)
+
+[node name="slot-machine5" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(1.21774, 0, 1.58654, 0, 2, 0, -1.58654, 0, 1.21774, 17.4382, 0.005, 6.37101)
+
+[node name="slot-machine6" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(-1.11552, 0, -1.66001, 0, 2, 0, 1.66001, 0, -1.11552, 18.1402, 0.005, 6.8102)
+
+[node name="slot-machine7" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(-0.988005, 0, -1.73892, 0, 2, 0, 1.73892, 0, -0.988005, 17.6456, 0.005, 7.44231)
+
+[node name="slot-machine8" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(0.637224, 0, 1.89577, 0, 2, 0, -1.89577, 0, 0.637224, 16.9539, 0.00499916, 7.02478)
+
+[node name="slot-machine9" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(-0.77963, 0, -1.84179, 0, 2, 0, 1.84179, 0, -0.77963, 17.2333, 0.005, 8.12294)
+
+[node name="slot-machine10" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(1.0475, 0, 1.70375, 0, 2, 0, -1.70375, 0, 1.0475, 16.5359, 0.005, 7.71307)
+
+[node name="slot-machine11" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(-1.13626, 0, -1.64588, 0, 2, 0, 1.64588, 0, -1.13626, 16.8126, 0.005, 8.76156)
+
+[node name="slot-machine12" parent="." instance=ExtResource("18_b4c28")]
+transform = Transform3D(0.866249, 0, 1.80267, 0, 2, 0, -1.80267, 0, 0.866249, 16.1279, 0.005, 8.33447)
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]

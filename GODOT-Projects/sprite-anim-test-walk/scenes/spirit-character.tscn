@@ -108,7 +108,7 @@ mesh = SubResource("SphereMesh_tnakd")
 surface_material_override/0 = SubResource("StandardMaterial3D_8jvl4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0581347, 0.941865, 0.0581347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0255754, 0.937212, 0.1)
 mesh = SubResource("SphereMesh_8jvl4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -118,7 +118,7 @@ process_material = SubResource("ParticleProcessMaterial_tnakd")
 draw_pass_1 = SubResource("SphereMesh_no0ue")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0713141, 0.950843, 0.0269999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0307083, 0.930978, 0.107335)
 strength = 20.0
 attenuation = 3.13834
 radius = 1.38
