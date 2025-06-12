@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://despbcehw6kuc"]
+
+[ext_resource type="ArrayMesh" uid="uid://bchar7db5p51q" path="res://assets/bargaining-path.obj" id="1_qpena"]
+
+[sub_resource type="Gradient" id="Gradient_00jnx"]
+offsets = PackedFloat32Array(0, 0.603448)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_00jnx"]
+frequency = 0.0083
+domain_warp_enabled = true
+domain_warp_amplitude = 151.06
+domain_warp_frequency = -5.31
+domain_warp_fractal_octaves = 6
+domain_warp_fractal_gain = 2.63
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0cvyk"]
+width = 802
+height = 1920
+seamless = true
+seamless_blend_skirt = 0.441
+color_ramp = SubResource("Gradient_00jnx")
+noise = SubResource("FastNoiseLite_00jnx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uc1a"]
+albedo_color = Color(0.631715, 0.631715, 0.631715, 1)
+albedo_texture = SubResource("NoiseTexture2D_0cvyk")
+metallic_specular = 0.0
+
+[node name="Stone-path" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3uc1a")
+mesh = ExtResource("1_qpena")

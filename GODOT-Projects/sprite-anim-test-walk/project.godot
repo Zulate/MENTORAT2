@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cuby"
-run/main_scene="uid://cmimrj2sfdima"
+run/main_scene="uid://clygksee8mxva"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
 boot_splash/image="uid://464f75247sym"

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://xrthv5evdpqn"]
+
+[ext_resource type="Texture2D" uid="uid://erbtpmwj08nx" path="res://assets/floor_tiles_02_2k/floor_tiles_02_baseColor_2k.png" id="1_1t62f"]
+[ext_resource type="Texture2D" uid="uid://dyrkbv553yi80" path="res://assets/floor_tiles_02_2k/floor_tiles_02_normal_gl_2k.png" id="2_mgl6b"]
+
+[resource]
+albedo_color = Color(0.357191, 0.357191, 0.357191, 1)
+albedo_texture = ExtResource("1_1t62f")
+albedo_texture_msdf = true
+metallic_specular = 0.0
+roughness = 0.49
+normal_enabled = true
+normal_scale = 4.53
+normal_texture = ExtResource("2_mgl6b")
+uv1_scale = Vector3(5.99, 5.99, 5.99)

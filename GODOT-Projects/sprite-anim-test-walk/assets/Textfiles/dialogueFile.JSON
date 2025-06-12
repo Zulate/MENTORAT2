@@ -37,7 +37,7 @@
 		"death_dialogue_6" : "Death: Ehhh, not really but who cares.",
 		"cube_dialogue_6" : "Me: Well, I do.",
 		"death_dialogue_7" : "Death: You humans are funny, I like your way of thinking.",
-		"death_dialogue_8" : "Death: For now just proceed through the field and you will find the Gateway to the next Realm.",
+		"death_dialogue_8" : "Death: For now just proceed through the field to the right and you will find the Gateway to the next Realm.",
 	},
 	"anger_start_dialogue" : {
 		"start_dialogue_1" : "It's dark here...",

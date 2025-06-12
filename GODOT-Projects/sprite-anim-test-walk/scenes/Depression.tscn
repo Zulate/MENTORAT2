@@ -1,0 +1,368 @@
+[gd_scene load_steps=37 format=3 uid="uid://dx4x0oae6gdkt"]
+
+[ext_resource type="Script" uid="uid://c3k252e18cifq" path="res://scripts/depression_script.gd" id="1_ehs4g"]
+[ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_trmgc"]
+[ext_resource type="Texture2D" uid="uid://domhm4wllr85s" path="res://sprites/depression-level-palette-1x.png" id="2_jo3lj"]
+[ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="3_66wpw"]
+[ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_rafnn"]
+[ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_xur4n"]
+[ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="7_6ivb5"]
+[ext_resource type="PackedScene" uid="uid://bt8yplhemifca" path="res://scenes/spirit-character.tscn" id="8_4i2i1"]
+[ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="9_vnbjs"]
+[ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="10_ichhg"]
+[ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="11_bacm7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ib3xm"]
+shader = ExtResource("1_trmgc")
+shader_parameter/num_colors = 9
+shader_parameter/PALETTE_TEXTURE = ExtResource("2_jo3lj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_035ut"]
+size = Vector3(50, 0.01, 20)
+
+[sub_resource type="Gradient" id="Gradient_tkt1n"]
+colors = PackedColorArray(0.182, 0, 0.84, 1, 0.0775, 0.15, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0rgku"]
+noise_type = 3
+seed = 213
+frequency = 0.0077
+fractal_type = 2
+cellular_jitter = 0.5
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 59.56
+domain_warp_frequency = 0.01
+domain_warp_fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmj2s"]
+width = 1280
+height = 1280
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.34
+color_ramp = SubResource("Gradient_tkt1n")
+noise = SubResource("FastNoiseLite_0rgku")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lk73s"]
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_texture = SubResource("NoiseTexture2D_dmj2s")
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ermq8"]
+size = Vector2(10, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2r428"]
+size = Vector2(10.83, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6dof"]
+size = Vector3(41.3777, 1, 0.318848)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xponq"]
+size = Vector3(43.4979, 1, 0.526367)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1cp27"]
+size = Vector3(25.724, 1, 0.376)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0yyse"]
+size = Vector3(0.403198, 1, 22.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qngxe"]
+size = Vector3(0.387207, 0.359436, 0.395996)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0trda"]
+size = Vector3(0.37, 0.37, 0.37)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouobd"]
+specular_mode = 1
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+metallic_specular = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iijyl"]
+atlas = ExtResource("7_6ivb5")
+region = Rect2(0, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7fh2"]
+atlas = ExtResource("7_6ivb5")
+region = Rect2(31, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27idm"]
+atlas = ExtResource("7_6ivb5")
+region = Rect2(62, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbavh"]
+atlas = ExtResource("7_6ivb5")
+region = Rect2(93, 0, 31, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74a3a"]
+atlas = ExtResource("7_6ivb5")
+region = Rect2(124, 0, 31, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55scn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iijyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7fh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27idm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbavh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74a3a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3npd"]
+size = Vector3(0.090332, 1, 17.2031)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry38h"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_738ql"]
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_trmgc"]
+font = ExtResource("11_bacm7")
+font_size = 28
+
+[node name="Depression" type="Node3D"]
+script = ExtResource("1_ehs4g")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_ib3xm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="depression-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
+projection = 1
+fov = 50.0
+size = 5.5
+far = 60.0
+
+[node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_66wpw")]
+
+[node name="Spirit-Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("8_4i2i1")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 10.4141, 0, -1.00303)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.392906, -0.785099, 0.478795, -0.467856, 0.61891, 0.630921, -0.791666, 0.0238858, -0.610486, 0, 1.20129, 0)
+light_energy = 0.876
+shadow_enabled = true
+shadow_bias = 0.02
+shadow_normal_bias = 2.89
+shadow_opacity = 0.79
+shadow_blur = 5.449
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
+
+[node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("PlaneMesh_ermq8")
+skeleton = NodePath("../..")
+
+[node name="floor-right" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("PlaneMesh_ermq8")
+skeleton = NodePath("../..")
+
+[node name="floor-right2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.001, 0)
+mesh = SubResource("PlaneMesh_2r428")
+surface_material_override/0 = SubResource("StandardMaterial3D_lk73s")
+
+[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("PlaneMesh_ermq8")
+skeleton = NodePath("../floor-right2")
+
+[node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 14.8523, 0, 9.51673)
+shape = SubResource("BoxShape3D_s6dof")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="restriction-top" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 15.5858, 0, -8.74549)
+shape = SubResource("BoxShape3D_xponq")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="restriction-left" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.15933, 0, 0.137418)
+shape = SubResource("BoxShape3D_1cp27")
+debug_color = Color(0, 0.85, 1, 1)
+debug_fill = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2823, 0, 0)
+shape = SubResource("BoxShape3D_0yyse")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
+script = ExtResource("5_rafnn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
+shape = SubResource("BoxShape3D_qngxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(0.999996, 0, -0.00300196, 0, 1, 0, 0.00300196, 0, 0.999996, 0, -0.0138851, 0)
+mesh = SubResource("BoxMesh_0trda")
+surface_material_override/0 = SubResource("StandardMaterial3D_ouobd")
+
+[node name="pressFIndicator" type="Sprite3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -7.86208, 0.744362, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("6_xur4n")
+
+[node name="talking_indicator" type="AnimatedSprite3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.5353, 1.28151, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_55scn")
+autoplay = "default"
+
+[node name="area-1" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66038, 0.5498, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="area-2" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39723, 0.55, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25005, 0, 0.422)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="area-3" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4055, 0.55, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21124, 0, 0.422)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="area-4" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3572, 0.55, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
+shape = SubResource("BoxShape3D_i3npd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("9_vnbjs")
+
+[node name="DialogueBox" type="MarginContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -163.0
+offset_right = -27.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("10_ichhg")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ry38h")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox/MarginContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_738ql")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Start" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+label_settings = SubResource("LabelSettings_trmgc")
+
+[node name="Label" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah ahahahahah"
+label_settings = SubResource("LabelSettings_trmgc")
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "v"
+label_settings = SubResource("LabelSettings_trmgc")
+
+[connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]
