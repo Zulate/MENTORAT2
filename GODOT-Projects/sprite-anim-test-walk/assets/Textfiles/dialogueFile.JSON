@@ -73,4 +73,7 @@
 	"bargaining_start_dialogue" : {
 		"start_dialogue_1" : "I don't like this place..."
 	},
+	"depression_start_dialogue" : {
+		"start_dialogue_1" : "This... feels sad."
+	}
 }

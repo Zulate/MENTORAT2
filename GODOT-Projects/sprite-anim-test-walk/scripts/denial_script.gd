@@ -22,7 +22,7 @@ func _ready() -> void:
 func _process(_delta):
 	if Input.is_action_just_pressed("KeyF"):
 		if GlobalVariables.insideGate == true:
-			print("travelling to next realm")
+			print("Travelling to next Realm...")
 			SceneTransitionAnimation.play("fade-in")
 			await get_tree().create_timer(2.0).timeout
 			get_tree().change_scene_to_file("res://scenes/Anger.tscn");

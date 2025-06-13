@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dx4x0oae6gdkt"]
+[gd_scene load_steps=41 format=3 uid="uid://dx4x0oae6gdkt"]
 
 [ext_resource type="Script" uid="uid://c3k252e18cifq" path="res://scripts/depression_script.gd" id="1_ehs4g"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_trmgc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_xur4n"]
 [ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="7_6ivb5"]
 [ext_resource type="PackedScene" uid="uid://bt8yplhemifca" path="res://scenes/spirit-character.tscn" id="8_4i2i1"]
+[ext_resource type="Script" uid="uid://bc6pbif34sht4" path="res://scripts/weight-script.gd" id="9_ichhg"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="9_vnbjs"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="10_ichhg"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="11_bacm7"]
@@ -18,7 +19,7 @@ shader_parameter/num_colors = 9
 shader_parameter/PALETTE_TEXTURE = ExtResource("2_jo3lj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_035ut"]
-size = Vector3(50, 0.01, 20)
+size = Vector3(13.2629, 0.01, 5.00594)
 
 [sub_resource type="Gradient" id="Gradient_tkt1n"]
 colors = PackedColorArray(0.182, 0, 0.84, 1, 0.0775, 0.15, 0, 1)
@@ -51,11 +52,11 @@ disable_ambient_light = true
 albedo_texture = SubResource("NoiseTexture2D_dmj2s")
 metallic_specular = 0.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ermq8"]
-size = Vector2(10, 20)
+[sub_resource type="BoxMesh" id="BoxMesh_vnbjs"]
+size = Vector3(13.26, 10, 5)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_2r428"]
-size = Vector2(10.83, 20)
+[sub_resource type="PlaneMesh" id="PlaneMesh_ichhg"]
+size = Vector2(5, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6dof"]
 size = Vector3(41.3777, 1, 0.318848)
@@ -126,6 +127,17 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3npd"]
 size = Vector3(0.090332, 1, 17.2031)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnbjs"]
+top_radius = 0.33
+bottom_radius = 0.12
+height = 0.7
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vnbjs"]
+points = PackedVector3Array(-0.33, 0.349932, 0, -0.32845, 0.349932, 0.0323023, -0.32845, 0.349932, -0.0323669, -0.120035, -0.35, 0, -0.244851, 0.0699589, 0.0240975, -0.282516, 0.209945, 0.0561413, -0.323669, 0.349932, 0.0643461, -0.323669, 0.349932, -0.0644107, -0.282516, 0.209945, -0.056206, -0.244851, 0.0699589, -0.0241621, -0.119454, -0.35, -0.0118226, -0.119454, -0.35, 0.011758, -0.158927, -0.210014, 0.0315916, -0.315852, 0.349932, 0.0957439, -0.315852, 0.349932, -0.0958085, -0.158927, -0.210014, -0.0316562, -0.117709, -0.35, -0.0234514, -0.117709, -0.35, 0.0233868, -0.114867, -0.35, 0.0348218, -0.304933, 0.349932, 0.126237, -0.110926, -0.35, 0.0458692, -0.304933, 0.349932, -0.126302, -0.110926, -0.35, -0.0459338, -0.114867, -0.35, -0.0348864, -0.217007, 0.0699589, 0.115901, -0.254025, 0.209945, 0.135734, -0.291043, 0.349932, 0.155503, -0.105887, -0.35, 0.056529, -0.291043, 0.349932, -0.155568, -0.254025, 0.209945, -0.135799, -0.217007, 0.0699589, -0.115965, -0.105887, -0.35, -0.0565936, -0.142905, -0.210014, 0.0763626, -0.204603, 0.0699589, 0.136639, -0.27444, 0.349932, 0.183283, -0.099814, -0.35, 0.0666073, -0.27444, 0.349932, -0.183348, -0.204603, 0.0699589, -0.136703, -0.142905, -0.210014, -0.0764272, -0.099814, -0.35, -0.0666719, -0.255123, 0.349932, 0.209319, -0.0927721, -0.35, 0.0761042, -0.125268, -0.210014, 0.102721, -0.255123, 0.349932, -0.209383, -0.125268, -0.210014, -0.102786, -0.0927721, -0.35, -0.0761687, -0.203698, 0.209945, 0.203634, -0.233352, 0.349932, 0.233287, -0.114608, -0.210014, 0.114544, -0.0848904, -0.35, 0.0848258, -0.233352, 0.349932, -0.233352, -0.203698, 0.209945, -0.203698, -0.114608, -0.210014, -0.114608, -0.0848904, -0.35, -0.0848904, -0.209383, 0.349932, 0.255059, -0.0761687, -0.35, 0.0927075, -0.102786, -0.210014, 0.125204, -0.209383, 0.349932, -0.255123, -0.102786, -0.210014, -0.125268, -0.0761687, -0.35, -0.0927721, -0.136703, 0.0699589, 0.204538, -0.183348, 0.349932, 0.274376, -0.0666719, -0.35, 0.0997494, -0.183348, 0.349932, -0.27444, -0.136703, 0.0699589, -0.204603, -0.0666719, -0.35, -0.099814, -0.135799, 0.209945, 0.25396, -0.0565936, -0.35, 0.105822, -0.0764272, -0.210014, 0.142841, -0.155568, 0.349932, 0.290979, -0.155568, 0.349932, -0.291043, -0.135799, 0.209945, -0.254025, -0.0764272, -0.210014, -0.142905, -0.0565936, -0.35, -0.105887, -0.115965, 0.0699589, 0.216942, -0.126302, 0.349932, 0.304869, -0.0459338, -0.35, 0.110861, -0.126302, 0.349932, -0.304933, -0.115965, 0.0699589, -0.217007, -0.0459338, -0.35, -0.110926, -0.0958085, 0.349932, 0.315787, -0.0348864, -0.35, 0.114802, -0.0958085, 0.349932, -0.315852, -0.0348864, -0.35, -0.114867, -0.056206, 0.209945, 0.282451, -0.0644107, 0.349932, 0.323604, -0.0316562, -0.210014, 0.158863, -0.0234514, -0.35, 0.117645, -0.0644107, 0.349932, -0.323669, -0.056206, 0.209945, -0.282516, -0.0316562, -0.210014, -0.158927, -0.0234514, -0.35, -0.117709, -0.0241621, 0.0699589, 0.244787, -0.0323669, 0.349932, 0.328385, -0.0118226, -0.35, 0.119389, -0.0323669, 0.349932, -0.32845, -0.0241621, 0.0699589, -0.244851, -0.0118226, -0.35, -0.119454, 0, 0.349932, 0.33, 0, -0.35, 0.119971, 0, 0.349932, -0.33, 0, -0.35, -0.120035, 0.0240975, 0.0699589, 0.244787, 0.0323023, 0.349932, 0.328385, 0.011758, -0.35, 0.119389, 0.0323023, 0.349932, -0.32845, 0.011758, -0.35, -0.119454, 0.0240975, 0.0699589, -0.244851, 0.0561413, 0.209945, 0.282451, 0.0315916, -0.210014, 0.158863, 0.0643461, 0.349932, 0.323604, 0.0233868, -0.35, 0.117645, 0.0643461, 0.349932, -0.323669, 0.0561413, 0.209945, -0.282516, 0.0315916, -0.210014, -0.158927, 0.0233868, -0.35, -0.117709, 0.0957439, 0.349932, 0.315787, 0.0348218, -0.35, 0.114802, 0.0957439, 0.349932, -0.315852, 0.0348218, -0.35, -0.114867, 0.126237, 0.349932, 0.304869, 0.0458692, -0.35, 0.110861, 0.126237, 0.349932, -0.304933, 0.0458692, -0.35, -0.110926, 0.115901, 0.0699589, 0.216942, 0.135734, 0.209945, 0.25396, 0.155503, 0.349932, 0.290979, 0.056529, -0.35, 0.105822, 0.155503, 0.349932, -0.291043, 0.135734, 0.209945, -0.254025, 0.115901, 0.0699589, -0.217007, 0.056529, -0.35, -0.105887, 0.0763626, -0.210014, 0.142841, 0.136639, 0.0699589, 0.204538, 0.183283, 0.349932, 0.274376, 0.0666073, -0.35, 0.0997494, 0.183283, 0.349932, -0.27444, 0.136639, 0.0699589, -0.204603, 0.0763626, -0.210014, -0.142905, 0.0666073, -0.35, -0.099814, 0.209319, 0.349932, 0.255059, 0.0761042, -0.35, 0.0927075, 0.102721, -0.210014, 0.125204, 0.209319, 0.349932, -0.255123, 0.102721, -0.210014, -0.125268, 0.0761042, -0.35, -0.0927721, 0.203634, 0.209945, 0.203634, 0.233287, 0.349932, 0.233287, 0.114544, -0.210014, 0.114544, 0.0848258, -0.35, 0.0848258, 0.233287, 0.349932, -0.233352, 0.203634, 0.209945, -0.203698, 0.114544, -0.210014, -0.114608, 0.0848258, -0.35, -0.0848904, 0.255059, 0.349932, 0.209319, 0.0927075, -0.35, 0.0761042, 0.125204, -0.210014, 0.102721, 0.255059, 0.349932, -0.209383, 0.125204, -0.210014, -0.102786, 0.0927075, -0.35, -0.0761687, 0.204538, 0.0699589, 0.136639, 0.274376, 0.349932, 0.183283, 0.0997494, -0.35, 0.0666073, 0.274376, 0.349932, -0.183348, 0.204538, 0.0699589, -0.136703, 0.0997494, -0.35, -0.0666719, 0.25396, 0.209945, 0.135734, 0.105822, -0.35, 0.056529, 0.142841, -0.210014, 0.0763626, 0.290979, 0.349932, 0.155503, 0.290979, 0.349932, -0.155568, 0.25396, 0.209945, -0.135799, 0.142841, -0.210014, -0.0764272, 0.105822, -0.35, -0.0565936, 0.216942, 0.0699589, 0.115901, 0.304869, 0.349932, 0.126237, 0.110861, -0.35, 0.0458692, 0.304869, 0.349932, -0.126302, 0.216942, 0.0699589, -0.115965, 0.110861, -0.35, -0.0459338, 0.315787, 0.349932, 0.0957439, 0.114802, -0.35, 0.0348218, 0.315787, 0.349932, -0.0958085, 0.114802, -0.35, -0.0348864, 0.282451, 0.209945, 0.0561413, 0.323604, 0.349932, 0.0643461, 0.158863, -0.210014, 0.0315916, 0.117645, -0.35, 0.0233868, 0.323604, 0.349932, -0.0644107, 0.282451, 0.209945, -0.056206, 0.158863, -0.210014, -0.0316562, 0.117645, -0.35, -0.0234514, 0.244787, 0.0699589, 0.0240975, 0.328385, 0.349932, 0.0323023, 0.119389, -0.35, 0.011758, 0.328385, 0.349932, -0.0323669, 0.244787, 0.0699589, -0.0241621, 0.119389, -0.35, -0.0118226, 0.33, 0.349932, 0, 0.119971, -0.35, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ichhg"]
+size = Vector3(1, 0.48, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry38h"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
@@ -169,11 +181,11 @@ far = 60.0
 [node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_66wpw")]
 
 [node name="Spirit-Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("8_4i2i1")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 10.4141, 0, -1.00303)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -2.33628, 0, -1.21748)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.392906, -0.785099, 0.478795, -0.467856, 0.61891, 0.630921, -0.791666, 0.0238858, -0.610486, 0, 1.20129, 0)
-light_energy = 0.876
+transform = Transform3D(-0.349029, -0.886791, 0.302955, -0.162704, 0.375721, 0.912338, -0.922879, 0.269141, -0.275421, 0, 1.20129, 0)
+light_energy = 0.71
 shadow_enabled = true
 shadow_bias = 0.02
 shadow_normal_bias = 2.89
@@ -184,32 +196,20 @@ shadow_blur = 5.449
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
 
 [node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0980713, 0, 0.00050541)
 shape = SubResource("BoxShape3D_035ut")
 debug_color = Color(0, 0.85, 1, 0.168627)
 
-[node name="floor-left" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 material_override = SubResource("StandardMaterial3D_lk73s")
-mesh = SubResource("PlaneMesh_ermq8")
-skeleton = NodePath("../..")
+mesh = SubResource("BoxMesh_vnbjs")
 
-[node name="floor-right" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9914, 0, 0)
 material_override = SubResource("StandardMaterial3D_lk73s")
-mesh = SubResource("PlaneMesh_ermq8")
-skeleton = NodePath("../..")
-
-[node name="floor-right2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.001, 0)
-mesh = SubResource("PlaneMesh_2r428")
-surface_material_override/0 = SubResource("StandardMaterial3D_lk73s")
-
-[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
-material_override = SubResource("StandardMaterial3D_lk73s")
-mesh = SubResource("PlaneMesh_ermq8")
-skeleton = NodePath("../floor-right2")
+mesh = SubResource("PlaneMesh_ichhg")
+skeleton = NodePath("")
 
 [node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 14.8523, 0, 9.51673)
@@ -296,6 +296,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3572, 0.55, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_i3npd")
 
+[node name="Weight" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34564, 0.369686, 0)
+script = ExtResource("9_ichhg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Weight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, 0.0241428, 0)
+
+[node name="Weight-object" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Weight/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00104952, -0.0286866, 0)
+mesh = SubResource("CylinderMesh_vnbjs")
+skeleton = NodePath("../../..")
+
+[node name="Weight-shape" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Weight/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00104952, -0.0286866, 0)
+shape = SubResource("ConvexPolygonShape3D_vnbjs")
+
+[node name="WeightArea" type="Area3D" parent="SubViewportContainer/SubViewport/Weight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81136, -0.369686, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Weight/WeightArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.283826, 0)
+shape = SubResource("BoxShape3D_ichhg")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_vnbjs")
 
@@ -365,4 +388,10 @@ size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_trmgc")
 
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/Weight/WeightArea" to="." method="_on_weight_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/Weight/WeightArea" to="." method="_on_weight_area_body_exited"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]

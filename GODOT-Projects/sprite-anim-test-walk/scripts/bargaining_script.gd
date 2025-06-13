@@ -18,10 +18,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("KeyF"):
 		if GlobalVariables.insideGate == true:
-			print("travelling to next realm")
+			print("Travelling to next Realm...")
 			SceneTransitionAnimation.play("fade-in")
 			await get_tree().create_timer(2.0).timeout
 			get_tree().change_scene_to_file("res://scenes/Depression.tscn");
+		elif GlobalVariables.insideMirror == true:
+			$SubViewportContainer/SubViewport/Floor/gateBlocker.queue_free()
 		else:
 			pass
 	else:
@@ -50,6 +52,7 @@ func _on_gate_area_body_entered(_body: Node3D) -> void:
 	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = outline_material
 	GlobalVariables.insideGate = true
 	GlobalVariables.pressFdisplay = true
+
 
 
 func _on_gate_area_body_exited(_body: Node3D) -> void:

@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://rq54r2hasd12"]
+[gd_scene load_steps=8 format=4 uid="uid://rq54r2hasd12"]
+
+[ext_resource type="Script" uid="uid://ci0onr88qbdbr" path="res://scripts/broken_mirror_script.gd" id="1_ntile"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fl8mh"]
 metallic = 1.0
@@ -41,7 +43,11 @@ shadow_mesh = SubResource("ArrayMesh_0x1ba")
 [sub_resource type="BoxShape3D" id="BoxShape3D_fl8mh"]
 size = Vector3(0.0734863, 1.96918, 1.10303)
 
-[node name="broken-mirror2" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ntile"]
+size = Vector3(0.984726, 0.47406, 0.411896)
+
+[node name="broken-mirror" type="Node3D"]
+script = ExtResource("1_ntile")
 
 [node name="broken-mirror" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.993244, 0.116047, 0, -0.116047, 0.993244, 0, 0, 0, 1, 0, 0, 0)
@@ -54,3 +60,13 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00476074, 1.04361, 0.00170898)
 shape = SubResource("BoxShape3D_fl8mh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.564224, 0.35809, 0.0385284)
+shape = SubResource("BoxShape3D_ntile")
+debug_color = Color(0.979721, 0.0724281, 0.270911, 1)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

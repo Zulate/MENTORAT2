@@ -10,7 +10,7 @@ func _process(_delta) -> void:
 	$SubViewportContainer/SubViewport/SpotLight3D.position = GlobalVariables.player_position + Vector3(0.3, 3.5, 0.5)
 	if Input.is_action_just_pressed("KeyF"):
 		if GlobalVariables.insideGate == true:
-			print("travelling to next realm")
+			print("Travelling to next Realm...")
 			SceneTransitionAnimation.play("fade-in")
 			await get_tree().create_timer(2.0).timeout
 			get_tree().change_scene_to_file("res://scenes/Bargaining.tscn");

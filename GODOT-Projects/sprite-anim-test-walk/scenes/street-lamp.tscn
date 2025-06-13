@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ds0g6gm8hlami"]
+[gd_scene load_steps=25 format=4 uid="uid://ds0g6gm8hlami"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8jjt"]
 
@@ -206,6 +206,10 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.345946, 0.345946, 0.345946, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ngb5a"]
+height = 4.15527
+radius = 1.02197
+
 [node name="street-lamp" type="Node3D"]
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
@@ -241,3 +245,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.
 spot_range = 13.369
 spot_attenuation = -1.5
 spot_angle = 26.28
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00282001, 2.41611, 0.00195926)
+shape = SubResource("CylinderShape3D_ngb5a")

@@ -18,7 +18,7 @@ extends Node
 @onready var insideFragment1 = false
 @onready var insideFragment2 = false
 @onready var insideFragment3 = false
-
+@onready var fragmentsCollected = 0
 @onready var denialDialogue1Status = false
 @onready var denialDialogue2Status = false
 
@@ -31,9 +31,23 @@ extends Node
 @onready var insideAngerSphere = false
 @onready var angerBetweenStatus = false
 
+#bargaining scene
+
+@onready var insideCoin = false
+@onready var insideLetter = false
+@onready var insideMirror = false
+
+#depression scene
+
+@onready var weightStatus = false
+@onready var insideWeight = false
+
+
+
 @onready var pressFdisplay = false
 
-@onready var fragmentsCollected = 0
+@onready var rng = RandomNumberGenerator.new()
+@onready var my_random_number : float = rng.randf_range(0.0, 1.0)
 
 func _ready() -> void:
 	pass
@@ -41,3 +55,6 @@ func _ready() -> void:
 func camera_transition(node, property, fin_val, duration):
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(node, property, fin_val, duration)
+
+func generate_random_number() -> void:
+	my_random_number = floor(rng.randf_range(0.0, 5.0))

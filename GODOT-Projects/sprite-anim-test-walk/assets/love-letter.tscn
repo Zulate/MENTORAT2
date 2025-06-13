@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://makiwregu1cj"]
+[gd_scene load_steps=13 format=4 uid="uid://makiwregu1cj"]
+
+[ext_resource type="Script" uid="uid://bvq8ufsx5jjqf" path="res://scripts/love_letter_script.gd" id="1_gojxm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6p5u"]
 
@@ -50,6 +52,33 @@ specular_mode = 1
 albedo_texture = SubResource("NoiseTexture2D_0uh4q")
 metallic_specular = 0.0
 
+[sub_resource type="Animation" id="Animation_0uh4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_gojxm"]
 resource_name = "spin"
 length = 8.0
@@ -79,40 +108,17 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0.15, 0), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_0uh4q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cube_001:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube_001:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c1kfp"]
 _data = {
 &"RESET": SubResource("Animation_0uh4q"),
 &"spin": SubResource("Animation_gojxm")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sconp"]
+size = Vector3(0.824493, 0.4, 0.868896)
+
 [node name="love-letter" type="Node3D"]
+script = ExtResource("1_gojxm")
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_wp0vn")
@@ -124,3 +130,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_c1kfp")
 }
 autoplay = "spin"
+
+[node name="letter-area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="letter-area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286713, 0.214624, 0.00701904)
+shape = SubResource("BoxShape3D_sconp")
+
+[connection signal="body_entered" from="letter-area" to="." method="_on_letterarea_body_entered"]
+[connection signal="body_exited" from="letter-area" to="." method="_on_letterarea_body_exited"]
