@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dx4x0oae6gdkt"]
+[gd_scene load_steps=53 format=3 uid="uid://dx4x0oae6gdkt"]
 
 [ext_resource type="Script" uid="uid://c3k252e18cifq" path="res://scripts/depression_script.gd" id="1_ehs4g"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_trmgc"]
@@ -180,6 +180,12 @@ height = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ichhg"]
 size = Vector3(0.673828, 0.48, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_66wpw"]
+size = Vector3(1.89978, 0.47998, 1.12601)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trmgc"]
+size = Vector3(1, 0.390625, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry38h"]
 bg_color = Color(0, 0, 0, 1)
@@ -688,6 +694,22 @@ shape = SubResource("BoxShape3D_ichhg")
 [node name="Marker3D" type="Marker3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1433, 0, 4.10823)
 
+[node name="dialogue_activator_1" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62483, 0, -0.391106)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/dialogue_activator_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.937805, 0.320224, 0.0630035)
+shape = SubResource("BoxShape3D_66wpw")
+debug_color = Color(0, 1, 0.283333, 1)
+
+[node name="dialogue_activator_2" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1275, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/dialogue_activator_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.323109, 0.298694, 4.02261)
+shape = SubResource("BoxShape3D_trmgc")
+debug_color = Color(0.533333, 1, 0, 0.419608)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_vnbjs")
 
@@ -765,4 +787,6 @@ label_settings = SubResource("LabelSettings_trmgc")
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/Weight/WeightArea" to="." method="_on_weight_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/Weight/WeightArea" to="." method="_on_weight_area_body_exited"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/dialogue_activator_1" to="." method="_on_dialogue_activator_1_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/dialogue_activator_2" to="." method="_on_dialogue_activator_2_body_entered"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]

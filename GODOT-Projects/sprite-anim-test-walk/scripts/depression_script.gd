@@ -5,11 +5,12 @@ extends Node3D
 @onready var outline_material = load("res://materials/outline_material.tres")
 @onready var SceneTransitionAnimation = $SubViewportContainer/SubViewport/scene_transition_animation/AnimationPlayer
 @onready var textBox = $CanvasLayer
+@onready var lines : Array
 
 func _ready() -> void:
 	GlobalVariables.insideGate = false
 	SceneTransitionAnimation.play("fade-out")
-	var lines = [
+	lines = [
 	StaticData.textData["depression_start_dialogue"]["start_dialogue_1"]
 	]
 	await get_tree().create_timer(2.0).timeout
@@ -69,3 +70,21 @@ func _on_gate_area_body_exited(_body: Node3D) -> void:
 	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = null
 	GlobalVariables.pressFdisplay = false
 	GlobalVariables.insideGate = false
+
+func _on_dialogue_activator_1_body_entered(_body: Node3D) -> void:
+	lines = [
+	StaticData.textData["depressionDialogue_1"]["death_dialogue_1"],
+	StaticData.textData["depressionDialogue_1"]["cube_dialogue_1"]
+	]
+	textBox.start_dialogue(lines)
+	$SubViewportContainer/SubViewport/dialogue_activator_1.queue_free()
+
+func _on_dialogue_activator_2_body_entered(_body: Node3D) -> void:
+	lines = [
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_1"],
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_2"]
+	]
+	textBox.start_dialogue(lines)
+	$SubViewportContainer/SubViewport/Weight.queue_free()
+	$SubViewportContainer/SubViewport/dialogue_activator_2.queue_free()
+	GlobalVariables.Speed = 2.5

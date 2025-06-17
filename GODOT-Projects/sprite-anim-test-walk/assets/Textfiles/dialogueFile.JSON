@@ -74,22 +74,30 @@
 		"start_dialogue_1" : "I don't like this place...",
 	},
 	"bargainingDialogue_1" : {
-		"cube_dialogue_1" : "Me: ",
-		"death_dialogue_1" : "Death: ",
+		"cube_dialogue_1" : "Me: skibidi",
+		"death_dialogue_1" : "Death: toilet",
 	},
 	"loveLetter" : {
-		"letter_dialogue_1" : "This Letter say something important",
-		"letter_dialogue_2" : "something important",
+		"letter_dialogue_1" : "Me: This Letter say something important",
+		"letter_dialogue_2" : "Me: something important",
 	},
 	"brokenMirror" : {
-		"mirror_dialogue_1" : "well the mirror is broken",
-		"mirror_dialogue_2" : "thats all",
+		"mirror_dialogue_1" : "Me: well the mirror is broken",
+		"mirror_dialogue_2" : "Me: thats all",
 	},
 	"coinDialogue" : {
-		"coin_dialogue_1" : "the coin that flips",
-		"coin_dialogue_2" : "is flipping",
+		"coin_dialogue_1" : "Me: the coin that flips",
+		"coin_dialogue_2" : "Me: is flipping",
 	},
 	"depression_start_dialogue" : {
 		"start_dialogue_1" : "This... feels sad.",
-	}
+	},
+	"depressionDialogue_1" : {
+		"death_dialogue_1" : "Death: Hello there.",
+		"cube_dialogue_1" : "Me: Dale, yeeeeeeeeeeehoooooo, Mr. Worldwide",
+	},
+	"depressionDialogue_2" : {
+		"death_dialogue_1" : "Death: Well done. You cleared the Path while carrying all this weight.",
+		"death_dialogue_2" : "Death: I hate to say it, but you did really well. I am proud of you.",
+	},
 }

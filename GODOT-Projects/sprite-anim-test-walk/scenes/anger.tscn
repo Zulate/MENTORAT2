@@ -388,6 +388,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4919, 0.571625, 0.303266)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
 shape = SubResource("BoxShape3D_14f3b")
 
+[node name="anger-sphere" parent="SubViewportContainer/SubViewport" instance=ExtResource("18_livvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0406, -1.09635, 0.000451997)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_0ojr7")
 
@@ -456,9 +459,6 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_gl7ig")
-
-[node name="anger-sphere" parent="." instance=ExtResource("18_livvb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0406, -1.09635, 0.000451997)
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]

@@ -218,7 +218,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="GateToRealm" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 32.1862, 0.990408, 0.0886725)
+transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 32.1862, 1.01636, 0.0886725)
 material_override = SubResource("ShaderMaterial_4hfym")
 mesh = SubResource("BoxMesh_ltw57")
 skeleton = NodePath("../../..")
@@ -244,8 +244,8 @@ far = 60.0
 transform = Transform3D(-0.392906, -0.785099, 0.478795, -0.467856, 0.61891, 0.630921, -0.791666, 0.0238858, -0.610486, 0, 1.20129, 0)
 light_energy = 0.876
 shadow_enabled = true
-shadow_bias = 0.02
-shadow_normal_bias = 2.89
+shadow_bias = 0.01
+shadow_normal_bias = 10.0
 shadow_opacity = 0.79
 shadow_blur = 5.449
 

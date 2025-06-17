@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dvgfoxanpu782"]
+[gd_scene load_steps=54 format=3 uid="uid://dvgfoxanpu782"]
 
 [ext_resource type="Script" uid="uid://bkwxtcpexp8pb" path="res://scripts/reflection-script.gd" id="1_58lh3"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_w68m6"]
@@ -31,7 +31,7 @@ fractal_octaves = 8
 fractal_weighted_strength = 0.23
 cellular_distance_function = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rlqws"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yxqi"]
 width = 1028
 seamless = true
 seamless_blend_skirt = 0.516
@@ -40,7 +40,7 @@ noise = SubResource("FastNoiseLite_2yxqi")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xi1ee"]
 render_priority = 0
 shader = ExtResource("3_punl8")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_rlqws")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_2yxqi")
 shader_parameter/scale = 0.66
 shader_parameter/speed = 0.15
 shader_parameter/octaves = 8
@@ -131,7 +131,7 @@ domain_warp_frequency = 0.01
 domain_warp_fractal_octaves = 3
 domain_warp_fractal_lacunarity = 5.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_14f3b"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xi1ee"]
 width = 1280
 height = 1280
 generate_mipmaps = false
@@ -144,7 +144,7 @@ noise = SubResource("FastNoiseLite_3cvy1")
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_14f3b")
+albedo_texture = SubResource("NoiseTexture2D_xi1ee")
 metallic_specular = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rv8o5"]
@@ -154,21 +154,14 @@ size = Vector2(10, 20)
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_14f3b")
+albedo_texture = SubResource("NoiseTexture2D_xi1ee")
 metallic_specular = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_punl8"]
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_14f3b")
-metallic_specular = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12bjk"]
-diffuse_mode = 3
-specular_mode = 1
-disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_14f3b")
+albedo_texture = SubResource("NoiseTexture2D_xi1ee")
 metallic_specular = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3cvy1"]
@@ -180,9 +173,6 @@ size = Vector3(43.4979, 1, 0.526367)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6kp70"]
 size = Vector3(25.724, 1, 0.376)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sbhua"]
-size = Vector3(0.403198, 1, 22.05)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yxqi"]
 size = Vector3(0.403198, 1, 22.05)
 
@@ -191,7 +181,7 @@ size = Vector3(0.090332, 1, 17.2031)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sbhua"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yxqi"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2aaci"]
 noise = SubResource("FastNoiseLite_sbhua")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2aaci"]
@@ -205,7 +195,7 @@ shader_parameter/player_displacement_strength = 0.4
 shader_parameter/player_displacement_size = 1.0
 shader_parameter/wind_direction = Vector3(10, 0.3, 0)
 shader_parameter/wind_strength = 0.77
-shader_parameter/wind_noise = SubResource("NoiseTexture2D_2yxqi")
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_2aaci")
 shader_parameter/wind_noise_size = 0.739
 shader_parameter/wind_noise_speed = 0.126
 shader_parameter/player_position = Vector3(0, 0, 0)
@@ -250,7 +240,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="GateToRealm" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 23.5696, 0.990408, 4.4311)
+transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 22.6458, 0.990408, 4.8233)
 material_override = SubResource("ShaderMaterial_xi1ee")
 mesh = SubResource("BoxMesh_2aaci")
 skeleton = NodePath("../../..")
@@ -348,12 +338,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 material_override = SubResource("StandardMaterial3D_punl8")
 mesh = SubResource("PlaneMesh_rv8o5")
 
-[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
-material_override = SubResource("StandardMaterial3D_12bjk")
-mesh = SubResource("PlaneMesh_rv8o5")
-skeleton = NodePath("../floor-right2")
-
 [node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 14.8523, 0, 9.51673)
 shape = SubResource("BoxShape3D_3cvy1")
@@ -371,11 +355,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.159
 shape = SubResource("BoxShape3D_6kp70")
 debug_color = Color(0, 0.85, 1, 1)
 debug_fill = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2823, 0, 0)
-shape = SubResource("BoxShape3D_sbhua")
-debug_color = Color(0, 0.595, 0.7, 1)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1824, 0.541047, 0)
@@ -411,18 +390,20 @@ shape = SubResource("BoxShape3D_58lh3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21124, 0, 0.422)
 shape = SubResource("BoxShape3D_58lh3")
 
-[node name="area-4" type="Area3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3572, 0.55, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
-shape = SubResource("BoxShape3D_58lh3")
-
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.897251, 0, 0.441522, 0, 1, 0, -0.441522, 0, -0.897251, 11.4027, -0.0612715, -1.1602)
 material_override = SubResource("ShaderMaterial_2aaci")
 multimesh = SubResource("MultiMesh_6kp70")
 script = ExtResource("13_sbhua")
+
+[node name="Stone-path" parent="SubViewportContainer/SubViewport" instance=ExtResource("17_2yxqi")]
+transform = Transform3D(0.203321, 0, 0.456794, 0, 0.5, 0, -0.456794, 0, 0.203321, -0.739792, -0.0343596, -0.199408)
+
+[node name="Stone-path2" parent="SubViewportContainer/SubViewport" instance=ExtResource("17_2yxqi")]
+transform = Transform3D(-0.203321, 0, -0.456794, 0, 0.5, 0, 0.456794, 0, -0.203321, 8.39609, -0.0343596, 3.867)
+
+[node name="Stone-path3" parent="SubViewportContainer/SubViewport" instance=ExtResource("17_2yxqi")]
+transform = Transform3D(0.0523162, 0, -0.497255, 0, 0.5, 0, 0.497255, 0, 0.0523162, 17.7727, -0.0343601, 5.34399)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("10_rv8o5")
@@ -493,17 +474,9 @@ size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_2yxqi")
 
-[node name="Stone-path" parent="." instance=ExtResource("17_2yxqi")]
-transform = Transform3D(0.203321, 0, 0.456794, 0, 0.5, 0, -0.456794, 0, 0.203321, -0.739792, -0.0343596, -0.199408)
-
-[node name="Stone-path2" parent="." instance=ExtResource("17_2yxqi")]
-transform = Transform3D(-0.203321, 0, -0.456794, 0, 0.5, 0, 0.456794, 0, -0.203321, 8.39609, -0.0343596, 3.867)
-
-[node name="Stone-path3" parent="." instance=ExtResource("17_2yxqi")]
-transform = Transform3D(0.0523162, 0, -0.497255, 0, 0.5, 0, 0.497255, 0, 0.0523162, 17.7727, -0.0343601, 5.34399)
-
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]
-[connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]

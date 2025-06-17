@@ -15,6 +15,14 @@ func _process(_delta: float) -> void:
 			StaticData.textData["coinDialogue"]["coin_dialogue_2"]
 			]
 			textBox.start_dialogue(lines)
+			if GlobalVariables.promisesCollected == 3:
+				$"../Floor/gateBlocker".queue_free()
+			else:
+				pass
+		else:
+			pass
+	else:
+		pass
 
 func _on_coin_area_body_entered(_body: Node3D) -> void:
 	if GlobalVariables.bargainingStatus1 == true:
