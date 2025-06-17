@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt8yplhemifca"]
+[gd_scene load_steps=11 format=3 uid="uid://bt8yplhemifca"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tnakd"]
 radius = 0.4
@@ -22,31 +22,6 @@ material = SubResource("StandardMaterial3D_no0ue")
 radius = 0.4
 height = 0.409
 
-[sub_resource type="Curve" id="Curve_tnakd"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_8jvl4"]
-curve = SubResource("Curve_tnakd")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tnakd"]
-particle_flag_align_y = true
-emission_shape_scale = Vector3(0.8, 0, 0.8)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_min = -65.9
-angle_max = 162.4
-gravity = Vector3(0, 1, 0)
-radial_accel_min = -1.22
-radial_accel_max = -1.22
-damping_min = 0.285
-damping_max = 0.285
-scale_curve = SubResource("CurveTexture_8jvl4")
-turbulence_enabled = true
-turbulence_noise_scale = 2.0
-turbulence_initial_displacement_min = 1.49012e-06
-turbulence_initial_displacement_max = 1.49012e-06
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnakd"]
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
@@ -57,6 +32,10 @@ emission_energy_multiplier = 878.7
 material = SubResource("StandardMaterial3D_tnakd")
 radius = 0.011
 height = 0.151
+
+[sub_resource type="Curve" id="Curve_tnakd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_8jvl4"]
 length = 0.001
@@ -111,11 +90,23 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8jvl4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0255754, 0.937212, 0.1)
 mesh = SubResource("SphereMesh_8jvl4")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="CPUParticles3D" parent="."]
 amount = 32
 lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_tnakd")
-draw_pass_1 = SubResource("SphereMesh_no0ue")
+fixed_fps = 30
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 8)
+mesh = SubResource("SphereMesh_no0ue")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_align_y = true
+gravity = Vector3(0, 1, 0)
+radial_accel_min = -1.22
+radial_accel_max = -1.22
+damping_min = 0.285
+damping_max = 0.285
+angle_min = -65.9
+angle_max = 162.4
+scale_amount_curve = SubResource("Curve_tnakd")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0307083, 0.930978, 0.107335)

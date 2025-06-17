@@ -71,9 +71,25 @@
 		"death_dialogue_1" : "You heard me, go on now.",
 	},
 	"bargaining_start_dialogue" : {
-		"start_dialogue_1" : "I don't like this place..."
+		"start_dialogue_1" : "I don't like this place...",
+	},
+	"bargainingDialogue_1" : {
+		"cube_dialogue_1" : "Me: ",
+		"death_dialogue_1" : "Death: ",
+	},
+	"loveLetter" : {
+		"letter_dialogue_1" : "This Letter say something important",
+		"letter_dialogue_2" : "something important",
+	},
+	"brokenMirror" : {
+		"mirror_dialogue_1" : "well the mirror is broken",
+		"mirror_dialogue_2" : "thats all",
+	},
+	"coinDialogue" : {
+		"coin_dialogue_1" : "the coin that flips",
+		"coin_dialogue_2" : "is flipping",
 	},
 	"depression_start_dialogue" : {
-		"start_dialogue_1" : "This... feels sad."
+		"start_dialogue_1" : "This... feels sad.",
 	}
 }

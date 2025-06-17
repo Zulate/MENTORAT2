@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 			print("travelling to next realm")
 			SceneTransitionAnimation.play("fade-in")
 			await get_tree().create_timer(2.0).timeout
-			get_tree().change_scene_to_file("res://scenes/Depression.tscn");
+			get_tree().change_scene_to_file("res://scenes/Reflection.tscn");
 		else:
 			pass
 	elif GlobalVariables.player_position.y < -3.0:
@@ -41,18 +41,31 @@ func _on_weight_area_body_exited(_body: Node3D) -> void:
 	GlobalVariables.pressFdisplay = false
 	$"SubViewportContainer/SubViewport/Weight/StaticBody3D/Weight-object".material_overlay = null
 
-func _on_area_1_body_entered(body: Node3D) -> void:
+func _on_area_1_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(0, 4, 12)
 	GlobalVariables.camera_transition(camera, "position", camera_next_position, 1)
 
-func _on_area_2_body_entered(body: Node3D) -> void:
+func _on_area_2_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(10, 4, 12)
 	GlobalVariables.camera_transition(camera, "position", camera_next_position, 1)
 
-func _on_area_3_body_entered(body: Node3D) -> void:
+func _on_area_3_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(20, 4, 12)
 	GlobalVariables.camera_transition(camera, "position", camera_next_position, 1)
 
-func _on_area_4_body_entered(body: Node3D) -> void:
+func _on_area_4_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(30, 4, 12)
 	GlobalVariables.camera_transition(camera, "position", camera_next_position, 1)
+	$"SubViewportContainer/SubViewport/Spirit-Character".position = $SubViewportContainer/SubViewport/Marker3D.position
+
+
+func _on_gate_area_body_entered(_body: Node3D) -> void:
+	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = outline_material
+	GlobalVariables.insideGate = true
+	GlobalVariables.pressFdisplay = true
+
+
+func _on_gate_area_body_exited(_body: Node3D) -> void:
+	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = null
+	GlobalVariables.pressFdisplay = false
+	GlobalVariables.insideGate = false

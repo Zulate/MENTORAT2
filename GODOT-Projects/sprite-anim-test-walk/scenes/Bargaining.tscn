@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://clygksee8mxva"]
+[gd_scene load_steps=57 format=3 uid="uid://clygksee8mxva"]
 
 [ext_resource type="Script" uid="uid://ctpmpokbqupi6" path="res://scripts/bargaining_script.gd" id="1_44wjt"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_jx48u"]
@@ -122,43 +122,43 @@ specular_mode = 1
 albedo_color = Color(0.75, 0.75, 0.75, 1)
 metallic_specular = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iijyl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlqws"]
 atlas = ExtResource("6_00jnx")
-region = Rect2(0, 0, 31, 18)
+region = Rect2(0, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7fh2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vsvv"]
 atlas = ExtResource("6_00jnx")
-region = Rect2(31, 0, 31, 18)
+region = Rect2(32, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_27idm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hfym"]
 atlas = ExtResource("6_00jnx")
-region = Rect2(62, 0, 31, 18)
+region = Rect2(64, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbavh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltw57"]
 atlas = ExtResource("6_00jnx")
-region = Rect2(93, 0, 31, 18)
+region = Rect2(96, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74a3a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ns6u"]
 atlas = ExtResource("6_00jnx")
-region = Rect2(124, 0, 31, 18)
+region = Rect2(128, 0, 32, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hvvsy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iijyl")
+"texture": SubResource("AtlasTexture_rlqws")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n7fh2")
+"texture": SubResource("AtlasTexture_5vsvv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_27idm")
+"texture": SubResource("AtlasTexture_4hfym")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sbavh")
+"texture": SubResource("AtlasTexture_ltw57")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_74a3a")
+"texture": SubResource("AtlasTexture_4ns6u")
 }],
 "loop": true,
 "name": &"default",
@@ -173,6 +173,9 @@ size = Vector3(0.090332, 1, 1.46774)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hvvsy"]
 size = Vector3(0.090332, 1, 14.3215)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2b5li"]
+size = Vector3(1, 0.638794, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov50e"]
 bg_color = Color(0, 0, 0, 1)
@@ -497,6 +500,14 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 19.1585, 0.0283895, 7.6
 [node name="love-letter" parent="SubViewportContainer/SubViewport" instance=ExtResource("18_rlqws")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 17.5111, 0.0648272, -5.00407)
 
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3452, 0.535374, -2.54826)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.180603, 0)
+shape = SubResource("BoxShape3D_2b5li")
+debug_color = Color(0.999569, 0, 0.108775, 0.42)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_xtj8l")
 
@@ -575,4 +586,5 @@ environment = SubResource("Environment_dxdep")
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-4" to="." method="_on_area_4_body_entered"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="stop_movement" from="CanvasLayer" to="SubViewportContainer/SubViewport/CharacterBody3D" method="_on_canvas_layer_stop_movement"]

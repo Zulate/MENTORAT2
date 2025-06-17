@@ -4,47 +4,52 @@ extends Node
 @onready var denial_level = preload("res://scenes/Denial.tscn")
 @onready var anger_level = preload("res://scenes/Anger.tscn")
 @onready var bargaining_level = preload("res://scenes/Bargaining.tscn")
+@onready var depression_level = preload("res://scenes/Depression.tscn")
+@onready var reflection_level = preload("res://scenes/Reflection.tscn")
 @onready var spirit_character = preload("res://scenes/spirit-character.tscn")
 @onready var scene_transition = preload("res://scenes/scene_transition_animation.tscn")
 
 #global variables
 @onready var player_position
-@onready var Speed = 2.5
-@onready var Trigger = false
+@onready var Speed : float = 2.5
+@onready var Trigger : bool = false
 
-@onready var insideGate = false
+@onready var insideGate : bool = false
 
 #denial scene
-@onready var insideFragment1 = false
-@onready var insideFragment2 = false
-@onready var insideFragment3 = false
-@onready var fragmentsCollected = 0
-@onready var denialDialogue1Status = false
-@onready var denialDialogue2Status = false
+@onready var insideFragment1 : bool = false
+@onready var insideFragment2 : bool = false
+@onready var insideFragment3 : bool = false
+@onready var fragmentsCollected : float = 0
+@onready var denialDialogue1Status : bool = false
+@onready var denialDialogue2Status : bool = false
 
 #anger scene
-@onready var insidePillar = false
-@onready var insideTriangle = false
-@onready var insideSphere = false
-@onready var angerDialogue1Status = false
-@onready var angerDialogue2Status = false
-@onready var insideAngerSphere = false
-@onready var angerBetweenStatus = false
+@onready var insidePillar : bool = false
+@onready var insideTriangle : bool = false
+@onready var insideSphere : bool = false
+@onready var angerDialogue1Status : bool = false
+@onready var angerDialogue2Status : bool = false
+@onready var insideAngerSphere : bool = false
+@onready var angerBetweenStatus : bool = false
 
 #bargaining scene
 
-@onready var insideCoin = false
-@onready var insideLetter = false
-@onready var insideMirror = false
+@onready var insideCoin : bool = false
+@onready var insideLetter : bool = false
+@onready var insideMirror : bool = false
+@onready var promisesCollected : float = 0
+@onready var bargainingStatus1 : bool = false
 
 #depression scene
 
-@onready var weightStatus = false
-@onready var insideWeight = false
+@onready var weightStatus : bool = false
+@onready var insideWeight : bool = false
 
 
 
-@onready var pressFdisplay = false
+
+@onready var pressFdisplay : bool = false
 
 @onready var rng = RandomNumberGenerator.new()
 @onready var my_random_number : float = rng.randf_range(0.0, 1.0)

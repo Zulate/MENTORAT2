@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://dx4x0oae6gdkt"]
+[gd_scene load_steps=51 format=3 uid="uid://dx4x0oae6gdkt"]
 
 [ext_resource type="Script" uid="uid://c3k252e18cifq" path="res://scripts/depression_script.gd" id="1_ehs4g"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_trmgc"]
 [ext_resource type="Texture2D" uid="uid://domhm4wllr85s" path="res://sprites/depression-level-palette-1x.png" id="2_jo3lj"]
 [ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="3_66wpw"]
+[ext_resource type="Shader" uid="uid://dx4j3ktvusun8" path="res://shaders/noise-anim.gdshader" id="4_bacm7"]
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="5_rafnn"]
 [ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="6_xur4n"]
 [ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="7_6ivb5"]
@@ -18,10 +19,40 @@ shader = ExtResource("1_trmgc")
 shader_parameter/num_colors = 9
 shader_parameter/PALETTE_TEXTURE = ExtResource("2_jo3lj")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_035ut"]
-size = Vector3(13.2629, 0.01, 5.00594)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ry38h"]
+noise_type = 3
+seed = 42
+frequency = 0.0037
+fractal_octaves = 8
+fractal_weighted_strength = 0.23
+cellular_distance_function = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bacm7"]
+width = 1028
+seamless = true
+seamless_blend_skirt = 0.516
+noise = SubResource("FastNoiseLite_ry38h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_738ql"]
+render_priority = 0
+shader = ExtResource("4_bacm7")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_bacm7")
+shader_parameter/scale = 0.66
+shader_parameter/speed = 0.15
+shader_parameter/octaves = 8
+shader_parameter/distortion_strength = 0.51
+
+[sub_resource type="BoxMesh" id="BoxMesh_trmgc"]
+size = Vector3(2, 0.02, 2.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ta7ey"]
+size = Vector3(1.985, 0.201, 2.131)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bacm7"]
+size = Vector3(13.26, 0.01, 5)
 
 [sub_resource type="Gradient" id="Gradient_tkt1n"]
+offsets = PackedFloat32Array(0.383621, 1)
 colors = PackedColorArray(0.182, 0, 0.84, 1, 0.0775, 0.15, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0rgku"]
@@ -36,7 +67,7 @@ domain_warp_amplitude = 59.56
 domain_warp_frequency = 0.01
 domain_warp_fractal_octaves = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmj2s"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ry38h"]
 width = 1280
 height = 1280
 generate_mipmaps = false
@@ -49,14 +80,23 @@ noise = SubResource("FastNoiseLite_0rgku")
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
-albedo_texture = SubResource("NoiseTexture2D_dmj2s")
+albedo_texture = SubResource("NoiseTexture2D_ry38h")
 metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vnbjs"]
 size = Vector3(13.26, 10, 5)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ichhg"]
-size = Vector2(5, 20)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ry38h"]
+size = Vector3(5, 0.01, 18.147)
+
+[sub_resource type="BoxMesh" id="BoxMesh_738ql"]
+size = Vector3(5, 10, 19.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_035ut"]
+size = Vector3(3, 0.01, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ichhg"]
+size = Vector3(3, 10, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6dof"]
 size = Vector3(41.3777, 1, 0.318848)
@@ -69,6 +109,9 @@ size = Vector3(25.724, 1, 0.376)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yyse"]
 size = Vector3(0.403198, 1, 22.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_738ql"]
+size = Vector3(0.332001, 1, 22.05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qngxe"]
 size = Vector3(0.387207, 0.359436, 0.395996)
@@ -127,16 +170,16 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3npd"]
 size = Vector3(0.090332, 1, 17.2031)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_vnbjs"]
-top_radius = 0.33
-bottom_radius = 0.12
-height = 0.7
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ichhg"]
+points = PackedVector3Array(-0.46, 0.5, 0, -0.457839, 0.5, -0.0451175, -0.404076, 0.299922, 0, -0.457839, 0.5, 0.0450274, -0.451175, 0.5, -0.0897847, -0.341398, 0.0999413, -0.0679013, -0.234953, -0.30002, -0.0231441, -0.179209, -0.5, -0.0176508, -0.18002, -0.5, 0, -0.179209, -0.5, 0.0175607, -0.234953, -0.30002, 0.023054, -0.341398, 0.0999413, 0.0678113, -0.451175, 0.5, 0.0896946, -0.440278, 0.5, -0.133551, -0.231531, -0.30002, -0.0461081, -0.176598, -0.5, -0.0351214, -0.176598, -0.5, 0.0350313, -0.231531, -0.30002, 0.046018, -0.440278, 0.5, 0.133461, -0.425059, 0.5, -0.176057, -0.321586, 0.0999413, -0.133191, -0.218113, -0.30002, -0.090325, -0.172275, -0.5, -0.0523219, -0.172275, -0.5, 0.0522318, -0.321586, 0.0999413, 0.133101, -0.425059, 0.5, 0.175967, -0.218113, -0.30002, 0.0902349, -0.405697, 0.5, -0.216852, -0.356347, 0.299922, -0.190466, -0.306997, 0.0999413, -0.16408, -0.208207, -0.30002, -0.111308, -0.158767, -0.5, -0.0849217, -0.166331, -0.5, -0.0688919, -0.166331, -0.5, 0.0688019, -0.306997, 0.0999413, 0.16399, -0.208207, -0.30002, 0.111218, -0.405697, 0.5, 0.216762, -0.356347, 0.299922, 0.190376, -0.158767, -0.5, 0.0848316, -0.382553, 0.5, -0.255576, -0.335995, 0.299922, -0.224507, -0.242878, -0.100039, -0.162279, -0.149671, -0.5, -0.100051, -0.335995, 0.299922, 0.224417, -0.242878, -0.100039, 0.162189, -0.382553, 0.5, 0.255486, -0.149671, -0.5, 0.0999608, -0.355626, 0.5, -0.291868, -0.269084, 0.0999413, -0.220814, -0.139225, -0.5, -0.11428, -0.269084, 0.0999413, 0.220724, -0.355626, 0.5, 0.291778, -0.139225, -0.5, 0.11419, -0.325278, 0.5, -0.325278, -0.285744, 0.299922, -0.285744, -0.166962, -0.30002, -0.166962, -0.127338, -0.5, -0.127338, -0.285744, 0.299922, 0.285654, -0.325278, 0.5, 0.325188, -0.127338, -0.5, 0.127247, -0.166962, -0.30002, 0.166872, -0.291868, 0.5, -0.355626, -0.220814, 0.0999413, -0.269084, -0.11428, -0.5, -0.139225, -0.220814, 0.0999413, 0.268994, -0.291868, 0.5, 0.355536, -0.11428, -0.5, 0.139135, -0.255576, 0.5, -0.382553, -0.224507, 0.299922, -0.335995, -0.162279, -0.100039, -0.242878, -0.100051, -0.5, -0.149671, -0.224507, 0.299922, 0.335904, -0.255576, 0.5, 0.382463, -0.100051, -0.5, 0.149581, -0.162279, -0.100039, 0.242788, -0.216852, 0.5, -0.405697, -0.190466, 0.299922, -0.356347, -0.16408, 0.0999413, -0.306997, -0.111308, -0.30002, -0.208207, -0.0849217, -0.5, -0.158767, -0.16408, 0.0999413, 0.306907, -0.190466, 0.299922, 0.356257, -0.216852, 0.5, 0.405607, -0.0849217, -0.5, 0.158677, -0.111308, -0.30002, 0.208117, -0.176057, 0.5, -0.425059, -0.133191, 0.0999413, -0.321586, -0.090325, -0.30002, -0.218113, -0.0688919, -0.5, -0.166331, -0.133191, 0.0999413, 0.321496, -0.176057, 0.5, 0.424969, -0.0688919, -0.5, 0.166241, -0.090325, -0.30002, 0.218023, -0.133551, 0.5, -0.440278, -0.0523219, -0.5, -0.172275, -0.133551, 0.5, 0.440188, -0.0523219, -0.5, 0.172185, -0.0897847, 0.5, -0.451175, -0.0679013, 0.0999413, -0.341398, -0.0461081, -0.30002, -0.231531, -0.0351214, -0.5, -0.176598, -0.0679013, 0.0999413, 0.341308, -0.0897847, 0.5, 0.451085, -0.0461081, -0.30002, 0.231441, -0.0351214, -0.5, 0.176507, -0.0451175, 0.5, -0.457839, -0.0231441, -0.30002, -0.234953, -0.0176508, -0.5, -0.179209, -0.0451175, 0.5, 0.457749, -0.0231441, -0.30002, 0.234863, -0.0176508, -0.5, 0.179119, 0, 0.5, -0.46, 0, 0.299922, -0.404076, 0, -0.5, -0.18002, 0, 0.299922, 0.403986, 0, 0.5, 0.46, 0, -0.5, 0.17993, 0.0450274, 0.5, -0.457839, 0.023054, -0.30002, -0.234953, 0.0175607, -0.5, -0.179209, 0.0450274, 0.5, 0.457749, 0.0175607, -0.5, 0.179119, 0.023054, -0.30002, 0.234863, 0.0896946, 0.5, -0.451175, 0.0678113, 0.0999413, -0.341398, 0.046018, -0.30002, -0.231531, 0.0350313, -0.5, -0.176598, 0.0678113, 0.0999413, 0.341308, 0.0896946, 0.5, 0.451085, 0.0350313, -0.5, 0.176507, 0.046018, -0.30002, 0.231441, 0.133461, 0.5, -0.440278, 0.0522318, -0.5, -0.172275, 0.133461, 0.5, 0.440188, 0.0522318, -0.5, 0.172185, 0.175967, 0.5, -0.425059, 0.133101, 0.0999413, -0.321586, 0.0902349, -0.30002, -0.218113, 0.0688019, -0.5, -0.166331, 0.133101, 0.0999413, 0.321496, 0.175967, 0.5, 0.424969, 0.0902349, -0.30002, 0.218023, 0.0688019, -0.5, 0.166241, 0.216762, 0.5, -0.405697, 0.190376, 0.299922, -0.356347, 0.16399, 0.0999413, -0.306997, 0.111218, -0.30002, -0.208207, 0.0848316, -0.5, -0.158767, 0.16399, 0.0999413, 0.306907, 0.111218, -0.30002, 0.208117, 0.216762, 0.5, 0.405607, 0.190376, 0.299922, 0.356257, 0.0848316, -0.5, 0.158677, 0.255486, 0.5, -0.382553, 0.224417, 0.299922, -0.335995, 0.162189, -0.100039, -0.242878, 0.0999608, -0.5, -0.149671, 0.224417, 0.299922, 0.335904, 0.162189, -0.100039, 0.242788, 0.255486, 0.5, 0.382463, 0.0999608, -0.5, 0.149581, 0.291778, 0.5, -0.355626, 0.220724, 0.0999413, -0.269084, 0.11419, -0.5, -0.139225, 0.220724, 0.0999413, 0.268994, 0.291778, 0.5, 0.355536, 0.11419, -0.5, 0.139135, 0.325188, 0.5, -0.325278, 0.285654, 0.299922, -0.285744, 0.166872, -0.30002, -0.166962, 0.127247, -0.5, -0.127338, 0.285654, 0.299922, 0.285654, 0.325188, 0.5, 0.325188, 0.127247, -0.5, 0.127247, 0.166872, -0.30002, 0.166872, 0.355536, 0.5, -0.291868, 0.268994, 0.0999413, -0.220814, 0.139135, -0.5, -0.11428, 0.268994, 0.0999413, 0.220724, 0.355536, 0.5, 0.291778, 0.139135, -0.5, 0.11419, 0.382463, 0.5, -0.255576, 0.335904, 0.299922, -0.224507, 0.242788, -0.100039, -0.162279, 0.149581, -0.5, -0.100051, 0.335904, 0.299922, 0.224417, 0.382463, 0.5, 0.255486, 0.149581, -0.5, 0.0999608, 0.242788, -0.100039, 0.162189, 0.405607, 0.5, -0.216852, 0.356257, 0.299922, -0.190466, 0.306907, 0.0999413, -0.16408, 0.208117, -0.30002, -0.111308, 0.158677, -0.5, -0.0849217, 0.306907, 0.0999413, 0.16399, 0.356257, 0.299922, 0.190376, 0.405607, 0.5, 0.216762, 0.158677, -0.5, 0.0848316, 0.208117, -0.30002, 0.111218, 0.424969, 0.5, -0.176057, 0.321496, 0.0999413, -0.133191, 0.218023, -0.30002, -0.090325, 0.166241, -0.5, -0.0688919, 0.321496, 0.0999413, 0.133101, 0.424969, 0.5, 0.175967, 0.166241, -0.5, 0.0688019, 0.218023, -0.30002, 0.0902349, 0.440188, 0.5, -0.133551, 0.172185, -0.5, -0.0523219, 0.440188, 0.5, 0.133461, 0.172185, -0.5, 0.0522318, 0.451085, 0.5, -0.0897847, 0.341308, 0.0999413, -0.0679013, 0.231441, -0.30002, -0.0461081, 0.176507, -0.5, -0.0351214, 0.341308, 0.0999413, 0.0678113, 0.451085, 0.5, 0.0896946, 0.231441, -0.30002, 0.046018, 0.176507, -0.5, 0.0350313, 0.457749, 0.5, -0.0451175, 0.234863, -0.30002, -0.0231441, 0.179119, -0.5, -0.0176508, 0.457749, 0.5, 0.0450274, 0.234863, -0.30002, 0.023054, 0.179119, -0.5, 0.0175607, 0.46, 0.5, 0, 0.403986, 0.299922, 0, 0.17993, -0.5, 0)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vnbjs"]
-points = PackedVector3Array(-0.33, 0.349932, 0, -0.32845, 0.349932, 0.0323023, -0.32845, 0.349932, -0.0323669, -0.120035, -0.35, 0, -0.244851, 0.0699589, 0.0240975, -0.282516, 0.209945, 0.0561413, -0.323669, 0.349932, 0.0643461, -0.323669, 0.349932, -0.0644107, -0.282516, 0.209945, -0.056206, -0.244851, 0.0699589, -0.0241621, -0.119454, -0.35, -0.0118226, -0.119454, -0.35, 0.011758, -0.158927, -0.210014, 0.0315916, -0.315852, 0.349932, 0.0957439, -0.315852, 0.349932, -0.0958085, -0.158927, -0.210014, -0.0316562, -0.117709, -0.35, -0.0234514, -0.117709, -0.35, 0.0233868, -0.114867, -0.35, 0.0348218, -0.304933, 0.349932, 0.126237, -0.110926, -0.35, 0.0458692, -0.304933, 0.349932, -0.126302, -0.110926, -0.35, -0.0459338, -0.114867, -0.35, -0.0348864, -0.217007, 0.0699589, 0.115901, -0.254025, 0.209945, 0.135734, -0.291043, 0.349932, 0.155503, -0.105887, -0.35, 0.056529, -0.291043, 0.349932, -0.155568, -0.254025, 0.209945, -0.135799, -0.217007, 0.0699589, -0.115965, -0.105887, -0.35, -0.0565936, -0.142905, -0.210014, 0.0763626, -0.204603, 0.0699589, 0.136639, -0.27444, 0.349932, 0.183283, -0.099814, -0.35, 0.0666073, -0.27444, 0.349932, -0.183348, -0.204603, 0.0699589, -0.136703, -0.142905, -0.210014, -0.0764272, -0.099814, -0.35, -0.0666719, -0.255123, 0.349932, 0.209319, -0.0927721, -0.35, 0.0761042, -0.125268, -0.210014, 0.102721, -0.255123, 0.349932, -0.209383, -0.125268, -0.210014, -0.102786, -0.0927721, -0.35, -0.0761687, -0.203698, 0.209945, 0.203634, -0.233352, 0.349932, 0.233287, -0.114608, -0.210014, 0.114544, -0.0848904, -0.35, 0.0848258, -0.233352, 0.349932, -0.233352, -0.203698, 0.209945, -0.203698, -0.114608, -0.210014, -0.114608, -0.0848904, -0.35, -0.0848904, -0.209383, 0.349932, 0.255059, -0.0761687, -0.35, 0.0927075, -0.102786, -0.210014, 0.125204, -0.209383, 0.349932, -0.255123, -0.102786, -0.210014, -0.125268, -0.0761687, -0.35, -0.0927721, -0.136703, 0.0699589, 0.204538, -0.183348, 0.349932, 0.274376, -0.0666719, -0.35, 0.0997494, -0.183348, 0.349932, -0.27444, -0.136703, 0.0699589, -0.204603, -0.0666719, -0.35, -0.099814, -0.135799, 0.209945, 0.25396, -0.0565936, -0.35, 0.105822, -0.0764272, -0.210014, 0.142841, -0.155568, 0.349932, 0.290979, -0.155568, 0.349932, -0.291043, -0.135799, 0.209945, -0.254025, -0.0764272, -0.210014, -0.142905, -0.0565936, -0.35, -0.105887, -0.115965, 0.0699589, 0.216942, -0.126302, 0.349932, 0.304869, -0.0459338, -0.35, 0.110861, -0.126302, 0.349932, -0.304933, -0.115965, 0.0699589, -0.217007, -0.0459338, -0.35, -0.110926, -0.0958085, 0.349932, 0.315787, -0.0348864, -0.35, 0.114802, -0.0958085, 0.349932, -0.315852, -0.0348864, -0.35, -0.114867, -0.056206, 0.209945, 0.282451, -0.0644107, 0.349932, 0.323604, -0.0316562, -0.210014, 0.158863, -0.0234514, -0.35, 0.117645, -0.0644107, 0.349932, -0.323669, -0.056206, 0.209945, -0.282516, -0.0316562, -0.210014, -0.158927, -0.0234514, -0.35, -0.117709, -0.0241621, 0.0699589, 0.244787, -0.0323669, 0.349932, 0.328385, -0.0118226, -0.35, 0.119389, -0.0323669, 0.349932, -0.32845, -0.0241621, 0.0699589, -0.244851, -0.0118226, -0.35, -0.119454, 0, 0.349932, 0.33, 0, -0.35, 0.119971, 0, 0.349932, -0.33, 0, -0.35, -0.120035, 0.0240975, 0.0699589, 0.244787, 0.0323023, 0.349932, 0.328385, 0.011758, -0.35, 0.119389, 0.0323023, 0.349932, -0.32845, 0.011758, -0.35, -0.119454, 0.0240975, 0.0699589, -0.244851, 0.0561413, 0.209945, 0.282451, 0.0315916, -0.210014, 0.158863, 0.0643461, 0.349932, 0.323604, 0.0233868, -0.35, 0.117645, 0.0643461, 0.349932, -0.323669, 0.0561413, 0.209945, -0.282516, 0.0315916, -0.210014, -0.158927, 0.0233868, -0.35, -0.117709, 0.0957439, 0.349932, 0.315787, 0.0348218, -0.35, 0.114802, 0.0957439, 0.349932, -0.315852, 0.0348218, -0.35, -0.114867, 0.126237, 0.349932, 0.304869, 0.0458692, -0.35, 0.110861, 0.126237, 0.349932, -0.304933, 0.0458692, -0.35, -0.110926, 0.115901, 0.0699589, 0.216942, 0.135734, 0.209945, 0.25396, 0.155503, 0.349932, 0.290979, 0.056529, -0.35, 0.105822, 0.155503, 0.349932, -0.291043, 0.135734, 0.209945, -0.254025, 0.115901, 0.0699589, -0.217007, 0.056529, -0.35, -0.105887, 0.0763626, -0.210014, 0.142841, 0.136639, 0.0699589, 0.204538, 0.183283, 0.349932, 0.274376, 0.0666073, -0.35, 0.0997494, 0.183283, 0.349932, -0.27444, 0.136639, 0.0699589, -0.204603, 0.0763626, -0.210014, -0.142905, 0.0666073, -0.35, -0.099814, 0.209319, 0.349932, 0.255059, 0.0761042, -0.35, 0.0927075, 0.102721, -0.210014, 0.125204, 0.209319, 0.349932, -0.255123, 0.102721, -0.210014, -0.125268, 0.0761042, -0.35, -0.0927721, 0.203634, 0.209945, 0.203634, 0.233287, 0.349932, 0.233287, 0.114544, -0.210014, 0.114544, 0.0848258, -0.35, 0.0848258, 0.233287, 0.349932, -0.233352, 0.203634, 0.209945, -0.203698, 0.114544, -0.210014, -0.114608, 0.0848258, -0.35, -0.0848904, 0.255059, 0.349932, 0.209319, 0.0927075, -0.35, 0.0761042, 0.125204, -0.210014, 0.102721, 0.255059, 0.349932, -0.209383, 0.125204, -0.210014, -0.102786, 0.0927075, -0.35, -0.0761687, 0.204538, 0.0699589, 0.136639, 0.274376, 0.349932, 0.183283, 0.0997494, -0.35, 0.0666073, 0.274376, 0.349932, -0.183348, 0.204538, 0.0699589, -0.136703, 0.0997494, -0.35, -0.0666719, 0.25396, 0.209945, 0.135734, 0.105822, -0.35, 0.056529, 0.142841, -0.210014, 0.0763626, 0.290979, 0.349932, 0.155503, 0.290979, 0.349932, -0.155568, 0.25396, 0.209945, -0.135799, 0.142841, -0.210014, -0.0764272, 0.105822, -0.35, -0.0565936, 0.216942, 0.0699589, 0.115901, 0.304869, 0.349932, 0.126237, 0.110861, -0.35, 0.0458692, 0.304869, 0.349932, -0.126302, 0.216942, 0.0699589, -0.115965, 0.110861, -0.35, -0.0459338, 0.315787, 0.349932, 0.0957439, 0.114802, -0.35, 0.0348218, 0.315787, 0.349932, -0.0958085, 0.114802, -0.35, -0.0348864, 0.282451, 0.209945, 0.0561413, 0.323604, 0.349932, 0.0643461, 0.158863, -0.210014, 0.0315916, 0.117645, -0.35, 0.0233868, 0.323604, 0.349932, -0.0644107, 0.282451, 0.209945, -0.056206, 0.158863, -0.210014, -0.0316562, 0.117645, -0.35, -0.0234514, 0.244787, 0.0699589, 0.0240975, 0.328385, 0.349932, 0.0323023, 0.119389, -0.35, 0.011758, 0.328385, 0.349932, -0.0323669, 0.244787, 0.0699589, -0.0241621, 0.119389, -0.35, -0.0118226, 0.33, 0.349932, 0, 0.119971, -0.35, 0)
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnbjs"]
+top_radius = 0.46
+bottom_radius = 0.18
+height = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ichhg"]
-size = Vector3(1, 0.48, 1)
+size = Vector3(0.673828, 0.48, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry38h"]
 bg_color = Color(0, 0, 0, 1)
@@ -171,6 +214,20 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
+[node name="GateToRealm" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-3.98221e-08, -0.911022, 0.412357, 1, -4.37114e-08, 5.20722e-15, 1.80247e-08, 0.412357, 0.911022, 34.0401, 0.990408, -0.972628)
+material_override = SubResource("ShaderMaterial_738ql")
+mesh = SubResource("BoxMesh_trmgc")
+skeleton = NodePath("../../..")
+
+[node name="GateArea" type="Area3D" parent="SubViewportContainer/SubViewport/GateToRealm"]
+transform = Transform3D(1, 3.10862e-15, -1.77636e-15, 8.88178e-16, 1, 0, -1.77636e-15, 0, 1, 0, -0.00782585, -0.0240593)
+
+[node name="GateCollision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/GateToRealm/GateArea"]
+transform = Transform3D(1, 2.6037e-12, -1.30207e-12, -4.44089e-16, 1, 0, -3.55271e-15, 0, 1, 0.027832, 0.00775909, 0.015893)
+shape = SubResource("BoxShape3D_ta7ey")
+debug_color = Color(0.7, 0, 0, 1)
+
 [node name="depression-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
 projection = 1
@@ -197,7 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0977321, 0, 0)
 
 [node name="floor-collider" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0980713, 0, 0.00050541)
-shape = SubResource("BoxShape3D_035ut")
+shape = SubResource("BoxShape3D_bacm7")
 debug_color = Color(0, 0.85, 1, 0.168627)
 
 [node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider"]
@@ -205,11 +262,315 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 material_override = SubResource("StandardMaterial3D_lk73s")
 mesh = SubResource("BoxMesh_vnbjs")
 
-[node name="floor-right3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9914, 0, 0)
+[node name="floor-collider-right" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0472, 0, 0.433611)
+shape = SubResource("BoxShape3D_ry38h")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-collider-right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -0.109585)
 material_override = SubResource("StandardMaterial3D_lk73s")
-mesh = SubResource("PlaneMesh_ichhg")
-skeleton = NodePath("")
+mesh = SubResource("BoxMesh_738ql")
+
+[node name="floor-puzzle-1" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21734, 0, 0.00050541)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.58214, 0, -1.38331)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9714, 0, -2.74898)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.3449, 0, -4.13035)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.9086, 0, -4.35012)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 8.44407, 0, -5.38615)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-7" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 8.79764, 0, -6.47562)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-8" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 11.7976, 0, -6.47562)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-9" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.202121, 0, -0.97936, 0, 1, 0, 0.97936, 0, 0.202121, 13.4813, 0, -5.09473)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-10" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 17.5588, 0, -1.87687)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-11" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8008, 0, -0.00860637)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-12" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.1729, 0, 1.36349)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-13" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 20.1499, 0, 3.80755)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-14" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 20.1683, 0, 5.75544)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-15" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 22.1284, 0, 5.73706)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-16" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, 23.1575, 0, 3.26851)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-17" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, 23.1575, 0, 0.268508)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-18" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 24.1805, 0, -1.60588)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-19" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4239, 0, -2.65333)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-20" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.9535, 0, -1.26277)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-21" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.9535, 0, 1.73723)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-22" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 28.019, 0, 2.084)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-23" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 29.0377, 0, -0.390216)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-24" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 29.0377, 0, -3.39022)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-25" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 29.0788, 0, -3.63078)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-26" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 22.7226, 0, -4.47871)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-27" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2602, 0, -6.30409)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-28" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 19.1453, 0, -4.72985)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-28"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-29" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1515, 0, -3.73753)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
+
+[node name="floor-puzzle-30" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1632, 0, -3.72859)
+shape = SubResource("BoxShape3D_035ut")
+debug_color = Color(0, 0.85, 1, 0.168627)
+
+[node name="3d-floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor/floor-puzzle-30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = SubResource("StandardMaterial3D_lk73s")
+mesh = SubResource("BoxMesh_ichhg")
 
 [node name="restriction-bottom" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
 transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, 14.8523, 0, 9.51673)
@@ -233,6 +594,11 @@ debug_fill = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2823, 0, 0)
 shape = SubResource("BoxShape3D_0yyse")
 debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="gateBlocker" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26894, 0.541047, 0)
+shape = SubResource("BoxShape3D_738ql")
+debug_color = Color(0.98353, 0, 0.279465, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
@@ -297,27 +663,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_i3npd")
 
 [node name="Weight" type="Node3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34564, 0.369686, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34564, 0.362491, 0)
 script = ExtResource("9_ichhg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Weight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, 0.0241428, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, -0.0352576, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Weight/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0982995, 0.174161, 0)
+shape = SubResource("ConvexPolygonShape3D_ichhg")
 
 [node name="Weight-object" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Weight/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00104952, -0.0286866, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0982995, 0.174161, 0)
 mesh = SubResource("CylinderMesh_vnbjs")
 skeleton = NodePath("../../..")
-
-[node name="Weight-shape" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Weight/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00104952, -0.0286866, 0)
-shape = SubResource("ConvexPolygonShape3D_vnbjs")
 
 [node name="WeightArea" type="Area3D" parent="SubViewportContainer/SubViewport/Weight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81136, -0.369686, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Weight/WeightArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.283826, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163086, 0.283826, 0)
 shape = SubResource("BoxShape3D_ichhg")
+
+[node name="Marker3D" type="Marker3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1433, 0, 4.10823)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("9_vnbjs")
@@ -388,6 +757,8 @@ size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_trmgc")
 
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]
