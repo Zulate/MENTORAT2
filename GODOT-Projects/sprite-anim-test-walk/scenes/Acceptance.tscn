@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c6rs024dphgyi"]
+[gd_scene load_steps=48 format=3 uid="uid://c6rs024dphgyi"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_bmdfi"]
 [ext_resource type="Script" uid="uid://dghwb7572hhu5" path="res://scripts/acceptance_script.gd" id="1_r74yb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://pxom27aj2sbu" path="res://player-movement.gd" id="6_n805s"]
 [ext_resource type="Texture2D" uid="uid://bebwn3i4x0pi2" path="res://sprites/f-icon.png" id="7_67b56"]
 [ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="9_kt7pr"]
+[ext_resource type="PackedScene" uid="uid://4xnu70r485m6" path="res://assets/light.tscn" id="10_bmdfi"]
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="10_dtady"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_bmdfi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_er2oi"]
@@ -166,6 +167,12 @@ size = Vector3(0.403198, 1, 22.05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jbc7"]
 size = Vector3(0.090332, 1, 17.2031)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dtady"]
+height = 0.471
+
+[sub_resource type="BoxMesh" id="BoxMesh_dtady"]
+size = Vector3(0.37, 0.37, 0.37)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63sut"]
 bg_color = Color(0, 0, 0, 1)
@@ -348,11 +355,32 @@ shape = SubResource("BoxShape3D_1jbc7")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.906678, -0.0955182, 0.410868, -0.416932, -0.0550108, 0.907271, -0.0640589, -0.993906, -0.0897012, 1.13485, 1.26594, -0.105864)
-light_energy = 2.834
+light_energy = 0.87
 shadow_enabled = true
 shadow_blur = 0.48
 spot_range = 13.0
 spot_angle = 69.6
+
+[node name="light" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_bmdfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3797, 0, -5.22307)
+
+[node name="light2" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_bmdfi")]
+transform = Transform3D(-0.58691, 0, -0.809653, 0, 1, 0, 0.809653, 0, -0.58691, 12.6328, 0, -3.69344)
+
+[node name="light3" parent="SubViewportContainer/SubViewport" instance=ExtResource("10_bmdfi")]
+transform = Transform3D(-0.359068, 0, 0.933311, 0, 1, 0, -0.933311, 0, -0.359068, 12.0806, 0, 5.54631)
+
+[node name="Podest" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, 0)
+
+[node name="Podest-Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Podest"]
+material_override = SubResource("StandardMaterial3D_r74yb")
+mesh = SubResource("CylinderMesh_dtady")
+skeleton = NodePath("../..")
+
+[node name="Cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Podest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420003, 0)
+mesh = SubResource("BoxMesh_dtady")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("10_dtady")
