@@ -36,7 +36,7 @@ void vertex() {
 	VERTEX += wind_vector * (1.0 - UV.y) * (1.0 - player_position_factor * 0.7);
 
 	// A new normal correction, which aligns the normals of the mesh facing upwards no matter the original direction.
-	NORMAL = vec3(1.0, 1.0, 1.0);
+	NORMAL = vec3(0.0, 1.0, 1.0);
 }
 
 void fragment() {

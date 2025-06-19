@@ -41,7 +41,9 @@ extends Node
 @onready var weightStatus : bool = false
 @onready var insideWeight : bool = false
 
+#acceptance scene
 
+@onready var allFacingCenter : bool = false
 
 
 @onready var pressFdisplay : bool = false
