@@ -12,13 +12,15 @@ func _process(_delta: float) -> void:
 			$".".queue_free()
 			lines = [
 			StaticData.textData["coinDialogue"]["coin_dialogue_1"],
-			StaticData.textData["coinDialogue"]["coin_dialogue_2"]
+			StaticData.textData["coinDialogue"]["coin_dialogue_2"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_3"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_4"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_5"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_6"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_7"],
+			StaticData.textData["coinDialogue"]["coin_dialogue_8"],
 			]
 			textBox.start_dialogue(lines)
-			if GlobalVariables.promisesCollected == 3:
-				$"../Floor/gateBlocker".queue_free()
-			else:
-				pass
 		else:
 			pass
 	else:

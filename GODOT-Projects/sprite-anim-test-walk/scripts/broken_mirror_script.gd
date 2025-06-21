@@ -12,13 +12,16 @@ func _process(_delta: float) -> void:
 			$".".queue_free()
 			lines = [
 			StaticData.textData["brokenMirror"]["mirror_dialogue_1"],
-			StaticData.textData["brokenMirror"]["mirror_dialogue_2"]
+			StaticData.textData["brokenMirror"]["mirror_dialogue_2"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_3"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_4"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_5"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_6"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_7"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_8"],
+			StaticData.textData["brokenMirror"]["mirror_dialogue_9"],
 			]
 			textBox.start_dialogue(lines)
-			if GlobalVariables.promisesCollected == 3:
-				$"../Floor/gateBlocker".queue_free()
-			else:
-				pass
 		else:
 			pass
 	else:

@@ -59,9 +59,33 @@ func _on_gate_area_body_exited(_body: Node3D) -> void:
 
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
-	lines = [
-	StaticData.textData["bargainingDialogue_1"]["cube_dialogue_1"],
-	StaticData.textData["bargainingDialogue_1"]["death_dialogue_1"]
-	]
-	textBox.start_dialogue(lines)
-	GlobalVariables.bargainingStatus1 = true
+	if GlobalVariables.bargainingStatus1 == false:
+		lines = [
+		StaticData.textData["bargainingDialogue_1"]["death_dialogue_1"],
+		StaticData.textData["bargainingDialogue_1"]["cube_dialogue_1"],
+		StaticData.textData["bargainingDialogue_1"]["death_dialogue_2"],
+		StaticData.textData["bargainingDialogue_1"]["cube_dialogue_2"],
+		StaticData.textData["bargainingDialogue_1"]["death_dialogue_3"],
+		StaticData.textData["bargainingDialogue_1"]["cube_dialogue_3"],
+		StaticData.textData["bargainingDialogue_1"]["cube_dialogue_4"],
+		StaticData.textData["bargainingDialogue_1"]["death_dialogue_4"],
+		StaticData.textData["bargainingDialogue_1"]["cube_dialogue_5"],
+		StaticData.textData["bargainingDialogue_1"]["death_dialogue_5"],
+		]
+		textBox.start_dialogue(lines)
+		GlobalVariables.bargainingStatus1 = true
+	elif  GlobalVariables.bargainingStatus1 == true && GlobalVariables.promisesCollected <= 2:
+		lines = [
+			StaticData.textData["bargainingBetweenDialogue"]["death_dialogue_1"],
+		]
+		textBox.start_dialogue(lines)
+	elif GlobalVariables.bargainingStatus1 == true && GlobalVariables.promisesCollected == 3:
+		lines = [
+		StaticData.textData["bargainingDialogue_2"]["death_dialogue_1"],
+		StaticData.textData["bargainingDialogue_2"]["cube_dialogue_1"],
+		StaticData.textData["bargainingDialogue_2"]["death_dialogue_2"],
+		StaticData.textData["bargainingDialogue_2"]["cube_dialogue_2"],
+		StaticData.textData["bargainingDialogue_2"]["death_dialogue_3"],
+		]
+		textBox.start_dialogue(lines)
+		$SubViewportContainer/SubViewport/Floor/gateBlocker.queue_free()

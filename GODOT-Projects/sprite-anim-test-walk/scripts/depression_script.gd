@@ -61,9 +61,10 @@ func _on_area_4_body_entered(_body: Node3D) -> void:
 
 
 func _on_gate_area_body_entered(_body: Node3D) -> void:
-	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = outline_material
-	GlobalVariables.insideGate = true
-	GlobalVariables.pressFdisplay = true
+	if GlobalVariables.depressionStatus1 == true && GlobalVariables.depressionStatus2 == true:
+		$SubViewportContainer/SubViewport/GateToRealm.material_overlay = outline_material
+		GlobalVariables.insideGate = true
+		GlobalVariables.pressFdisplay = true
 
 
 func _on_gate_area_body_exited(_body: Node3D) -> void:
@@ -72,19 +73,42 @@ func _on_gate_area_body_exited(_body: Node3D) -> void:
 	GlobalVariables.insideGate = false
 
 func _on_dialogue_activator_1_body_entered(_body: Node3D) -> void:
-	lines = [
-	StaticData.textData["depressionDialogue_1"]["death_dialogue_1"],
-	StaticData.textData["depressionDialogue_1"]["cube_dialogue_1"]
-	]
-	textBox.start_dialogue(lines)
-	$SubViewportContainer/SubViewport/dialogue_activator_1.queue_free()
+	if GlobalVariables.depressionStatus1 == false:
+		lines = [
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_1"],
+		StaticData.textData["depressionDialogue_1"]["cube_dialogue_1"],
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_2"],
+		StaticData.textData["depressionDialogue_1"]["cube_dialogue_2"],
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_3"],
+		StaticData.textData["depressionDialogue_1"]["cube_dialogue_3"],
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_4"],
+		StaticData.textData["depressionDialogue_1"]["cube_dialogue_4"],
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_5"],
+		StaticData.textData["depressionDialogue_1"]["cube_dialogue_5"],
+		StaticData.textData["depressionDialogue_1"]["death_dialogue_6"],
+		]
+		textBox.start_dialogue(lines)
+		GlobalVariables.depressionStatus1 = true
+	else:
+		lines = [
+			StaticData.textData["depressionBetweenDialogue"]["death_dialogue_1"]
+		]
+		textBox.start_dialogue(lines)
 
 func _on_dialogue_activator_2_body_entered(_body: Node3D) -> void:
 	lines = [
 	StaticData.textData["depressionDialogue_2"]["death_dialogue_1"],
-	StaticData.textData["depressionDialogue_2"]["death_dialogue_2"]
+	StaticData.textData["depressionDialogue_2"]["cube_dialogue_1"],
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_2"],
+	StaticData.textData["depressionDialogue_2"]["cube_dialogue_2"],
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_3"],
+	StaticData.textData["depressionDialogue_2"]["cube_dialogue_3"],
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_4"],
+	StaticData.textData["depressionDialogue_2"]["cube_dialogue_4"],
+	StaticData.textData["depressionDialogue_2"]["death_dialogue_5"],
 	]
 	textBox.start_dialogue(lines)
 	$SubViewportContainer/SubViewport/Weight.queue_free()
 	$SubViewportContainer/SubViewport/dialogue_activator_2.queue_free()
+	GlobalVariables.depressionStatus2 = true
 	GlobalVariables.Speed = 2.5

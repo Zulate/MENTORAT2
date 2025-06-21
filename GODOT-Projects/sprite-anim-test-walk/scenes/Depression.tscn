@@ -124,43 +124,43 @@ specular_mode = 1
 albedo_color = Color(0.75, 0.75, 0.75, 1)
 metallic_specular = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iijyl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bacm7"]
 atlas = ExtResource("7_6ivb5")
-region = Rect2(0, 0, 31, 18)
+region = Rect2(0, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7fh2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry38h"]
 atlas = ExtResource("7_6ivb5")
-region = Rect2(31, 0, 31, 18)
+region = Rect2(32, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_27idm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_738ql"]
 atlas = ExtResource("7_6ivb5")
-region = Rect2(62, 0, 31, 18)
+region = Rect2(64, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbavh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_trmgc"]
 atlas = ExtResource("7_6ivb5")
-region = Rect2(93, 0, 31, 18)
+region = Rect2(96, 0, 32, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74a3a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta7ey"]
 atlas = ExtResource("7_6ivb5")
-region = Rect2(124, 0, 31, 18)
+region = Rect2(128, 0, 32, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_55scn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iijyl")
+"texture": SubResource("AtlasTexture_bacm7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n7fh2")
+"texture": SubResource("AtlasTexture_ry38h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_27idm")
+"texture": SubResource("AtlasTexture_738ql")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sbavh")
+"texture": SubResource("AtlasTexture_trmgc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_74a3a")
+"texture": SubResource("AtlasTexture_ta7ey")
 }],
 "loop": true,
 "name": &"default",
@@ -182,7 +182,7 @@ height = 1.0
 size = Vector3(0.673828, 0.48, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_66wpw"]
-size = Vector3(1.89978, 0.47998, 1.12601)
+size = Vector3(0.953514, 0.47998, 1.12601)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_trmgc"]
 size = Vector3(1, 0.390625, 1)
@@ -698,7 +698,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1433, 0, 4.10823)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62483, 0, -0.391106)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/dialogue_activator_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.937805, 0.320224, 0.0630035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.652057, 0.320224, 0.0630035)
 shape = SubResource("BoxShape3D_66wpw")
 debug_color = Color(0, 1, 0.283333, 1)
 

@@ -5,6 +5,7 @@ extends Node3D
 @onready var outline_material = load("res://materials/outline_material.tres")
 @onready var SceneTransitionAnimation = $SubViewportContainer/SubViewport/scene_transition_animation/AnimationPlayer
 @onready var textBox = $CanvasLayer
+@onready var lines : Array
 
 func _ready() -> void:
 	GlobalVariables.insideGate = false
@@ -50,3 +51,14 @@ func _on_gate_area_body_exited(_body: Node3D) -> void:
 	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = null
 	GlobalVariables.insideGate = false
 	GlobalVariables.pressFdisplay = false
+
+
+func _on_dialogue_activator_1_body_entered(_body: Node3D) -> void:
+	if GlobalVariables.allFacingCenter == false:
+		pass
+	elif GlobalVariables.allFacingCenter == true:
+		lines = [
+			StaticData.textData["acceptance_dialogue_1"]["death_dialogue_1"],
+		]
+		textBox.start_dialogue(lines)
+		$SubViewportContainer/SubViewport/Floor/gateBlocker.queue_free()

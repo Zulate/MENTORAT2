@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://c6rs024dphgyi"]
+[gd_scene load_steps=51 format=3 uid="uid://c6rs024dphgyi"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_bmdfi"]
 [ext_resource type="Script" uid="uid://dghwb7572hhu5" path="res://scripts/acceptance_script.gd" id="1_r74yb"]
@@ -47,6 +47,9 @@ size = Vector3(2, 0.02, 2.02)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ma50o"]
 size = Vector3(1.985, 0.201, 2.131)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63sut"]
+size = Vector3(0.855042, 0.630005, 1.35641)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6p5ol"]
 size = Vector3(0.387207, 0.359436, 0.395996)
@@ -165,6 +168,9 @@ size = Vector3(25.724, 1, 0.376)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cq8k"]
 size = Vector3(0.403198, 1, 22.05)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_er2oi"]
+size = Vector3(0.332001, 1, 22.05)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jbc7"]
 size = Vector3(0.090332, 1, 17.2031)
 
@@ -233,8 +239,16 @@ far = 60.0
 
 [node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_jy83o")]
 
+[node name="dialogue_activator_1" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2282, 0, 2.48629)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/dialogue_activator_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552704, 0.369337, -0.283646)
+shape = SubResource("BoxShape3D_63sut")
+debug_color = Color(0, 1, 0.183333, 1)
+
 [node name="Spirit-Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_5r6g4")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 7.98565, -4.76837e-07, 6.62415)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 13.7037, -4.76837e-07, 2.17175)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.884928, 0.138933, -0.444521, -0.409285, 0.223454, 0.884621, 0.222232, 0.964763, -0.140878, 0, 1.20129, 0)
@@ -326,6 +340,11 @@ debug_fill = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1824, 0.541047, 0)
 shape = SubResource("BoxShape3D_6cq8k")
 debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="gateBlocker" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.272, 0.541047, 0)
+shape = SubResource("BoxShape3D_er2oi")
+debug_color = Color(0.98353, 0, 0.279465, 1)
 
 [node name="area-1" type="Area3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66038, 0.5498, 0)
@@ -462,6 +481,7 @@ label_settings = SubResource("LabelSettings_5r6g4")
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/dialogue_activator_1" to="." method="_on_dialogue_activator_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-3" to="." method="_on_area_3_body_entered"]

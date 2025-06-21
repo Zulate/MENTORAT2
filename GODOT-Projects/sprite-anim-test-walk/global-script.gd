@@ -40,6 +40,12 @@ extends Node
 
 @onready var weightStatus : bool = false
 @onready var insideWeight : bool = false
+@onready var depressionStatus1 : bool = false
+@onready var depressionStatus2 : bool = false
+
+#reflection scene
+
+@onready var reflectionStatus1 : bool = false
 
 #acceptance scene
 

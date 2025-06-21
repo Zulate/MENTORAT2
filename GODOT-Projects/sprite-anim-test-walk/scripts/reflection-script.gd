@@ -10,6 +10,11 @@ extends Node3D
 func _ready() -> void:
 	GlobalVariables.insideGate = false
 	SceneTransitionAnimation.play("fade-out")
+	lines = [
+	StaticData.textData["reflection_start_dialogue"]["cube_dialogue_1"]
+	]
+	await get_tree().create_timer(2.0).timeout
+	textBox.start_dialogue(lines)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("KeyF"):
@@ -48,3 +53,29 @@ func _on_gate_area_body_exited(_body: Node3D) -> void:
 	$SubViewportContainer/SubViewport/GateToRealm.material_overlay = null
 	GlobalVariables.insideGate = false
 	GlobalVariables.pressFdisplay = false
+
+
+func _on_dialogue_activator_1_body_entered(_body: Node3D) -> void:
+	if GlobalVariables.reflectionStatus1 == false:
+		lines = [
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_1"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_2"],
+		StaticData.textData["reflectionDialogue_1"]["death_dialogue_1"],
+		StaticData.textData["reflectionDialogue_1"]["death_dialogue_2"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_3"],
+		StaticData.textData["reflectionDialogue_1"]["death_dialogue_3"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_4"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_5"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_6"],
+		StaticData.textData["reflectionDialogue_1"]["death_dialogue_4"],
+		StaticData.textData["reflectionDialogue_1"]["cube_dialogue_7"],
+		StaticData.textData["reflectionDialogue_1"]["death_dialogue_5"],
+		]
+		textBox.start_dialogue(lines)
+		GlobalVariables.reflectionStatus1 = true
+		$SubViewportContainer/SubViewport/Floor/gateBlocker.queue_free()
+	elif GlobalVariables.reflectionStatus1 == true:
+		lines = [
+			StaticData.textData["reflectionBetweenDialogue"]["death_dialogue_1"]
+		]
+		textBox.start_dialogue(lines)
