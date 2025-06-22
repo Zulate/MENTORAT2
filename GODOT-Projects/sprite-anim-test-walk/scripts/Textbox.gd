@@ -51,22 +51,35 @@ func _process(_delta):
 			print("fragment 1 collected")
 			GlobalVariables.fragmentsCollected += 1
 			print(GlobalVariables.fragmentsCollected)
-			lines = [
-				StaticData.textData["fragmentDialogue"]["fragment1"],
-				StaticData.textData["fragmentDialogue"]["fragment2"]
-			]
-			start_dialogue(lines)
 			$"../SubViewportContainer/SubViewport/Memory-fragment".queue_free()
+			if GlobalVariables.fragmentsCollected == 1:
+				lines = [
+					StaticData.textData["fragmentDialogue"]["fragment1"],
+					StaticData.textData["fragmentDialogue"]["fragment2"]
+				]
+				start_dialogue(lines)
 		elif  GlobalVariables.insideFragment2 == true:
 			$"../SubViewportContainer/SubViewport/Memory-fragment2".queue_free()
 			print("fragment 2 collected")
 			GlobalVariables.fragmentsCollected += 1
 			print(GlobalVariables.fragmentsCollected)
+			if GlobalVariables.fragmentsCollected == 1:
+				lines = [
+					StaticData.textData["fragmentDialogue"]["fragment1"],
+					StaticData.textData["fragmentDialogue"]["fragment2"]
+				]
+				start_dialogue(lines)
 		elif GlobalVariables.insideFragment3 == true:
 			$"../SubViewportContainer/SubViewport/Memory-fragment3".queue_free()
 			print("fragment 3 collected")
 			GlobalVariables.fragmentsCollected += 1
 			print(GlobalVariables.fragmentsCollected)
+			if GlobalVariables.fragmentsCollected == 1:
+				lines = [
+					StaticData.textData["fragmentDialogue"]["fragment1"],
+					StaticData.textData["fragmentDialogue"]["fragment2"]
+				]
+				start_dialogue(lines)
 		else:
 			pass
 	else:

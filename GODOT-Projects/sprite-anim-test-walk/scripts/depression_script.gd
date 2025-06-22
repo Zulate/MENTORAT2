@@ -57,11 +57,10 @@ func _on_area_3_body_entered(_body: Node3D) -> void:
 func _on_area_4_body_entered(_body: Node3D) -> void:
 	camera_next_position = Vector3(30, 4, 12)
 	GlobalVariables.camera_transition(camera, "position", camera_next_position, 1)
-	$"SubViewportContainer/SubViewport/Spirit-Character".position = $SubViewportContainer/SubViewport/Marker3D.position
 
 
 func _on_gate_area_body_entered(_body: Node3D) -> void:
-	if GlobalVariables.depressionStatus1 == true && GlobalVariables.depressionStatus2 == true:
+	if GlobalVariables.depressionStatus2 == true:
 		$SubViewportContainer/SubViewport/GateToRealm.material_overlay = outline_material
 		GlobalVariables.insideGate = true
 		GlobalVariables.pressFdisplay = true
@@ -96,6 +95,9 @@ func _on_dialogue_activator_1_body_entered(_body: Node3D) -> void:
 		textBox.start_dialogue(lines)
 
 func _on_dialogue_activator_2_body_entered(_body: Node3D) -> void:
+	$"SubViewportContainer/SubViewport/Spirit-Character".name = "Spirit-Character3"
+	$"SubViewportContainer/SubViewport/Spirit-Character2".name = "Spirit-Character"
+	$SubViewportContainer/SubViewport/Floor/gateBlocker2.position = Vector3(30.442, 0.541, 0.0)
 	lines = [
 	StaticData.textData["depressionDialogue_2"]["death_dialogue_1"],
 	StaticData.textData["depressionDialogue_2"]["cube_dialogue_1"],

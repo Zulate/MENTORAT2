@@ -1,0 +1,453 @@
+[gd_scene load_steps=28 format=3 uid="uid://cxx1igu2f2yiu"]
+
+[ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_5kw6o"]
+[ext_resource type="Script" uid="uid://c3rsbhse8mefj" path="res://scripts/end_transition_animation_script.gd" id="1_dxynh"]
+[ext_resource type="Texture2D" uid="uid://d0xt7fytjsuoq" path="res://sprites/end-level-palette-1x.png" id="2_5kw6o"]
+[ext_resource type="PackedScene" uid="uid://fbc2xb6crcix" path="res://scenes/scene_transition_animation.tscn" id="4_746t6"]
+[ext_resource type="Texture2D" uid="uid://dyseviy52i6ua" path="res://sprites/talking.png" id="5_rq8lq"]
+[ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="6_6ki86"]
+[ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="7_yrx46"]
+[ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="8_qtcfx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kw6o"]
+shader = ExtResource("1_5kw6o")
+shader_parameter/num_colors = 10
+shader_parameter/PALETTE_TEXTURE = ExtResource("2_5kw6o")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dxynh"]
+size = Vector3(0.37, 0.37, 0.37)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_746t6"]
+specular_mode = 1
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+metallic_specular = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kw6o"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5kw6o"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxynh"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_746t6"]
+size = Vector3(0.05, 0.05, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv8o5"]
+atlas = ExtResource("5_rq8lq")
+region = Rect2(0, 0, 32, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cvy1"]
+atlas = ExtResource("5_rq8lq")
+region = Rect2(32, 0, 32, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5p7l"]
+atlas = ExtResource("5_rq8lq")
+region = Rect2(64, 0, 32, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kp70"]
+atlas = ExtResource("5_rq8lq")
+region = Rect2(96, 0, 32, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbhua"]
+atlas = ExtResource("5_rq8lq")
+region = Rect2(128, 0, 32, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3kqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv8o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cvy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5p7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kp70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbhua")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_5kw6o"]
+resource_name = "the_end"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/cube:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.733333, 1.26667, 1.66667, 1.93333, 2.16667, 2.33333, 2.48, 2.57, 2.63, 2.69, 2.76, 2.82, 2.88, 2.93, 2.96667, 3.02667, 3.08667, 3.15667, 3.21667, 3.27667, 3.32667, 3.36734, 3.42734, 3.48734, 3.55734, 3.61734, 3.67734, 3.72734, 3.76401, 3.82401, 3.88401, 3.95401, 4.01401, 4.07401, 4.12401, 4.17247, 4.23247, 4.29247, 4.36247, 4.42247, 4.48247, 4.53247, 4.56913, 4.62914, 4.68914, 4.75914, 4.81913, 4.87914, 4.92914, 4.96981, 5.02981, 5.08981, 5.15981, 5.21981, 5.27981, 5.32981, 5.36647, 5.42647, 5.48647, 5.55647, 5.61647, 5.67647, 5.72647, 5.79341, 5.85341, 5.90341, 5.94008, 6.00008, 6.06008, 6.13008, 6.19008, 6.25008, 6.30008, 8.41086, 8.41099),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.0138851, 0), Vector3(0, -0.0138851, 0), Vector3(0.137981, 0.0953837, 0), Vector3(-0.0611329, 0.0862716, 0), Vector3(0.0069516, -0.00182625, 0), Vector3(-0.121689, 0.0388183, 0), Vector3(0.0118585, 0.12667, 0), Vector3(-0.0785439, 0.0678063, 0), Vector3(-0.0573744, 0.20377, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(0.00287628, 0.0205472, 0), Vector3(-0.141496, 0.0162584, 0), Vector3(-0.022262, 0.124329, 0), Vector3(-0.209272, -0.021073, 0), Vector3(-0.0794216, -0.094988, 0), Vector3(-0.116326, 0.0585616, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(-0.0195718, 0.0651931, 0), Vector3(-0.02, 29.285, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/ColorRect:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.3, 6.23333, 7.39972, 7.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:radial_accel_max")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.92553, 6.3, 6.3091, 7.96667, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.85, 2.85, 0.0, 0.0, 2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:radial_accel_min")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.93333, 6.3, 7.96667, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.85, 0.0, 0.0, 2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:explosiveness")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:emitting")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(9.6, 9.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:lifetime")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_dxynh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.0138851, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:radial_accel_max")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.85]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:radial_accel_min")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:explosiveness")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:one_shot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SubViewportContainer/SubViewport/CPUParticles3D:lifetime")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dxynh"]
+_data = {
+&"RESET": SubResource("Animation_dxynh"),
+&"the_end": SubResource("Animation_5kw6o")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0ach"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghl3n"]
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v80u0"]
+font = ExtResource("8_qtcfx")
+font_size = 28
+
+[node name="end_transition_animation" type="Node3D"]
+script = ExtResource("1_dxynh")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_5kw6o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="end-camera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4, 12)
+projection = 1
+fov = 50.0
+size = 2.5
+far = 60.0
+
+[node name="cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.453991, 0, 0.891007, 0, 1, 0, -0.891007, 0, 0.453991, 0, -0.0138851, 0)
+mesh = SubResource("BoxMesh_dxynh")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_746t6")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.725167, -0.351802, 0.591919, -0.610689, 0.0685402, 0.788899, -0.318106, -0.933562, -0.165138, 0.949702, 1.36083, -0.105864)
+light_energy = 2.53
+shadow_enabled = true
+shadow_blur = 0.48
+spot_range = 13.0
+spot_attenuation = 0.89
+spot_angle = 62.95
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -6.86102)
+material_override = SubResource("StandardMaterial3D_5kw6o")
+mesh = SubResource("PlaneMesh_5kw6o")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="SubViewportContainer/SubViewport"]
+material_override = SubResource("StandardMaterial3D_dxynh")
+emitting = false
+amount = 50
+lifetime = 2.0
+randomness = 0.45
+mesh = SubResource("BoxMesh_746t6")
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 45.22
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.1
+radial_accel_max = 2.85
+damping_max = 2.083
+angle_min = 375.0
+angle_max = 495.0
+
+[node name="scene_transition_animation" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_746t6")]
+
+[node name="talking_indicator" type="AnimatedSprite3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.5353, 1.28151, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_p3kqr")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dxynh")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_6ki86")
+
+[node name="DialogueBox" type="MarginContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -163.0
+offset_right = -27.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_yrx46")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j0ach")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialogueBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueBox/MarginContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ghl3n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Start" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+label_settings = SubResource("LabelSettings_v80u0")
+
+[node name="Label" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah Placeholder Text ahahahahah ahahahahah"
+label_settings = SubResource("LabelSettings_v80u0")
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="CanvasLayer/DialogueBox/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "v"
+label_settings = SubResource("LabelSettings_v80u0")

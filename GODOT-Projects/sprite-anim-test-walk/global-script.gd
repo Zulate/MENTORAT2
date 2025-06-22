@@ -50,7 +50,7 @@ extends Node
 #acceptance scene
 
 @onready var allFacingCenter : bool = false
-
+@onready var acceptanceStatus1 : bool = false
 
 @onready var pressFdisplay : bool = false
 

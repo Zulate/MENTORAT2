@@ -1,11 +1,11 @@
 {
 	"start_dialogue" : {
-		"start_dialogue_1" : "...",
-		"start_dialogue_2" : "What... What the...",
-		"start_dialogue_3" : "This looks like... that field behind my apartment...",
-		"start_dialogue_4" : "How did I land here? It seems quite comfortable here.",
-		"start_dialogue_5" : "Maybe I should look around to find out more...",
-		"start_dialogue_6" : "/A voice in your head tells you to move with WASD/",
+		"start_dialogue_1" : "Me: ...",
+		"start_dialogue_2" : "Me: What... What the...",
+		"start_dialogue_3" : "Me: This looks like... that field behind my apartment...",
+		"start_dialogue_4" : "Me: How did I land here? It seems quite comfortable here.",
+		"start_dialogue_5" : "Me: Maybe I should look around to find out more...",
+		"start_dialogue_6" : "Me: /A voice in your head tells you to move with WASD/",
 	},
 	"denialDialogue_1" : {
 		"cube_dialogue_1" : "Me: ...",
@@ -40,7 +40,7 @@
 		"death_dialogue_8" : "Death: For now just proceed through the field to the right and you will find the Gateway to the next Realm.",
 	},
 	"anger_start_dialogue" : {
-		"start_dialogue_1" : "It's dark here...",
+		"start_dialogue_1" : "Me: It's dark here...",
 	},
 	"angerDialogue_1" : {
 		"cube_dialogue_1" : "Me: Hey, there you are!",
@@ -58,7 +58,7 @@
 	"angerDialogue_2" : {
 		"cube_dialogue_1" : "Me: ...",
 		"death_dialogue_1" : "Death: So? Are you ready to move on now?",
-		"cube_dialogue_2" : "/You look into the Darkness around you, lost in thought/",
+		"cube_dialogue_2" : "Me: /You look into the Darkness around you, lost in thought/",
 		"death_dialogue_2" : "Death: You are ready to move on now. Destroy your Anger.",
 		"cube_dialogue_3" : "Me: ...",
 		"cube_dialogue_4" : "Me: Thank you."
@@ -68,10 +68,10 @@
 		"death_dialogue_2" : "Death: Proceed to the right and you will find the Gateway to the next Realm.",
 	},
 	"angerBetweenDialogue" : {
-		"death_dialogue_1" : "You heard me, go on now.",
+		"death_dialogue_1" : "Death: You heard me, go on now.",
 	},
 	"bargaining_start_dialogue" : {
-		"start_dialogue_1" : "I don't like this place...",
+		"start_dialogue_1" : "Me: I don't like this place...",
 	},
 	"bargainingBetweenDialogue" : {
 		"death_dialogue_1" : "Death: It's not easy, but try. I will wait here until you are done.",
@@ -126,7 +126,7 @@
 		"death_dialogue_3" : "Death: You got it...",
 	},
 	"depression_start_dialogue" : {
-		"start_dialogue_1" : "I... feel sad.",
+		"start_dialogue_1" : "Me: I... feel sad.",
 	},
 	"depressionDialogue_1" : {
 		"death_dialogue_1": "Death: You've arrived.",
@@ -173,9 +173,49 @@
 		"death_dialogue_5": "Death: Then move forward. The next gate is open, proceed when you're ready.",
 	},
 	"reflectionBetweenDialogue": {
-		"death_dialogue_1" : "Death: Ohio Rizzler Gyatt.",
+		"death_dialogue_1" : "Death: ...",
+	},
+	"acceptance_start_dialogue" : {
+		"start_dialogue_1": "Me: It feels... different here.",
+		"start_dialogue_2": "Me: Quiet. Still. Like the world is holding its breath.",
+		"start_dialogue_3" : "Me: No weight on my back... Just... Me."
 	},
 	"acceptance_dialogue_1" : {
-		"death_dialogue_1" : "Death: sMr. Worldwide mhmmm OHEEEEEEEEE",
+		"death_dialogue_1" : "Death: Welcome.",
+		"cube_dialogue_1" : "Me: Hey... So what's next?",
+		"death_dialogue_2" : "Death: This will be your final task. What you see here in the middle... well it's you.",
+		"death_dialogue_3" : "Death: Align these lights to shine on the statue and accept yourself.",
+		"death_dialogue_4" : "Death: Accept the things you did, the memories you created and what you left behind. I will wait here.",
+	},
+	"acceptance_dialogue_2": {
+		"death_dialogue_1": "Death: You've come a long way, Cube.",
+		"cube_dialogue_1": "Me: I don't feel lost anymore. Just... here.",
+		"death_dialogue_2": "Death: That's called being present. Not many get that far.",
+		"cube_dialogue_2": "Me: It's not like the pain is gone. It's still there. But... I'm not fighting it.",
+		"death_dialogue_3": "Death: You don't have to fight what shaped you. You just have to see it for what it is.",
+		"cube_dialogue_3": "Me: So this is it? The end?",
+		"death_dialogue_4": "Death: Maybe. Or maybe just the start of something new. That part isn't up to me.",
+		"cube_dialogue_4": "Me: I think... I'm ready. Whatever comes next.",
+		"death_dialogue_5" : "Death: Then go on, through the last gate and complete your journey. I won't be there, but the path will be clear.",
+		"cube_dialogue_5" : "Me: Will we meet again?",
+		"death_dialogue_6" : "Death: I will always be there.",
+		"cube_dialogue_6" : "Me: Thank you.",
+	},
+	"transition_start_dialogue" : {
+		"start_dialogue_1" : "Me: I feel... peace.",
+	},
+	"transition_dialogue_1" : {
+		"cube_dialogue_1" : "Me: So this is really it... It ends here...",
+		"cube_dialogue_2" : "Me: It's just... so funny. That thing, in the beginning it was scary and mean...",
+		"cube_dialogue_3" : "Me: But as I proceeded, it felt almost like... a friend.",
+		"cube_dialogue_4" : "Me: It seems I have to make a choice, but I doubt that one of them will lead to me being alive again...",
+		"cube_dialogue_5" : "Me: But I think I can accept that now, I have lived my life. I will go on.",
+	},
+	"end_transition" : {
+		"cube_dialogue_1" : "Thank you for playing :)",
+		"cube_dialogue_2" : "This Game was made By Marco Stalder",
+		"cube_dialogue_3" : "Peace out.",
+		"cube_dialogue_4" : "Goodbye.",
+		"cube_dialogue_5" : "Almost forgot, shoutout to Ohio Solutions. <3",
 	}
 }

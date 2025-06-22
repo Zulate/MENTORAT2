@@ -323,14 +323,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_db25o")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25005, 0, 0.422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32935, 0, 0.422)
 shape = SubResource("BoxShape3D_db25o")
 
 [node name="area-3" type="Area3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4055, 0.55, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16416, 0, 0.421875)
 shape = SubResource("BoxShape3D_db25o")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/area-3"]
