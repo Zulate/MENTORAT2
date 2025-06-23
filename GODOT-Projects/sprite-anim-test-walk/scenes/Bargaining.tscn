@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://clygksee8mxva"]
+[gd_scene load_steps=58 format=3 uid="uid://clygksee8mxva"]
 
 [ext_resource type="Script" uid="uid://ctpmpokbqupi6" path="res://scripts/bargaining_script.gd" id="1_44wjt"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_jx48u"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://uhau63iqpoc" path="res://assets/coin-single.tscn" id="17_dxdep"]
 [ext_resource type="PackedScene" uid="uid://gpwnps134y4i" path="res://assets/slot-machine.tscn" id="18_b4c28"]
 [ext_resource type="PackedScene" uid="uid://makiwregu1cj" path="res://assets/love-letter.tscn" id="18_rlqws"]
+[ext_resource type="AudioStream" uid="uid://c5jb2kjxpdo4u" path="res://sound/bargaining_ambient.mp3" id="22_5vsvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov50e"]
 shader = ExtResource("1_jx48u")
@@ -214,6 +215,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -311,6 +313,9 @@ debug_color = Color(0.98353, 0, 0.279465, 1)
 [node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
 script = ExtResource("4_sb4qu")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
 transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
@@ -579,6 +584,16 @@ label_settings = SubResource("LabelSettings_ht3j6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dxdep")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3324, 0.673047, 6.21401)
+stream = ExtResource("22_5vsvv")
+volume_db = -28.571
+unit_size = 457.38
+autoplay = true
+max_distance = 18.05
+panning_strength = 0.12
+parameters/looping = true
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]

@@ -6,7 +6,7 @@ extends Node3D
 @onready var rotationFinished : bool = true
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("KeyF") && insideLight == true && rotationFinished == true && GlobalVariables.allFacingCenter == false:
+	if Input.is_action_just_pressed("KeyF") && insideLight == true && rotationFinished == true && GlobalVariables.allFacingCenter == false && GlobalVariables.acceptanceStatus1 == true:
 		rotationFinished = false
 		fin_val += Vector3(0, 45, 0)
 		rotate_light()
@@ -25,14 +25,16 @@ func rotate_light() -> void:
 	tween_light.tween_property($".", "rotation_degrees", fin_val, 1.0)
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
-	$Lampe.material_overlay = outline_material
-	insideLight = true
-	GlobalVariables.pressFdisplay = true
+	if GlobalVariables.acceptanceStatus1 == true:
+		$Lampe.material_overlay = outline_material
+		insideLight = true
+		GlobalVariables.pressFdisplay = true
 
 func _on_area_3d_body_exited(_body: Node3D) -> void:
-	$Lampe.material_overlay = null
-	insideLight = false
-	GlobalVariables.pressFdisplay = false
+	if GlobalVariables.acceptanceStatus1 == true:
+		$Lampe.material_overlay = null
+		insideLight = false
+		GlobalVariables.pressFdisplay = false
 
 func is_facing_center_3d(obj: Node3D, pos: Node3D, tolerance_deg := 15.0) -> bool:
 	var to_center = (pos.global_position - obj.global_position).normalized()

@@ -18,3 +18,15 @@ func _ready() -> void:
 		StaticData.textData["end_transition"]["cube_dialogue_5"],
 	]
 	textBox.start_dialogue(lines)
+	await get_tree().create_timer(2.0).timeout
+	tween_transition($SubViewportContainer/SubViewport/Sprite3D, "modulate", Color(1, 1, 1), 4.0)
+	await get_tree().create_timer(3.0).timeout
+	tween_transition($SubViewportContainer/SubViewport/Sprite3D2, "modulate", Color(0.5, 0.5, 0.5), 4.0)
+	await get_tree().create_timer(5.0).timeout
+	tween_transition($SubViewportContainer/SubViewport/Sprite3D3, "modulate", Color(1, 1, 1), 4.0)
+	
+
+
+func tween_transition(node, property, fin_val, duration):
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(node, property, fin_val, duration)

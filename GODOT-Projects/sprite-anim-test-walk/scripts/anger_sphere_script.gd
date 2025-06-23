@@ -14,6 +14,7 @@ func _physics_process(_delta: float) -> void:
 			activate_anger_sphere()
 			GlobalVariables.pressFdisplay = false
 			$Area3D.queue_free()
+			$"../../../AudioStreamPlayer3D".volume_db = -50
 			GlobalVariables.insideAngerSphere = false
 			GlobalVariables.angerDialogue2Status = true
 			GlobalVariables.angerBetweenStatus = false

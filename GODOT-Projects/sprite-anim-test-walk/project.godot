@@ -18,6 +18,10 @@ boot_splash/image="uid://464f75247sym"
 config/icon="uid://chfjtkp3vn3l3"
 boot_splash/minimum_display_time=2000
 
+[audio]
+
+buses/default_bus_layout="res://sound/default_bus_layout.tres"
+
 [autoload]
 
 StaticData="*res://scripts/staticdata.gd"
@@ -25,7 +29,7 @@ GlobalVariables="*res://global-script.gd"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [global_group]

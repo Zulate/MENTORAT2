@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bs4yh2txvnj2a"]
+[gd_scene load_steps=45 format=3 uid="uid://bs4yh2txvnj2a"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_7wceo"]
 [ext_resource type="Script" uid="uid://dscx321cdy0ck" path="res://scripts/transition_script.gd" id="1_wcsk8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://dx4j3ktvusun8" path="res://shaders/noise-anim.gdshader" id="8_wcsk8"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="9_utihn"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="10_k0wu1"]
+[ext_resource type="AudioStream" uid="uid://cnw5dmrmggish" path="res://sound/transition_start.mp3" id="12_4mdvh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xs8gl"]
 shader = ExtResource("1_7wceo")
@@ -314,7 +315,7 @@ spot_range = 13.0
 spot_angle = 63.97
 
 [node name="dialogue_activator_1" type="Area3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.67207, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12552, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/dialogue_activator_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72133, 0.388805, 0.43058)
@@ -417,6 +418,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_vbh1q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_4mdvh")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=50 format=3 uid="uid://cmimrj2sfdima"]
 
 [ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_y2dum"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_trhcv"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ctqo7i43xxbbd" path="res://scenes/Pillar-pieces-edited.tscn" id="12_trhcv"]
 [ext_resource type="PackedScene" uid="uid://bxmgyutfsu5pa" path="res://scenes/sphere-pieces.tscn" id="14_gl7ig"]
 [ext_resource type="Shader" uid="uid://dx4j3ktvusun8" path="res://shaders/noise-anim.gdshader" id="17_14f3b"]
+[ext_resource type="AudioStream" uid="uid://cmrkwfwygtbb2" path="res://sound/anger_ambient.mp3" id="18_0ojr7"]
 [ext_resource type="PackedScene" uid="uid://c65sjekvh8l60" path="res://assets/anger-sphere.tscn" id="18_livvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
@@ -193,6 +194,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -278,6 +280,9 @@ debug_color = Color(0, 0.595, 0.7, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0570268, 0)
 script = ExtResource("5_r2yyb")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+current = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
 transform = Transform3D(0.452481, 0, 0.891774, 0, 1, 0, -0.891774, 0, 0.452481, -0.0563965, 0.126718, 0.052002)
 shape = SubResource("BoxShape3D_j5oor")
@@ -345,16 +350,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436223, 0, 0.421875)
 shape = SubResource("BoxShape3D_db25o")
 
 [node name="Pillar-simple" parent="SubViewportContainer/SubViewport" instance=ExtResource("11_y2dum")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -3.08848, 0.0467166, -2.23872)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -3.08848, -0.0049914, -2.23872)
 
 [node name="Pillar-simple2" parent="SubViewportContainer/SubViewport" instance=ExtResource("11_y2dum")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -1.08848, 0.0467166, -2.23872)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -1.08848, -0.0049914, -2.23872)
 
 [node name="Pillar-simple3" parent="SubViewportContainer/SubViewport" instance=ExtResource("11_y2dum")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.911519, 0.0467166, -2.23872)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.911519, -0.0049914, -2.23872)
 
 [node name="Pillar-simple4" parent="SubViewportContainer/SubViewport" instance=ExtResource("11_y2dum")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.91152, 0.0467166, -2.23872)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.91152, -0.0049914, -2.23872)
 
 [node name="Pillar-pieces" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_trhcv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3312, 0.0466251, -2.83666)
@@ -459,6 +464,17 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_gl7ig")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8713, 0.673047, -2.02544)
+stream = ExtResource("18_0ojr7")
+attenuation_model = 1
+volume_db = -20.0
+unit_size = 23.9
+autoplay = true
+max_distance = 50.0
+panning_strength = 0.25
+parameters/looping = true
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/area-2" to="." method="_on_area_2_body_entered"]

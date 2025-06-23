@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c6rs024dphgyi"]
+[gd_scene load_steps=52 format=3 uid="uid://c6rs024dphgyi"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_bmdfi"]
 [ext_resource type="Script" uid="uid://dghwb7572hhu5" path="res://scripts/acceptance_script.gd" id="1_r74yb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="10_dtady"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_bmdfi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_er2oi"]
+[ext_resource type="AudioStream" uid="uid://q2j4bbckaa4p" path="res://sound/acceptance_ambient.mp3" id="14_er2oi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgq1"]
 shader = ExtResource("1_bmdfi")
@@ -213,6 +214,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -478,6 +480,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_5r6g4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_er2oi")
+volume_db = -15.377
+autoplay = true
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]

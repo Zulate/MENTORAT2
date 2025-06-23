@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dx4x0oae6gdkt"]
+[gd_scene load_steps=57 format=3 uid="uid://dx4x0oae6gdkt"]
 
 [ext_resource type="Script" uid="uid://c3k252e18cifq" path="res://scripts/depression_script.gd" id="1_ehs4g"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_trmgc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="9_vnbjs"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="10_ichhg"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="11_bacm7"]
+[ext_resource type="AudioStream" uid="uid://1or5q2sssp4g" path="res://sound/depression_ambient.mp3" id="14_ry38h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ib3xm"]
 shader = ExtResource("1_trmgc")
@@ -792,6 +793,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_trmgc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ry38h")
+volume_db = -20.7
+autoplay = true
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]

@@ -89,3 +89,4 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 		]
 		textBox.start_dialogue(lines)
 		$SubViewportContainer/SubViewport/Floor/gateBlocker.queue_free()
+		$SubViewportContainer/SubViewport/Area3D.queue_free()

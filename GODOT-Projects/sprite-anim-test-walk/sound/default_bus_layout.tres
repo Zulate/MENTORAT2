@@ -1,0 +1,10 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://01ijtmtbesmp"]
+
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_qqugr"]
+resource_name = "EQ6"
+band_db/32_hz = -60.0
+band_db/100_hz = -15.0
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectEQ6_qqugr")
+bus/0/effect/0/enabled = true
