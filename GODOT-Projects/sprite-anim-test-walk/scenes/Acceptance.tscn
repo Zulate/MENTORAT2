@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c6rs024dphgyi"]
+[gd_scene load_steps=53 format=3 uid="uid://c6rs024dphgyi"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_bmdfi"]
 [ext_resource type="Script" uid="uid://dghwb7572hhu5" path="res://scripts/acceptance_script.gd" id="1_r74yb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cg3d0qbbovt8n" path="res://scripts/Textbox.gd" id="10_dtady"]
 [ext_resource type="Theme" uid="uid://c4h4g480ssbxo" path="res://themes/panel-theme.tres" id="11_bmdfi"]
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_er2oi"]
+[ext_resource type="AudioStream" uid="uid://c53byuaf85iue" path="res://sound/speaking.mp3" id="14_63sut"]
 [ext_resource type="AudioStream" uid="uid://q2j4bbckaa4p" path="res://sound/acceptance_ambient.mp3" id="14_er2oi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgq1"]
@@ -480,6 +481,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_5r6g4")
+
+[node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("14_63sut")
+volume_db = -30.0
+bus = &"Speaking"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_er2oi")

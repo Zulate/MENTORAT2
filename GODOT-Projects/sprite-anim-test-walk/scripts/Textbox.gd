@@ -5,6 +5,9 @@ signal stop_movement
 @onready var CHAR_READ_RATE = 0.025
 @onready var talking_indicator = $"../SubViewportContainer/SubViewport/talking_indicator"
 
+@onready var letter_sound = $LetterSound
+var previous_visible_chars: int = 0
+
 enum State{
 	READY,
 	READING,
@@ -82,6 +85,17 @@ func _process(_delta):
 				start_dialogue(lines)
 		else:
 			pass
+	elif current_state == State.READING:
+		var current_visible_chars = int(label.visible_ratio * label.text.length())
+		if current_visible_chars > previous_visible_chars:
+			var new_char = label.text[previous_visible_chars]
+			# optional: keine Sounds für Leerzeichen oder Satzzeichen
+			if !new_char in [" "]:
+				if not letter_sound.playing:
+					letter_sound.play()
+					await get_tree().create_timer(0.09).timeout
+					letter_sound.stop()
+			previous_visible_chars = current_visible_chars
 	else:
 		pass
 
@@ -127,6 +141,7 @@ func show_next_line():
 		var next_text = dialogue_queue[dialogue_index]
 		label.text = next_text
 		label.visible_ratio = 0
+		previous_visible_chars = 0
 		change_state(State.READING)
 		show_textbox()
 		

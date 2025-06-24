@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://clygksee8mxva"]
+[gd_scene load_steps=59 format=3 uid="uid://clygksee8mxva"]
 
 [ext_resource type="Script" uid="uid://ctpmpokbqupi6" path="res://scripts/bargaining_script.gd" id="1_44wjt"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_jx48u"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://uhau63iqpoc" path="res://assets/coin-single.tscn" id="17_dxdep"]
 [ext_resource type="PackedScene" uid="uid://gpwnps134y4i" path="res://assets/slot-machine.tscn" id="18_b4c28"]
 [ext_resource type="PackedScene" uid="uid://makiwregu1cj" path="res://assets/love-letter.tscn" id="18_rlqws"]
+[ext_resource type="AudioStream" uid="uid://c53byuaf85iue" path="res://sound/speaking.mp3" id="22_4hfym"]
 [ext_resource type="AudioStream" uid="uid://c5jb2kjxpdo4u" path="res://sound/bargaining_ambient.mp3" id="22_5vsvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov50e"]
@@ -581,6 +582,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_ht3j6")
+
+[node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("22_4hfym")
+volume_db = -30.0
+bus = &"Speaking"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dxdep")

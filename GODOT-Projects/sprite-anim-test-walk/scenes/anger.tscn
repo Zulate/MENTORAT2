@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cmimrj2sfdima"]
+[gd_scene load_steps=51 format=3 uid="uid://cmimrj2sfdima"]
 
 [ext_resource type="Script" uid="uid://bt7v5bwv34fru" path="res://scripts/anger_script.gd" id="1_y2dum"]
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="2_trhcv"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bxmgyutfsu5pa" path="res://scenes/sphere-pieces.tscn" id="14_gl7ig"]
 [ext_resource type="Shader" uid="uid://dx4j3ktvusun8" path="res://shaders/noise-anim.gdshader" id="17_14f3b"]
 [ext_resource type="AudioStream" uid="uid://cmrkwfwygtbb2" path="res://sound/anger_ambient.mp3" id="18_0ojr7"]
+[ext_resource type="AudioStream" uid="uid://c53byuaf85iue" path="res://sound/speaking.mp3" id="18_6g2yb"]
 [ext_resource type="PackedScene" uid="uid://c65sjekvh8l60" path="res://assets/anger-sphere.tscn" id="18_livvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iuvue"]
@@ -464,6 +465,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "v"
 label_settings = SubResource("LabelSettings_gl7ig")
+
+[node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("18_6g2yb")
+volume_db = -30.0
+bus = &"Speaking"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8713, 0.673047, -2.02544)
