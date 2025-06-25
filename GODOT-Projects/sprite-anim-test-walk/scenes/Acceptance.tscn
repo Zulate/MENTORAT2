@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c6rs024dphgyi"]
+[gd_scene load_steps=54 format=3 uid="uid://c6rs024dphgyi"]
 
 [ext_resource type="Shader" uid="uid://dfv3r5ddvi64k" path="res://shaders/viewport-stilisation.gdshader" id="1_bmdfi"]
 [ext_resource type="Script" uid="uid://dghwb7572hhu5" path="res://scripts/acceptance_script.gd" id="1_r74yb"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://g1yjaor6bxfu" path="res://fonts/zig_____.ttf" id="12_er2oi"]
 [ext_resource type="AudioStream" uid="uid://c53byuaf85iue" path="res://sound/speaking.mp3" id="14_63sut"]
 [ext_resource type="AudioStream" uid="uid://q2j4bbckaa4p" path="res://sound/acceptance_ambient.mp3" id="14_er2oi"]
+[ext_resource type="AudioStream" uid="uid://ctgjnffrrxtn7" path="res://sound/level_done.wav" id="16_jy83o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgq1"]
 shader = ExtResource("1_bmdfi")
@@ -484,13 +485,16 @@ label_settings = SubResource("LabelSettings_5r6g4")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("14_63sut")
-volume_db = -30.0
+volume_db = -20.0
 bus = &"Speaking"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_er2oi")
 volume_db = -15.377
 autoplay = true
+
+[node name="successSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_jy83o")
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_entered"]
 [connection signal="body_exited" from="SubViewportContainer/SubViewport/GateToRealm/GateArea" to="." method="_on_gate_area_body_exited"]

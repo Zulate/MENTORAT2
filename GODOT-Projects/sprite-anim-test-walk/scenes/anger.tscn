@@ -468,7 +468,7 @@ label_settings = SubResource("LabelSettings_gl7ig")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("18_6g2yb")
-volume_db = -30.0
+volume_db = -20.0
 bus = &"Speaking"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

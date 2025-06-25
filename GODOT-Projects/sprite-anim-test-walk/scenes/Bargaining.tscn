@@ -429,7 +429,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.14105, -0.0423235, -1
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 3.16015, -0.0423235, -1.98428)
 
 [node name="street-lamp5" parent="SubViewportContainer/SubViewport/Street-lamps" instance=ExtResource("13_0cvyk")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.56478, -0.0423235, 2.14944)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.32909, -0.0469002, 2.14944)
 
 [node name="street-lamp6" parent="SubViewportContainer/SubViewport/Street-lamps" instance=ExtResource("13_0cvyk")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.32323, -0.0423235, 2.14944)
@@ -585,7 +585,7 @@ label_settings = SubResource("LabelSettings_ht3j6")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("22_4hfym")
-volume_db = -30.0
+volume_db = -15.0
 bus = &"Speaking"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

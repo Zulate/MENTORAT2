@@ -10,8 +10,8 @@
 	"denialDialogue_1" : {
 		"cube_dialogue_1" : "Me: ...",
 		"death_dialogue_1" : "???: ...    ?",
-		"cube_dialogue_2" : "Me: What are you?      What am I?",
-		"death_dialogue_2" : "???: You ask a lot of Questions for someone who is already dead... and a Cube :-)",
+		"cube_dialogue_2" : "Me: What are you? What am I?",
+		"death_dialogue_2" : "???: You ask a lot of Questions for someone who just died...",
 		"cube_dialogue_3" : "Me: Dead? How am I dead? I can still feel and walk... as a Cube that is",
 		"death_dialogue_3" : "???: We will get to that soon enough, for now fetch me 3 fragments of your memories and we keep talking.",
 		"death_dialogue_4" : "???: They should be laying around here somewhere, I would suggest you continue in the field behind me.",

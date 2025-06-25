@@ -15,10 +15,16 @@ func _process(_delta: float) -> void:
 		rotationFinished = true
 		GlobalVariables.allFacingCenter = all_facing_center($"../Podest")
 		if is_facing_center_3d($".", $"../Podest") == true:
+			if GlobalVariables.allFacingCenter == true:
+				$"../../../successSound".play()
+			else:
+				pass
 			$Area3D.queue_free()
 			$Lampe.material_overlay = null
 			GlobalVariables.pressFdisplay = false
 			insideLight = false
+		else:
+			pass
 
 func rotate_light() -> void:
 	var tween_light = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)

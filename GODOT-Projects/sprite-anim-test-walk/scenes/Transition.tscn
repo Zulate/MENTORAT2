@@ -422,7 +422,7 @@ label_settings = SubResource("LabelSettings_vbh1q")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("12_22kp1")
-volume_db = -25.0
+volume_db = -20.0
 bus = &"Speaking"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
