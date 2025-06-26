@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
 boot_splash/image="uid://464f75247sym"
 config/icon="uid://c56swpefl38sx"
+config/windows_native_icon="res://loadingscreen/cuby-icon.ico"
 boot_splash/minimum_display_time=2000
 
 [audio]
@@ -29,7 +30,7 @@ GlobalVariables="*res://global-script.gd"
 
 [display]
 
-window/size/mode=2
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [global_group]
