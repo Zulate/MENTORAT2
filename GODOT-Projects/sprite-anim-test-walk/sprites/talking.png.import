@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyseviy52i6ua"
 path.s3tc="res://.godot/imported/talking.png-d5a0a0e0918d1d1e787138a8a47a6a29.s3tc.ctex"
+path.etc2="res://.godot/imported/talking.png-d5a0a0e0918d1d1e787138a8a47a6a29.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/talking.png"
-dest_files=["res://.godot/imported/talking.png-d5a0a0e0918d1d1e787138a8a47a6a29.s3tc.ctex"]
+dest_files=["res://.godot/imported/talking.png-d5a0a0e0918d1d1e787138a8a47a6a29.s3tc.ctex", "res://.godot/imported/talking.png-d5a0a0e0918d1d1e787138a8a47a6a29.etc2.ctex"]
 
 [params]
 

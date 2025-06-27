@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://464f75247sym"
 path.s3tc="res://.godot/imported/ohio-solutions-final-bitmap.png-e88f278213401207ac0ec3e02118c971.s3tc.ctex"
+path.etc2="res://.godot/imported/ohio-solutions-final-bitmap.png-e88f278213401207ac0ec3e02118c971.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://loadingscreen/ohio-solutions-final-bitmap.png"
-dest_files=["res://.godot/imported/ohio-solutions-final-bitmap.png-e88f278213401207ac0ec3e02118c971.s3tc.ctex"]
+dest_files=["res://.godot/imported/ohio-solutions-final-bitmap.png-e88f278213401207ac0ec3e02118c971.s3tc.ctex", "res://.godot/imported/ohio-solutions-final-bitmap.png-e88f278213401207ac0ec3e02118c971.etc2.ctex"]
 
 [params]
 

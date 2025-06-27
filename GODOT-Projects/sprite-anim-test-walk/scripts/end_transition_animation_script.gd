@@ -16,6 +16,16 @@ func _ready() -> void:
 		StaticData.textData["end_transition"]["cube_dialogue_3"],
 		StaticData.textData["end_transition"]["cube_dialogue_4"],
 		StaticData.textData["end_transition"]["cube_dialogue_5"],
+		StaticData.textData["end_transition"]["cube_dialogue_6"],
+		StaticData.textData["end_transition"]["cube_dialogue_7"],
+		StaticData.textData["end_transition"]["cube_dialogue_8"],
+		StaticData.textData["end_transition"]["cube_dialogue_9"],
+		StaticData.textData["end_transition"]["cube_dialogue_10"],
+		StaticData.textData["end_transition"]["cube_dialogue_11"],
+		StaticData.textData["end_transition"]["cube_dialogue_12"],
+		StaticData.textData["end_transition"]["cube_dialogue_13"],
+		StaticData.textData["end_transition"]["cube_dialogue_14"],
+		StaticData.textData["end_transition"]["cube_dialogue_15"],
 	]
 	textBox.start_dialogue(lines)
 	await get_tree().create_timer(2.0).timeout

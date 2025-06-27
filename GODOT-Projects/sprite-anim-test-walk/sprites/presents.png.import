@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl32pn6ai4883"
 path.s3tc="res://.godot/imported/presents.png-d04397e718b05d95f33604eef5380d9e.s3tc.ctex"
+path.etc2="res://.godot/imported/presents.png-d04397e718b05d95f33604eef5380d9e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/presents.png"
-dest_files=["res://.godot/imported/presents.png-d04397e718b05d95f33604eef5380d9e.s3tc.ctex"]
+dest_files=["res://.godot/imported/presents.png-d04397e718b05d95f33604eef5380d9e.s3tc.ctex", "res://.godot/imported/presents.png-d04397e718b05d95f33604eef5380d9e.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://erbtpmwj08nx"
 path.s3tc="res://.godot/imported/floor_tiles_02_baseColor_2k.png-d0f8ec4c7ea5a914499a98609705ece9.s3tc.ctex"
+path.etc2="res://.godot/imported/floor_tiles_02_baseColor_2k.png-d0f8ec4c7ea5a914499a98609705ece9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/floor_tiles_02_2k/floor_tiles_02_baseColor_2k.png"
-dest_files=["res://.godot/imported/floor_tiles_02_baseColor_2k.png-d0f8ec4c7ea5a914499a98609705ece9.s3tc.ctex"]
+dest_files=["res://.godot/imported/floor_tiles_02_baseColor_2k.png-d0f8ec4c7ea5a914499a98609705ece9.s3tc.ctex", "res://.godot/imported/floor_tiles_02_baseColor_2k.png-d0f8ec4c7ea5a914499a98609705ece9.etc2.ctex"]
 
 [params]
 
